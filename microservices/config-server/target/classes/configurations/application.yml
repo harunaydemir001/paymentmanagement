@@ -20,3 +20,8 @@ services:
     account-url: http://localhost:8091/account
   money-transfer-service:
     transaction-url: http://localhost:8093/transaction
+
+kafka:
+  topic:
+    email: email-topic
+    report: report-topic
