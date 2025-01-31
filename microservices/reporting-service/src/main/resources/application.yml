@@ -1,0 +1,25 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: reporting-service
+  elasticsearch:
+    uris: http://localhost:9200
+    username: elastic
+    password: DkIedPPSCb
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    generate-ddl: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+    producer:
+      retries: 3
+      acks: all

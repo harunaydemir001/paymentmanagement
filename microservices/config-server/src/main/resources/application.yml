@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configurations
+
+server:
+  port: 8888
+
+eureka:
+  client:
+    enabled: false

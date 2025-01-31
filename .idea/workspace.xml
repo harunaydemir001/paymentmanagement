@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4aaa23e5-ca7e-4ee8-b29e-06779f4550c0" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Security Analysis" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2rL3DOFns0RZquhieGZFWMgMzb6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.account-management-service [clean].executor": "Run",
+    "Maven.auth-service [clean].executor": "Run",
+    "Maven.common [install].executor": "Run",
+    "Maven.dal-common [clean,install].executor": "Run",
+    "Maven.eureka-server [clean].executor": "Run",
+    "Maven.exception [clean,install].executor": "Run",
+    "Maven.microservices [clean].executor": "Run",
+    "Maven.paymentmanagement [clean,install].executor": "Run",
+    "Maven.paymentmanagement [clean].executor": "Run",
+    "Maven.paymentmanagement [install].executor": "Run",
+    "Maven.security [clean,install].executor": "Run",
+    "Maven.security [clean].executor": "Run",
+    "Maven.security [install].executor": "Run",
+    "Maven.user-management-service [clean].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AccountManagementServiceApplication.executor": "Debug",
+    "Spring Boot.ApiGatewayServiceApplication.executor": "Debug",
+    "Spring Boot.AuthServiceApplication.executor": "Debug",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.IdentityServiceApplication.executor": "Debug",
+    "Spring Boot.MoneyTransferServiceApplication.executor": "Debug",
+    "Spring Boot.NotificationServiceApplication.executor": "Debug",
+    "Spring Boot.ReportingServiceApplication.executor": "Debug",
+    "Spring Boot.SecurityApplication.executor": "Run",
+    "Spring Boot.SecurityServiceApplication.executor": "Run",
+    "Spring Boot.UserManagementServiceApplication.executor": "Debug",
+    "dart.analysis.tool.window.visible": "false",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/haydemir/Pictures/paymentmanagement/microservices/reporting-service/src/main/java/com/harun/reportingservice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.harun.authservice.controller" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\haydemir\Pictures\paymentmanagement\microservices\reporting-service\src\main\java\com\harun\reportingservice" />
+      <recent name="C:\Users\haydemir\Pictures\paymentmanagement\microservices\notification-service\src\main\java\com\harun\notificationservice" />
+      <recent name="C:\Users\haydemir\Pictures\paymentmanagement\microservices\reporting-service\src\main\java\com\harun\reportingservice\config" />
+      <recent name="C:\Users\haydemir\Pictures\paymentmanagement\depends\common\src\main\java\com\harun\common" />
+      <recent name="C:\Users\haydemir\Pictures\paymentmanagement\microservices\money-transfer-service\src\main\java\com\harun\moneytransferservice" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\haydemir\Pictures\paymentmanagement\microservices\reporting-service\src\main\java\com\harun\reportingservice\deleted" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.harun.accountmanagementservice" />
+      <recent name="com.harun.reportingservice" />
+      <recent name="com.harun.api_gateway_service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.harun.accountmanagementservice" />
+      <recent name="com.harun.notificationservice" />
+      <recent name="com.harun.common.client.moneytransfer" />
+      <recent name="com.harun.authservice.config" />
+      <recent name="com.harun.apigatewayservice.config" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.AuthServiceApplication">
+    <configuration name="AccountManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="account-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.accountmanagementservice.AccountManagementServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiGatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="api-gateway-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.apigatewayservice.ApiGatewayServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="auth-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.authservice.AuthServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="config-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.configserver.ConfigServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.eurekaserver.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MoneyTransferServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="money-transfer-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.moneytransferservice.MoneyTransferServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="notification-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.notificationservice.NotificationServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentProcessingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="payment-processing-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.paymentprocessingservice.PaymentProcessingServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReportingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="reporting-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.reportingservice.ReportingServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="user-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.usermanagementservice.UserManagementServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.AuthServiceApplication" />
+      <item itemvalue="Spring Boot.AccountManagementServiceApplication" />
+      <item itemvalue="Spring Boot.ApiGatewayServiceApplication" />
+      <item itemvalue="Spring Boot.ConfigServerApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.MoneyTransferServiceApplication" />
+      <item itemvalue="Spring Boot.NotificationServiceApplication" />
+      <item itemvalue="Spring Boot.PaymentProcessingServiceApplication" />
+      <item itemvalue="Spring Boot.ReportingServiceApplication" />
+      <item itemvalue="Spring Boot.UserManagementServiceApplication" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.117" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.117" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4aaa23e5-ca7e-4ee8-b29e-06779f4550c0" name="Changes" comment="" />
+      <created>1736324407536</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736324407536</updated>
+      <workItem from="1736324408666" duration="6617000" />
+      <workItem from="1736333400532" duration="74000" />
+      <workItem from="1736333515022" duration="77000" />
+      <workItem from="1736333599061" duration="92000" />
+      <workItem from="1736333699799" duration="27000" />
+      <workItem from="1736333772596" duration="161000" />
+      <workItem from="1736491628401" duration="2887000" />
+      <workItem from="1736712900054" duration="1362000" />
+      <workItem from="1736715422147" duration="10366000" />
+      <workItem from="1736728159188" duration="15000" />
+      <workItem from="1736728194647" duration="1620000" />
+      <workItem from="1736746132941" duration="1092000" />
+      <workItem from="1736751649841" duration="1021000" />
+      <workItem from="1736752874461" duration="1889000" />
+      <workItem from="1736755499524" duration="778000" />
+      <workItem from="1736756309614" duration="501000" />
+      <workItem from="1736756879409" duration="27559000" />
+      <workItem from="1736939948189" duration="173000" />
+      <workItem from="1736940163919" duration="5707000" />
+      <workItem from="1737008319634" duration="14524000" />
+      <workItem from="1737032798405" duration="1099000" />
+      <workItem from="1737090914630" duration="33129000" />
+      <workItem from="1737188092966" duration="4296000" />
+      <workItem from="1737308468106" duration="10188000" />
+      <workItem from="1737319039286" duration="1657000" />
+      <workItem from="1737320733568" duration="282000" />
+      <workItem from="1737354046240" duration="3379000" />
+      <workItem from="1737360786836" duration="13382000" />
+      <workItem from="1737375277168" duration="813000" />
+      <workItem from="1737436341440" duration="3414000" />
+      <workItem from="1737439789698" duration="13493000" />
+      <workItem from="1737487208650" duration="2275000" />
+      <workItem from="1737489632382" duration="68000" />
+      <workItem from="1737489729908" duration="122000" />
+      <workItem from="1737525444940" duration="3523000" />
+      <workItem from="1737530139410" duration="481000" />
+      <workItem from="1737530658169" duration="11349000" />
+      <workItem from="1737609608020" duration="5013000" />
+      <workItem from="1737615938781" duration="172000" />
+      <workItem from="1737616139255" duration="6590000" />
+      <workItem from="1737629160613" duration="8009000" />
+      <workItem from="1737643438025" duration="6293000" />
+      <workItem from="1737699924354" duration="1043000" />
+      <workItem from="1737702598038" duration="5491000" />
+      <workItem from="1737724695880" duration="14123000" />
+      <workItem from="1737877790915" duration="2144000" />
+      <workItem from="1737955820379" duration="9000" />
+      <workItem from="1737963317051" duration="15217000" />
+      <workItem from="1737979321237" duration="3028000" />
+      <workItem from="1738005761068" duration="2515000" />
+      <workItem from="1738008310696" duration="3547000" />
+      <workItem from="1738046789579" duration="28000" />
+      <workItem from="1738048802623" duration="35000" />
+      <workItem from="1738048909067" duration="11000" />
+      <workItem from="1738052154255" duration="1178000" />
+      <workItem from="1738053341543" duration="473000" />
+      <workItem from="1738058666898" duration="2750000" />
+      <workItem from="1738068427909" duration="690000" />
+      <workItem from="1738071854800" duration="2433000" />
+      <workItem from="1738132391422" duration="5056000" />
+      <workItem from="1738140973147" duration="15892000" />
+      <workItem from="1738176140301" duration="20467000" />
+      <workItem from="1738303629021" duration="10105000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="com.mysql.cj.exceptions.ConnectionIsClosedException" package="com.mysql.cj.exceptions" />
+          <option name="timeStamp" value="7" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/auth-service/src/main/java/com/harun/authservice/config/UserDetailsServiceConfig.java</url>
+          <line>19</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/api-gateway-service/src/main/java/com/harun/apigatewayservice/filter/AuthenticationFilter.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/api-gateway-service/src/main/java/com/harun/apigatewayservice/filter/AuthenticationFilter.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/reporting-service/src/main/java/com/harun/reportingservice/deleted/EmailService.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/notification-service/src/main/java/com/harun/notificationservice/listener/KafkaEmailListener.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/reporting-service/src/main/java/com/harun/reportingservice/listener/KafkaReportListener.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/account-management-service/src/main/java/com/harun/accountmanagementservice/service/impl/AccountServiceImpl.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/notification-service/src/main/java/com/harun/notificationservice/service/impl/EmailServiceImpl.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/account-management-service/src/main/java/com/harun/accountmanagementservice/KafkaEmailProducer.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

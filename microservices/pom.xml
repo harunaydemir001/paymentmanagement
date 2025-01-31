@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>paymentmanagement</artifactId>
+        <groupId>com.harun</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>microservices</artifactId>
+    <packaging>pom</packaging>
+    <name>Microservices Parent Project</name>
+    <description>Microservices parent Pom</description>
+
+    <properties>
+    </properties>
+
+    <modules>
+        <module>config-server</module>
+        <module>eureka-server</module>
+        <module>api-gateway-service</module>
+        <module>payment-processing-service</module>
+        <module>user-management-service</module>
+        <module>account-management-service</module>
+        <module>money-transfer-service</module>
+        <module>notification-service</module>
+        <module>reporting-service</module>
+        <module>auth-service</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>${spring-cloud-starter-netflix-eureka-client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-client</artifactId>
+            <version>${spring-cloud-config-client.version}</version>
+        </dependency>
+    </dependencies>
+
+
+    <dependencyManagement>
+    </dependencyManagement>
+
+
+</project>

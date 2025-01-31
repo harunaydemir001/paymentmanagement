@@ -1,0 +1,22 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+spring:
+  cloud:
+    config:
+      override-system-properties: false
+
+
+services:
+  user-management-service:
+    bank-user-url: http://localhost:8090/bank-user
+  account-management-service:
+    account-url: http://localhost:8091/account
+  money-transfer-service:
+    transaction-url: http://localhost:8093/transaction
