@@ -1,12 +1,11 @@
 package com.harun.entity.models;
 
-import com.harun.entity.base.BaseDate;
+import com.harun.entity.base.BaseEntity;
 import com.harun.entity.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Table(name = "transactions")
@@ -15,7 +14,7 @@ import java.util.List;
 @Builder(setterPrefix = "with")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Transaction extends BaseDate<Long> {
+public class Transaction extends BaseEntity<Long> {
 
     @Column(nullable = false)
     private BigDecimal amount;
@@ -31,7 +30,4 @@ public class Transaction extends BaseDate<Long> {
     @ManyToOne
     @JoinColumn(name = "target_account_id")
     private Account targetAccount;
-
-    @OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Notification> notifications;
 }

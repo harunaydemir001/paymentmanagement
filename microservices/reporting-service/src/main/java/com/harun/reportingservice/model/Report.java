@@ -1,9 +1,6 @@
 package com.harun.reportingservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.harun.common.base.BaseId;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -17,11 +14,8 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Getter
 @Setter
 @Document(indexName = "report-index")
-public class Report {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false, updatable = false, unique = true)
-    String id;
+public class Report extends BaseId<String> {
+
     @Field(type = FieldType.Text, name = "notification")
     String notification;
 }

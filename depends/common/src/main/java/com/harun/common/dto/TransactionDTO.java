@@ -3,14 +3,12 @@ package com.harun.common.dto;
 
 import com.harun.entity.enums.TransactionType;
 import com.harun.entity.models.Account;
-import com.harun.entity.models.Notification;
 import com.harun.entity.models.Transaction;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * DTO for {@link Transaction}
@@ -31,6 +29,4 @@ public class TransactionDTO {
     Account sourceAccount;
 
     Account targetAccount;
-
-    List<Notification> notifications;
 }

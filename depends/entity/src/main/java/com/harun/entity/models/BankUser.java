@@ -1,6 +1,6 @@
 package com.harun.entity.models;
 
-import com.harun.entity.base.BaseDate;
+import com.harun.entity.base.BaseEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BankUser extends BaseDate<Long> {
+public class BankUser extends BaseEntity<Long> {
     String username;
 
     @OneToMany(mappedBy = "bankUser", cascade = CascadeType.ALL, orphanRemoval = true)

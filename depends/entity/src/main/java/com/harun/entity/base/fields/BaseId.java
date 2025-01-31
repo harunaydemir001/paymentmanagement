@@ -1,4 +1,4 @@
-package com.harun.entity.base;
+package com.harun.entity.base.fields;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

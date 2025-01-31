@@ -30,7 +30,6 @@ public class PaymentSagaOrchestrator {
     private final PaymentService paymentService;
     private final AccountServiceClientImpl accountServiceClientImpl;
     private final MoneyTransferServiceClientImpl moneyTransferServiceClientImpl;
-//    private final NotificationClient notificationClient;
 
     private static final Logger logger = LoggerFactory.getLogger(PaymentSagaOrchestrator.class);
 
@@ -69,7 +68,7 @@ public class PaymentSagaOrchestrator {
                     amount);
             logger.info(message);
 
-            transactionDTO = moneyTransferServiceClientImpl.saveTransaction(createTransaction(amount, sourceAccountDTO, targetAccountDTO));
+            transactionDTO = moneyTransferServiceClientImpl.saveTransaction(createTransactionEntity(amount, sourceAccountDTO, targetAccountDTO));
             logger.info("Transaction saved");
             //TODO Transaction için rollback senaryosu oluştur.
 
@@ -92,7 +91,7 @@ public class PaymentSagaOrchestrator {
         return null;
     }
 
-    private Transaction createTransaction(BigDecimal amount, AccountDTO sourceAccount, AccountDTO targetAccount) {
+    private Transaction createTransactionEntity(BigDecimal amount, AccountDTO sourceAccount, AccountDTO targetAccount) {
         return Transaction.builder()
                 .withAmount(amount)
                 .withType(TransactionType.PAYMENT)

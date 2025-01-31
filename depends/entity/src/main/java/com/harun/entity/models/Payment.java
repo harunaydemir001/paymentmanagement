@@ -1,7 +1,7 @@
 package com.harun.entity.models;
 
 
-import com.harun.entity.base.BaseDate;
+import com.harun.entity.base.BaseEntity;
 import com.harun.entity.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Setter
 @ToString
 @Table(name = "payments")
-public class Payment extends BaseDate<Long> {
+public class Payment extends BaseEntity<Long> {
 
     @Column(nullable = false)
     private BigDecimal amount;

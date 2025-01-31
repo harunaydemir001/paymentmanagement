@@ -1,7 +1,6 @@
 package com.harun.entity.models;
 
-import com.harun.entity.base.BaseDate;
-
+import com.harun.entity.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +12,7 @@ import java.util.List;
 @Table(name = "accounts")
 @Getter
 @Setter
-public class Account extends BaseDate<Long> {
+public class Account extends BaseEntity<Long> {
 
     @Column(nullable = false)
     private String accountNumber;
