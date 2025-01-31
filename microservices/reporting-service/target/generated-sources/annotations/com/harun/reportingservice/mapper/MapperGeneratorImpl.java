@@ -2,11 +2,13 @@ package com.harun.reportingservice.mapper;
 
 import com.harun.common.dto.ReportDTO;
 import com.harun.reportingservice.model.Report;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-31T13:38:18+0300",
+    date = "2025-01-31T14:50:55+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -20,7 +22,13 @@ public class MapperGeneratorImpl implements MapperGenerator {
         ReportDTO reportDTO = new ReportDTO();
 
         reportDTO.setId( report.getId() );
-        reportDTO.setNotification( report.getNotification() );
+        reportDTO.setUserId( report.getUserId() );
+        reportDTO.setEventType( report.getEventType() );
+        reportDTO.setMessage( report.getMessage() );
+        Map<String, Object> map = report.getMetadata();
+        if ( map != null ) {
+            reportDTO.setMetadata( new LinkedHashMap<String, Object>( map ) );
+        }
 
         return reportDTO;
     }
@@ -34,7 +42,13 @@ public class MapperGeneratorImpl implements MapperGenerator {
         Report report = new Report();
 
         report.setId( reportDTO.getId() );
-        report.setNotification( reportDTO.getNotification() );
+        report.setUserId( reportDTO.getUserId() );
+        report.setEventType( reportDTO.getEventType() );
+        report.setMessage( reportDTO.getMessage() );
+        Map<String, Object> map = reportDTO.getMetadata();
+        if ( map != null ) {
+            report.setMetadata( new LinkedHashMap<String, Object>( map ) );
+        }
 
         return report;
     }

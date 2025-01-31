@@ -1,17 +1,12 @@
 package com.harun.moneytransferservice.mapper;
 
-import com.harun.common.dto.AccountDTO;
 import com.harun.common.dto.TransactionDTO;
-import com.harun.common.models.Account;
-import com.harun.common.models.Notification;
-import com.harun.common.models.Transaction;
-import java.util.ArrayList;
-import java.util.List;
+import com.harun.entity.models.Transaction;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-27T23:53:09+0300",
+    date = "2025-01-31T14:50:55+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -24,39 +19,14 @@ public class MapperGeneratorImpl implements MapperGenerator {
 
         TransactionDTO transactionDTO = new TransactionDTO();
 
+        transactionDTO.setId( transaction.getId() );
         transactionDTO.setAmount( transaction.getAmount() );
-        transactionDTO.setType( transaction.getType() );
-        transactionDTO.setSourceAccount( transaction.getSourceAccount() );
-        transactionDTO.setTargetAccount( transaction.getTargetAccount() );
-        List<Notification> list = transaction.getNotifications();
-        if ( list != null ) {
-            transactionDTO.setNotifications( new ArrayList<Notification>( list ) );
-        }
+        transactionDTO.setTransactionDate( transaction.getTransactionDate() );
+        transactionDTO.setTransactionType( transaction.getTransactionType() );
+        transactionDTO.setFromAccount( transaction.getFromAccount() );
+        transactionDTO.setToAccount( transaction.getToAccount() );
+        transactionDTO.setBankUser( transaction.getBankUser() );
 
         return transactionDTO;
-    }
-
-    @Override
-    public Account accountDTOToAccount(AccountDTO sourceAccount) {
-        if ( sourceAccount == null ) {
-            return null;
-        }
-
-        Account account = new Account();
-
-        account.setId( sourceAccount.getId() );
-        account.setAccountNumber( sourceAccount.getAccountNumber() );
-        account.setBalance( sourceAccount.getBalance() );
-        account.setBankUser( sourceAccount.getBankUser() );
-        List<Transaction> list = sourceAccount.getOutgoingTransactions();
-        if ( list != null ) {
-            account.setOutgoingTransactions( new ArrayList<Transaction>( list ) );
-        }
-        List<Transaction> list1 = sourceAccount.getIncomingTransactions();
-        if ( list1 != null ) {
-            account.setIncomingTransactions( new ArrayList<Transaction>( list1 ) );
-        }
-
-        return account;
     }
 }

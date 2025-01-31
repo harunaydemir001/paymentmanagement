@@ -1,15 +1,15 @@
 package com.harun.entity.models;
 
 import com.harun.entity.base.BaseEntity;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import com.harun.entity.enums.Gender;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +19,45 @@ import java.util.List;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BankUser extends BaseEntity<Long> {
-    String username;
+
+    @Column(nullable = false, unique = true)
+    @Email
+    String email;
+
+    @Column(name = "first_name")
+    String firstName;
+
+    @Column(name = "last_name")
+    String lastName;
+
+    @Column(name = "phone_number")
+    String phoneNumber;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender")
+    Gender gender;
+
+    @Column(name = "is_email_verified")
+    boolean isEmailVerified = false;
+
+    @Column(name = "is_phone_verified")
+    boolean isPhoneVerified = false;
+
+    @Column(name = "occupation")
+    String occupation;
+
+    @Column(name = "monthly_income")
+    BigDecimal monthlyIncome;
+
+    @Column(name = "credit_score")
+    Integer creditScore;
 
     @OneToMany(mappedBy = "bankUser", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Account> accounts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "bankUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Transaction> transactions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "bankUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Payment> payments = new ArrayList<>();
 }

@@ -4,31 +4,33 @@ package com.harun.entity.models;
 import com.harun.entity.base.BaseEntity;
 import com.harun.entity.enums.PaymentStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
-@ToString
 @Table(name = "payments")
+@Builder(setterPrefix = "with")
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Payment extends BaseEntity<Long> {
 
     @Column(nullable = false)
-    private BigDecimal amount;
+    BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private PaymentStatus status;
+    PaymentStatus paymentStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private BankUser bankUser;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id", nullable = false)
-    private Account account;
+    Account account;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bank_user_id", nullable = false)
+    BankUser bankUser;
 }

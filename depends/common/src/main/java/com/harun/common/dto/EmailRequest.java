@@ -5,11 +5,12 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 
-@Data
+@Builder(setterPrefix = "with")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder(setterPrefix = "with")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Getter
+@Setter
 public class EmailRequest implements Serializable {
     String recipient;
     String msgBody;

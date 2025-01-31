@@ -1,7 +1,12 @@
 package com.harun.common.dto;
 
+import com.harun.common.enums.EventType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Map;
 
 @Builder(setterPrefix = "with")
 @NoArgsConstructor
@@ -10,9 +15,13 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 public class ReportDTO {
-
     String id;
 
-    String notification;
+    Long userId;
 
+    EventType eventType;
+
+    String message;
+
+    Map<String, Object> metadata;
 }

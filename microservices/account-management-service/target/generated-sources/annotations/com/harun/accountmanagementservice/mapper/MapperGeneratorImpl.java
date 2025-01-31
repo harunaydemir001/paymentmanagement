@@ -2,14 +2,14 @@ package com.harun.accountmanagementservice.mapper;
 
 import com.harun.common.dto.AccountDTO;
 import com.harun.entity.models.Account;
-import com.harun.entity.models.Transaction;
+import com.harun.entity.models.Payment;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-31T13:38:18+0300",
+    date = "2025-01-31T14:51:36+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -24,15 +24,12 @@ public class MapperGeneratorImpl implements MapperGenerator {
 
         accountDTO.setId( account.getId() );
         accountDTO.setAccountNumber( account.getAccountNumber() );
+        accountDTO.setAccountType( account.getAccountType() );
         accountDTO.setBalance( account.getBalance() );
         accountDTO.setBankUser( account.getBankUser() );
-        List<Transaction> list = account.getOutgoingTransactions();
+        List<Payment> list = account.getPayments();
         if ( list != null ) {
-            accountDTO.setOutgoingTransactions( new ArrayList<Transaction>( list ) );
-        }
-        List<Transaction> list1 = account.getIncomingTransactions();
-        if ( list1 != null ) {
-            accountDTO.setIncomingTransactions( new ArrayList<Transaction>( list1 ) );
+            accountDTO.setPayments( new ArrayList<Payment>( list ) );
         }
 
         return accountDTO;

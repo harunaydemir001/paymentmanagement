@@ -1,32 +1,44 @@
 package com.harun.entity.models;
 
 import com.harun.entity.base.BaseEntity;
+import com.harun.entity.enums.AccountType;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "accounts")
 @Getter
 @Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Account extends BaseEntity<Long> {
 
-    @Column(nullable = false)
-    private String accountNumber;
+    @Column(nullable = false, unique = true)
+    String accountNumber;
 
-    @Column(nullable = false)
-    private BigDecimal balance;
+    @Enumerated(EnumType.STRING)
+    AccountType accountType;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private BankUser bankUser;
+    @Column(name = "balance", precision = 19, scale = 2)
+    BigDecimal balance;
 
-    @OneToMany(mappedBy = "sourceAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Transaction> outgoingTransactions;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bank_user_id", nullable = false)
+    BankUser bankUser;
 
-    @OneToMany(mappedBy = "targetAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Transaction> incomingTransactions;
+    @OneToMany(mappedBy = "fromAccount", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Transaction> sentTransactions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "toAccount", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Transaction> receivedTransactions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Payment> payments = new ArrayList<>();
 }

@@ -44,7 +44,7 @@ public class AccountServiceImpl implements AccountService {
 
         //delete
         var reportDTO = ReportDTO.builder()
-                .withNotification("test")
+                .withMessage("test")
                 .build();
         reportProducer.sendReport(reportDTO);
 

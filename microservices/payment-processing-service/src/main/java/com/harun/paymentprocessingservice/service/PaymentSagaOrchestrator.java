@@ -1,19 +1,18 @@
 package com.harun.paymentprocessingservice.service;
 
 import com.harun.common.dto.AccountDTO;
-import com.harun.common.dto.TransactionDTO;
-
+import com.harun.common.dto.EmailRequest;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
 import com.harun.common.feign.impl.MoneyTransferServiceClientImpl;
-
+import com.harun.common.kafka.KafkaProducer;
+import com.harun.common.kafka.KafkaTopicsProperties;
 import com.harun.common.utils.StringBuilderUtil;
-import com.harun.entity.enums.PaymentStatus;
 import com.harun.entity.enums.TransactionType;
 import com.harun.entity.models.Transaction;
-import com.harun.paymentprocessingservice.dto.PaymentDTO;
+import com.harun.paymentprocessingservice.enums.PaymentSagaStep;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
-import jakarta.persistence.EntityNotFoundException;
+import com.harun.paymentprocessingservice.model.PaymentSagaState;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,122 +29,145 @@ public class PaymentSagaOrchestrator {
     private final PaymentService paymentService;
     private final AccountServiceClientImpl accountServiceClientImpl;
     private final MoneyTransferServiceClientImpl moneyTransferServiceClientImpl;
+    private final PaymentSagaState paymentSagaState;
+    private final KafkaProducer kafkaProducer;
 
     private static final Logger logger = LoggerFactory.getLogger(PaymentSagaOrchestrator.class);
 
-    private String message = "";
-
-
-    public PaymentDTO processPayment(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {
-        PaymentDTO paymentDTO = new PaymentDTO();
-        AccountDTO sourceAccountDTO;
-        AccountDTO targetAccountDTO;
-        TransactionDTO transactionDTO;
+    public PaymentSagaState processPayment(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {
+        String message = "Transfer is {}: Source Account ID: {} Target Account ID: {} Amount: {}";
         try {
-            paymentDTO.setStatus(PaymentStatus.PENDING);
+            logger.info(message, "started", sourceAccountId, targetAccountId, amount);
 
-            message = StringBuilderUtil.buildMessage(
-                    "Transfer is started: Source Account ID: {} Target Account ID: {} Amount: {}",
-                    sourceAccountId, targetAccountId, amount
-            );
-            logger.info(message);
+            initializePaymentSagaState(sourceAccountId, targetAccountId, amount);
 
-            paymentService.validateTransferInputs(sourceAccountId, targetAccountId, amount);
-            logger.info("Transfer inputs validated.");
+            validateInputs();
 
-            sourceAccountDTO = getAccountById(sourceAccountId);
-            message = StringBuilderUtil.buildMessage("Source account ID: {}", sourceAccountDTO.getId());
-            logger.info(message);
+            debitSourceAccount();
 
-            targetAccountDTO = getAccountById(targetAccountId);
-            message = StringBuilderUtil.buildMessage("Target account ID: {}", targetAccountDTO.getId());
-            logger.info(message);
+            creditTargetAccount();
 
-            performMoneyTransfer(sourceAccountDTO, targetAccountDTO, amount);
-            message = StringBuilderUtil.buildMessage("Transfer completed: Source Account ID: {} Target Account ID: {} Amount: {}",
-                    sourceAccountDTO.getId(),
-                    targetAccountDTO.getId(),
-                    amount);
-            logger.info(message);
+            saveTransaction();
 
-            transactionDTO = moneyTransferServiceClientImpl.saveTransaction(createTransactionEntity(amount, sourceAccountDTO, targetAccountDTO));
-            logger.info("Transaction saved");
-            //TODO Transaction için rollback senaryosu oluştur.
+            paymentSagaState.setCurrentStep(PaymentSagaStep.COMPLETE_PAYMENT);
 
-            paymentDTO.setAmount(amount);
-            paymentDTO.setStatus(PaymentStatus.COMPLETED);
+            logger.info(message, "completed", sourceAccountId, targetAccountId, amount);
 
+            sendEmail();
 
-        } catch (IllegalArgumentException e) {
-            logger.error(StringBuilderUtil.buildMessage("Validation error: {}", e.getMessage()));
-            paymentDTO.setStatus(PaymentStatus.FAILED);
-            //notification
-        } catch (EntityNotFoundException e) {
-            logger.error(StringBuilderUtil.buildMessage("EntityNotFound error: {}", e.getMessage()));
-            paymentDTO.setStatus(PaymentStatus.FAILED);
+            return paymentSagaState;
+
+        } catch (Exception e) {
+            handleFailure(e);
         }
-        //TODO  //notification
-//            catch(Exception e){
-//
-//            }
         return null;
     }
 
-    private Transaction createTransactionEntity(BigDecimal amount, AccountDTO sourceAccount, AccountDTO targetAccount) {
-        return Transaction.builder()
-                .withAmount(amount)
-                .withType(TransactionType.PAYMENT)
-                .withSourceAccount(mapper.accountDTOToAccount(sourceAccount))
-                .withTargetAccount(mapper.accountDTOToAccount(targetAccount))
+    private void sendEmail() {
+        var sourceEmailRequest = createEmailRequest(paymentSagaState.getSourceAccountId(),
+                "{} amount of money has been transferred from target account.", paymentSagaState.getAmount());
+
+        var targetEmailRequest = createEmailRequest(paymentSagaState.getTargetAccountId(),
+                "{} amount of money has arrived in your account.", paymentSagaState.getAmount());
+
+        kafkaProducer.sendEmailRequest(sourceEmailRequest, KafkaTopicsProperties.getEmailTopic());
+        kafkaProducer.sendEmailRequest(targetEmailRequest, KafkaTopicsProperties.getEmailTopic());
+    }
+
+    private EmailRequest createEmailRequest(Long sourceAccountId, String message, BigDecimal amount) {
+        return EmailRequest.builder()
+                .withRecipient(getAccountById(sourceAccountId).getBankUser().getEmail())
+                .withMsgBody(StringBuilderUtil.buildMessage(message, amount))
+                .withSubject("Money Transfer")
                 .build();
     }
 
+    private void initializePaymentSagaState(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {
+        paymentSagaState.setCurrentStep(PaymentSagaStep.START_PAYMENT);
+        paymentSagaState.setAmount(amount);
+        paymentSagaState.setSourceAccountId(sourceAccountId);
+        paymentSagaState.setTargetAccountId(targetAccountId);
+    }
+
+
+    private void validateInputs() {
+        paymentSagaState.setCurrentStep(PaymentSagaStep.VALIDATE_INPUTS);
+        paymentService.validateTransferInputs(paymentSagaState.getSourceAccountId(), paymentSagaState.getTargetAccountId(), paymentSagaState.getAmount());
+        logger.info("Transfer inputs validated.");
+    }
+
+    private void debitSourceAccount() {
+        paymentSagaState.setCurrentStep(PaymentSagaStep.DEBIT_SOURCE_ACCOUNT);
+        AccountDTO sourceAccountDTO = getAccountById(paymentSagaState.getSourceAccountId());
+        sourceAccountDTO.setBalance(sourceAccountDTO.getBalance().subtract(paymentSagaState.getAmount()));
+        accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(sourceAccountDTO));
+        logger.info("Source account debited.");
+    }
+
+    private void creditTargetAccount() {
+        paymentSagaState.setCurrentStep(PaymentSagaStep.CREDIT_TARGET_ACCOUNT);
+        AccountDTO targetAccountDTO = getAccountById(paymentSagaState.getTargetAccountId());
+        targetAccountDTO.setBalance(targetAccountDTO.getBalance().add(paymentSagaState.getAmount()));
+        accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(targetAccountDTO));
+        logger.info("Target account credited.");
+    }
+
+    private void saveTransaction() {
+        paymentSagaState.setCurrentStep(PaymentSagaStep.SAVE_TRANSACTION);
+        moneyTransferServiceClientImpl.saveTransaction(createTransactionEntity());
+        logger.info("Transaction saved.");
+    }
+
+    private void handleFailure(Exception e) {
+        paymentSagaState.setCurrentStep(PaymentSagaStep.FAILURE_PAYMENT);
+        paymentSagaState.setFailureReason(e.getMessage());
+        logger.error("Payment failed: {}", e.getMessage());
+        compensate();
+    }
+
+    private void compensate() {
+        switch (paymentSagaState.getCurrentStep()) {
+            case CREDIT_TARGET_ACCOUNT:
+                compensationTargetAccount();
+                break;
+            case DEBIT_SOURCE_ACCOUNT:
+                compensationSourceAccount();
+                break;
+            case SAVE_TRANSACTION:
+                compensationTargetAccount();
+                compensationSourceAccount();
+                break;
+            default:
+                logger.info("No compensation needed for step: {}", paymentSagaState.getCurrentStep());
+                break;
+        }
+    }
+
+    private void compensationSourceAccount() {
+        AccountDTO sourceAccountDTO = getAccountById(paymentSagaState.getSourceAccountId());
+        sourceAccountDTO.setBalance(sourceAccountDTO.getBalance().add(paymentSagaState.getAmount()));
+        accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(sourceAccountDTO));
+        logger.info("Compensation: Source account credited.");
+    }
+
+    private void compensationTargetAccount() {
+        AccountDTO targetAccountDTO = getAccountById(paymentSagaState.getTargetAccountId());
+        targetAccountDTO.setBalance(targetAccountDTO.getBalance().subtract(paymentSagaState.getAmount()));
+        accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(targetAccountDTO));
+        logger.info("Compensation: Target account debited.");
+    }
+
+    private Transaction createTransactionEntity() {
+        return Transaction.builder()
+                .withAmount(paymentSagaState.getAmount())
+                .withTransactionType(TransactionType.PAYMENT)
+                .withFromAccount(mapper.accountDTOToAccount(getAccountById(paymentSagaState.getSourceAccountId())))
+                .withToAccount(mapper.accountDTOToAccount(getAccountById(paymentSagaState.getTargetAccountId())))
+                .build();
+    }
+
+    //cachle
     private AccountDTO getAccountById(Long sourceAccountId) {
         return accountServiceClientImpl.getAccountById(sourceAccountId);
     }
-
-    private void performMoneyTransfer(AccountDTO sourceAccount, AccountDTO targetAccount, BigDecimal amount) {
-
-        BigDecimal sourceBalance = sourceAccount.getBalance();
-        BigDecimal targetBalance = targetAccount.getBalance();
-
-        sourceAccount.setBalance(sourceBalance.subtract(amount));
-        targetAccount.setBalance(targetBalance.add(amount));
-
-        accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(sourceAccount));
-        accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(targetAccount));
-        //TODO //Buraya custom bir error class oluştur.
-        //TODO //circuit breaker oluştur.
-    }
 }
-//
-//            // Adım 2: Kaynak hesaptan bakiye düş
-//            accountClient.debitAccount(sourceAccountId, amount);
-//
-//            // Adım 3: Hedef hesaba bakiye ekle
-//            accountClient.creditAccount(targetAccountId, amount);
-//
-//            // Adım 4: İşlemi kaydet
-//            Transaction transaction = transactionClient.createTransaction(sourceAccountId, targetAccountId, amount);
-//
-//            // Adım 5: Bildirim gönder
-//            notificationClient.sendNotification(transaction.getId(), sourceAccountId, targetAccountId);
-//
-//        } catch (Exception e) {
-//            // Telafi işlemleri
-//            handleCompensation(sourceAccountId, targetAccountId, amount);
-//            throw new RuntimeException("Saga işlemi başarısız: " + e.getMessage(), e);
-//        }
-//    }
-//
-//    private void handleCompensation(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {
-//        // Kaynak hesaba bakiye ekle
-//        accountClient.creditAccount(sourceAccountId, amount);
-//
-//        // Hedef hesaptan bakiye düş
-//        accountClient.debitAccount(targetAccountId, amount);
-//
-//        // Gerekirse diğer servislerde rollback işlemleri yapılabilir
-//        }
-//    }
-

@@ -4,8 +4,10 @@ import com.harun.entity.base.BaseEntity;
 import com.harun.entity.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transactions")
@@ -14,20 +16,27 @@ import java.math.BigDecimal;
 @Builder(setterPrefix = "with")
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Transaction extends BaseEntity<Long> {
 
     @Column(nullable = false)
-    private BigDecimal amount;
+    BigDecimal amount;
+
+    @Column(name = "transaction_date")
+    LocalDateTime transactionDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TransactionType type;
+    TransactionType transactionType;
 
-    @ManyToOne
-    @JoinColumn(name = "source_account_id")
-    private Account sourceAccount;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "from_account_id", nullable = false)
+    Account fromAccount;
 
-    @ManyToOne
-    @JoinColumn(name = "target_account_id")
-    private Account targetAccount;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "to_account_id", nullable = false)
+    Account toAccount;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bank_user_id", nullable = false)
+    BankUser bankUser;
 }
