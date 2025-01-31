@@ -1,10 +1,9 @@
 package com.harun.moneytransferservice.service.impl;
 
 import com.harun.common.dto.TransactionDTO;
-import com.harun.common.enums.error.ErrorMessage;
+import com.harun.common.enums.ErrorMessage;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
-import com.harun.common.models.Transaction;
-import com.harun.common.utils.StringBuilderUtil;
+import com.harun.entity.models.Transaction;
 import com.harun.moneytransferservice.mapper.MapperGenerator;
 import com.harun.moneytransferservice.mapper.MapperGeneratorSingleton;
 import com.harun.moneytransferservice.repository.TransactionRepository;
@@ -13,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor

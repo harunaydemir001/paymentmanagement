@@ -1,7 +1,7 @@
 package com.harun.paymentprocessingservice.repository;
 
-import com.harun.common.models.Payment;
 import com.harun.dalcommon.repository.base.JPABaseRepository;
+import com.harun.entity.models.Payment;
 import org.springframework.stereotype.Repository;
 
 @Repository

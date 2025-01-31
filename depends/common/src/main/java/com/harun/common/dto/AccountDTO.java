@@ -1,8 +1,8 @@
 package com.harun.common.dto;
 
-import com.harun.common.models.Account;
-import com.harun.common.models.BankUser;
-import com.harun.common.models.Transaction;
+import com.harun.entity.models.Account;
+import com.harun.entity.models.BankUser;
+import com.harun.entity.models.Transaction;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

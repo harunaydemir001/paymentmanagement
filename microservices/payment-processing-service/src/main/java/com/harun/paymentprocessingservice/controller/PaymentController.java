@@ -1,8 +1,8 @@
 package com.harun.paymentprocessingservice.controller;
 
-import com.harun.common.models.Payment;
 import com.harun.common.response.factory.ResponseFactory;
 import com.harun.common.response.model.Response;
+import com.harun.entity.models.Payment;
 import com.harun.paymentprocessingservice.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

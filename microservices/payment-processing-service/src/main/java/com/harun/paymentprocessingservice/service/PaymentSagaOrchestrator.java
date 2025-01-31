@@ -2,12 +2,14 @@ package com.harun.paymentprocessingservice.service;
 
 import com.harun.common.dto.AccountDTO;
 import com.harun.common.dto.TransactionDTO;
-import com.harun.common.enums.PaymentStatus;
-import com.harun.common.enums.TransactionType;
+
 import com.harun.common.feign.impl.AccountServiceClientImpl;
 import com.harun.common.feign.impl.MoneyTransferServiceClientImpl;
-import com.harun.common.models.Transaction;
+
 import com.harun.common.utils.StringBuilderUtil;
+import com.harun.entity.enums.PaymentStatus;
+import com.harun.entity.enums.TransactionType;
+import com.harun.entity.models.Transaction;
 import com.harun.paymentprocessingservice.dto.PaymentDTO;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;

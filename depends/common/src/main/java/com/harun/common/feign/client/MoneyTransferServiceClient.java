@@ -1,8 +1,8 @@
 package com.harun.common.feign.client;
 
 import com.harun.common.configuration.FeignClientConfiguration;
-import com.harun.common.models.Transaction;
 import com.harun.common.response.model.Response;
+import com.harun.entity.models.Transaction;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

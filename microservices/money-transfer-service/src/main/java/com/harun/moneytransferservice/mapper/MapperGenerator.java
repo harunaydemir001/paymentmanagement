@@ -2,9 +2,9 @@ package com.harun.moneytransferservice.mapper;
 
 
 import com.harun.common.dto.AccountDTO;
-import com.harun.common.models.Account;
-import com.harun.common.models.Transaction;
+
 import com.harun.common.dto.TransactionDTO;
+import com.harun.entity.models.Transaction;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 
@@ -13,6 +13,4 @@ import org.mapstruct.Mapper;
 public interface MapperGenerator {
 
     TransactionDTO transactionToTransactionDTO(Transaction transaction);
-
-//    Account accountDTOToAccount(AccountDTO sourceAccount);
 }

@@ -1,9 +1,10 @@
 package com.harun.common.dto;
 
-import com.harun.common.enums.TransactionType;
-import com.harun.common.models.Account;
-import com.harun.common.models.Notification;
-import com.harun.common.models.Transaction;
+
+import com.harun.entity.enums.TransactionType;
+import com.harun.entity.models.Account;
+import com.harun.entity.models.Notification;
+import com.harun.entity.models.Transaction;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = "com.harun.common.feign")
 @EnableFeignClients(basePackages = "com.harun.common.feign")
-@EntityScan(basePackages = "com.harun.common.models")
+@EntityScan("com.harun.entity.models")
 public class PaymentProcessingServiceApplication {
 
     public static void main(String[] args) {

@@ -1,7 +1,8 @@
 package com.harun.usermanagementservice.mapper;
 
 
-import com.harun.common.models.BankUser;
+
+import com.harun.entity.models.BankUser;
 import com.harun.usermanagementservice.dto.BankUserDTO;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;

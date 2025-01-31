@@ -1,6 +1,7 @@
-package com.harun.common.models;
+package com.harun.entity.models;
 
-import com.harun.common.base.BaseDate;
+import com.harun.entity.base.BaseDate;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

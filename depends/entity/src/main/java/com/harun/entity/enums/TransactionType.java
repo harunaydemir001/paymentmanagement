@@ -1,4 +1,4 @@
-package com.harun.common.enums;
+package com.harun.entity.enums;
 
 import lombok.Getter;
 

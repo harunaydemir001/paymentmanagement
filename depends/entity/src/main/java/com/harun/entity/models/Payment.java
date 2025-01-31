@@ -1,9 +1,12 @@
-package com.harun.common.models;
+package com.harun.entity.models;
 
-import com.harun.common.base.BaseDate;
-import com.harun.common.enums.PaymentStatus;
+
+import com.harun.entity.base.BaseDate;
+import com.harun.entity.enums.PaymentStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 

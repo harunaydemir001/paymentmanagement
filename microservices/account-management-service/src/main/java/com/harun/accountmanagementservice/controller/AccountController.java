@@ -1,9 +1,9 @@
 package com.harun.accountmanagementservice.controller;
 
 import com.harun.accountmanagementservice.service.AccountService;
-import com.harun.common.models.Account;
 import com.harun.common.response.factory.ResponseFactory;
 import com.harun.common.response.model.Response;
+import com.harun.entity.models.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

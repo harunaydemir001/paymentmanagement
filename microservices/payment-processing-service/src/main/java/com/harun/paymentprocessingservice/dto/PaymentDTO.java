@@ -1,8 +1,8 @@
 package com.harun.paymentprocessingservice.dto;
 
-import com.harun.common.enums.PaymentStatus;
-import com.harun.common.models.Account;
-import com.harun.common.models.BankUser;
+import com.harun.entity.enums.PaymentStatus;
+import com.harun.entity.models.Account;
+import com.harun.entity.models.BankUser;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

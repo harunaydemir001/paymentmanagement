@@ -9,10 +9,13 @@
         <option value="$PROJECT_DIR$/microservices/security-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/auth-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/identity-service/pom.xml" />
+        <option value="$PROJECT_DIR$/depends/entity/pom.xml" />
+        <option value="$PROJECT_DIR$/depends/feign/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/depends/feign/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/identity-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/security-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/security/pom.xml" />

@@ -2,7 +2,7 @@ package com.harun.authservice.config.user;
 
 
 import com.harun.authservice.repository.UserInfoRepository;
-import com.harun.common.enums.error.ErrorMessage;
+import com.harun.common.enums.ErrorMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

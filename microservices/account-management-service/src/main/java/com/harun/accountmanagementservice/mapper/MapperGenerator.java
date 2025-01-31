@@ -2,7 +2,7 @@ package com.harun.accountmanagementservice.mapper;
 
 
 import com.harun.common.dto.AccountDTO;
-import com.harun.common.models.Account;
+import com.harun.entity.models.Account;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 

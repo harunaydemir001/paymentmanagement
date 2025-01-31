@@ -18,6 +18,7 @@
         <module>common</module>
         <module>dal-common</module>
         <module>exception</module>
+        <module>entity</module>
     </modules>
 
 </project>

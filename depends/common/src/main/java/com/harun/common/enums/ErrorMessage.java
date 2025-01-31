@@ -1,4 +1,4 @@
-package com.harun.common.enums.error;
+package com.harun.common.enums;
 
 import com.harun.common.utils.StringBuilderUtil;
 import lombok.Getter;

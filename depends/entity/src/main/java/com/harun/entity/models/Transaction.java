@@ -1,7 +1,7 @@
-package com.harun.common.models;
+package com.harun.entity.models;
 
-import com.harun.common.base.BaseDate;
-import com.harun.common.enums.TransactionType;
+import com.harun.entity.base.BaseDate;
+import com.harun.entity.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,15 +1,15 @@
 package com.harun.accountmanagementservice.mapper;
 
 import com.harun.common.dto.AccountDTO;
-import com.harun.common.models.Account;
-import com.harun.common.models.Transaction;
+import com.harun.entity.models.Account;
+import com.harun.entity.models.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-29T13:57:44+0300",
+    date = "2025-01-31T13:38:18+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {

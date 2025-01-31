@@ -3,7 +3,9 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/depends/common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/depends/dal-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/depends/entity/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/depends/exception/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/depends/feign/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/depends/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/depends/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microservices/account-management-service/src/main/java" charset="UTF-8" />

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EntityScan("com.harun.common.models")
+@EntityScan("com.harun.entity.models")
 @EnableFeignClients(basePackages = "com.harun.common.feign")
 public class AccountManagementServiceApplication {
 

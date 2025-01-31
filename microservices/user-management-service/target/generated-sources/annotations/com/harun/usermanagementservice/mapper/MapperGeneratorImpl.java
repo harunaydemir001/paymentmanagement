@@ -1,7 +1,7 @@
 package com.harun.usermanagementservice.mapper;
 
-import com.harun.common.models.Account;
-import com.harun.common.models.BankUser;
+import com.harun.entity.models.Account;
+import com.harun.entity.models.BankUser;
 import com.harun.usermanagementservice.dto.BankUserDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-27T23:49:09+0300",
+    date = "2025-01-31T13:37:13+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {

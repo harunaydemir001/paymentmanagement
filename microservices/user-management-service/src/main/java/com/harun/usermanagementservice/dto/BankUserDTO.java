@@ -1,6 +1,6 @@
 package com.harun.usermanagementservice.dto;
 
-import com.harun.common.models.Account;
+import com.harun.entity.models.Account;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

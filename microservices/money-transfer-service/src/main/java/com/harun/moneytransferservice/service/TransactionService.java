@@ -1,9 +1,7 @@
 package com.harun.moneytransferservice.service;
 
 import com.harun.common.dto.TransactionDTO;
-import com.harun.common.models.Transaction;
-
-import java.math.BigDecimal;
+import com.harun.entity.models.Transaction;
 
 public interface TransactionService {
     TransactionDTO getTransactionById(Long id);

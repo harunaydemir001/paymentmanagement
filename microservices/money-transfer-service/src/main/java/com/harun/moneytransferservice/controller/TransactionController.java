@@ -1,16 +1,14 @@
 package com.harun.moneytransferservice.controller;
 
 
-import com.harun.common.models.Transaction;
 import com.harun.common.response.factory.ResponseFactory;
 import com.harun.common.response.model.Response;
+import com.harun.entity.models.Transaction;
 import com.harun.moneytransferservice.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
 
 @RestController
 @RequiredArgsConstructor

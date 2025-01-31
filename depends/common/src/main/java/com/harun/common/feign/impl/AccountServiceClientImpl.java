@@ -2,9 +2,9 @@ package com.harun.common.feign.impl;
 
 import com.harun.common.dto.AccountDTO;
 import com.harun.common.feign.client.AccountServiceClient;
-import com.harun.common.models.Account;
 import com.harun.common.response.model.Response;
 import com.harun.common.utils.JsonUtil;
+import com.harun.entity.models.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

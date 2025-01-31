@@ -1,6 +1,6 @@
 package com.harun.paymentprocessingservice.service;
 
-import com.harun.common.models.Payment;
+import com.harun.entity.models.Payment;
 import com.harun.paymentprocessingservice.dto.PaymentDTO;
 
 import java.math.BigDecimal;

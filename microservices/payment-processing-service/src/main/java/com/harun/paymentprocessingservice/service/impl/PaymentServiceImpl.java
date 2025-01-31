@@ -1,10 +1,10 @@
 package com.harun.paymentprocessingservice.service.impl;
 
 import com.harun.common.dto.AccountDTO;
-import com.harun.common.enums.error.ErrorMessage;
+import com.harun.common.enums.ErrorMessage;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
-import com.harun.common.models.Payment;
 import com.harun.common.utils.StringBuilderUtil;
+import com.harun.entity.models.Payment;
 import com.harun.paymentprocessingservice.dto.PaymentDTO;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
