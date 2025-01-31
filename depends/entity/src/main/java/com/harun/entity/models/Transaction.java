@@ -28,15 +28,15 @@ public class Transaction extends BaseEntity<Long> {
     @Enumerated(EnumType.STRING)
     TransactionType transactionType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "from_account_id", nullable = false)
     Account fromAccount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "to_account_id", nullable = false)
     Account toAccount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bank_user_id", nullable = false)
     BankUser bankUser;
 }

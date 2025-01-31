@@ -29,7 +29,7 @@ public class Account extends BaseEntity<Long> {
     @Column(name = "balance", precision = 19, scale = 2)
     BigDecimal balance;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bank_user_id", nullable = false)
     BankUser bankUser;
 

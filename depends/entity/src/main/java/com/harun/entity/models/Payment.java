@@ -26,11 +26,11 @@ public class Payment extends BaseEntity<Long> {
     @Enumerated(EnumType.STRING)
     PaymentStatus paymentStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_id", nullable = false)
     Account account;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bank_user_id", nullable = false)
     BankUser bankUser;
 }

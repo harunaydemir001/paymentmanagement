@@ -31,7 +31,7 @@ public class BankUserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Response> getAllUsers(@PathVariable Long id) {
+    public ResponseEntity<Response> getUserById(@PathVariable Long id) {
         return ResponseFactory.createResponse(bankUserService.getUserById(id), HttpStatus.OK);
     }
 

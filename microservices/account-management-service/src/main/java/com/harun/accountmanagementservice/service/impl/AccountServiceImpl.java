@@ -1,7 +1,5 @@
 package com.harun.accountmanagementservice.service.impl;
 
-import com.harun.accountmanagementservice.KafkaEmailProducer;
-import com.harun.accountmanagementservice.KafkaReportProducer;
 import com.harun.accountmanagementservice.mapper.MapperGenerator;
 import com.harun.accountmanagementservice.mapper.MapperGeneratorSingleton;
 import com.harun.accountmanagementservice.repository.AccountRepository;
@@ -29,25 +27,9 @@ public class AccountServiceImpl implements AccountService {
     private String message = "";
 
     private final AccountRepository accountRepository;
-    private final KafkaEmailProducer emailProducer;
-    private final KafkaReportProducer reportProducer;
 
     @Override
     public AccountDTO getAccountById(Long id) {
-        //delete
-        EmailRequest emailRequest = new EmailRequest();
-        emailRequest.setRecipient("harunaydemir001@gmail.com");
-        emailRequest.setSubject("test");
-        emailRequest.setMsgBody("this is a test mail");
-        emailRequest.setAttachment(null);
-        emailProducer.sendEmailRequest(emailRequest);
-
-        //delete
-        var reportDTO = ReportDTO.builder()
-                .withMessage("test")
-                .build();
-        reportProducer.sendReport(reportDTO);
-
         Account account = accountById(id);
         return mapper.accountToAccountDTO(account);
     }
