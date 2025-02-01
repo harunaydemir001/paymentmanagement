@@ -5,7 +5,7 @@ import com.harun.entity.models.Account;
 import com.harun.entity.models.BankUser;
 import com.harun.entity.models.Payment;
 import com.harun.entity.models.Transaction;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -35,7 +35,9 @@ public class AccountDTO {
 
     BankUser bankUser;
 
-    List<Transaction> transactions = new ArrayList<>();
+    List<Transaction> sentTransactions = new ArrayList<>();
+
+    List<Transaction> receivedTransactions = new ArrayList<>();
 
     List<Payment> payments = new ArrayList<>();
 }

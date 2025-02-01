@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account extends BaseEntity<Long> {
+public class Account extends BaseEntity<Long> implements Serializable {
 
     @Column(nullable = false, unique = true)
     String accountNumber;
@@ -33,12 +34,12 @@ public class Account extends BaseEntity<Long> {
     @JoinColumn(name = "bank_user_id", nullable = false)
     BankUser bankUser;
 
-    @OneToMany(mappedBy = "fromAccount", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "fromAccount", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     List<Transaction> sentTransactions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "toAccount", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "toAccount", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     List<Transaction> receivedTransactions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     List<Payment> payments = new ArrayList<>();
 }

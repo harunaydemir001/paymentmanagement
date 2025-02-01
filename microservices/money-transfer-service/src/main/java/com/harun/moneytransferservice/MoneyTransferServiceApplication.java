@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.harun.common.feign")
+@ComponentScan(basePackages = {"com.harun.common.feign", "com.harun.moneytransferservice"})
 @EnableFeignClients(basePackages = "com.harun.common.feign")
 @EntityScan("com.harun.entity.models")
 public class MoneyTransferServiceApplication {

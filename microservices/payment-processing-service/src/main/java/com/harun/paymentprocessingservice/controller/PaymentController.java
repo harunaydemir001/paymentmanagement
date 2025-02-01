@@ -3,6 +3,7 @@ package com.harun.paymentprocessingservice.controller;
 import com.harun.common.response.factory.ResponseFactory;
 import com.harun.common.response.model.Response;
 import com.harun.entity.models.Payment;
+import com.harun.paymentprocessingservice.dto.PaymentRequest;
 import com.harun.paymentprocessingservice.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/payment")
 public class PaymentController {
     private final PaymentService paymentService;
 
@@ -35,5 +37,10 @@ public class PaymentController {
     public ResponseEntity<Response> deletePayment(@PathVariable("id") Long id) {
         paymentService.deletePayment(id);
         return ResponseFactory.createSuccessResponse();
+    }
+
+    @PostMapping("/process-payment")
+    public ResponseEntity<Response> processPayment(@RequestBody PaymentRequest paymentRequest) {
+        return ResponseFactory.createResponse(paymentService.processPayment(paymentRequest), HttpStatus.OK);
     }
 }

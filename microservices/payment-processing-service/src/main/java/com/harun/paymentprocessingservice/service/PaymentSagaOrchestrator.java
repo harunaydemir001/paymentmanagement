@@ -28,7 +28,6 @@ public class PaymentSagaOrchestrator {
 
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
 
-    private final PaymentService paymentService;
     private final AccountServiceClientImpl accountServiceClientImpl;
     private final MoneyTransferServiceClientImpl moneyTransferServiceClientImpl;
     private final PaymentSagaState paymentSagaState;
@@ -43,8 +42,6 @@ public class PaymentSagaOrchestrator {
             logger.info(message, "started", sourceAccountId, targetAccountId, amount);
 
             initializePaymentSagaState(sourceAccountId, targetAccountId, amount);
-
-            validateInputs();
 
             debitSourceAccount();
 
@@ -109,12 +106,6 @@ public class PaymentSagaOrchestrator {
         paymentSagaState.setTargetAccountId(targetAccountId);
     }
 
-
-    private void validateInputs() {
-        paymentSagaState.setCurrentStep(PaymentSagaStep.VALIDATE_INPUTS);
-        paymentService.validateTransferInputs(paymentSagaState.getSourceAccountId(), paymentSagaState.getTargetAccountId(), paymentSagaState.getAmount());
-        logger.info("Transfer inputs validated.");
-    }
 
     private void debitSourceAccount() {
         paymentSagaState.setCurrentStep(PaymentSagaStep.DEBIT_SOURCE_ACCOUNT);

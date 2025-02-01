@@ -6,9 +6,12 @@ import com.harun.common.feign.impl.AccountServiceClientImpl;
 import com.harun.common.utils.StringBuilderUtil;
 import com.harun.entity.models.Payment;
 import com.harun.paymentprocessingservice.dto.PaymentDTO;
+import com.harun.paymentprocessingservice.dto.PaymentRequest;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
+import com.harun.paymentprocessingservice.model.PaymentSagaState;
 import com.harun.paymentprocessingservice.repository.PaymentRepository;
+import com.harun.paymentprocessingservice.service.PaymentSagaOrchestrator;
 import com.harun.paymentprocessingservice.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -30,6 +33,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
     private final AccountServiceClientImpl accountServiceClientImpl;
+    private final PaymentSagaOrchestrator paymentSagaOrchestrator;
 
     @Override
     public PaymentDTO getPaymentById(Long id) {
@@ -58,7 +62,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void validateTransferInputs(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {
+    public PaymentSagaState processPayment(PaymentRequest paymentRequest) {
+        validateTransferInputs(paymentRequest.getSourceAccountId(), paymentRequest.getTargetAccountId(), paymentRequest.getAmount());
+        return paymentSagaOrchestrator.processPayment(paymentRequest.getSourceAccountId(), paymentRequest.getTargetAccountId(), paymentRequest.getAmount());
+    }
+
+    private void validateTransferInputs(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {
         validateAccountIds(sourceAccountId, targetAccountId);
         validateTransferAmount(amount);
         validateAccountExistence(sourceAccountId, targetAccountId);

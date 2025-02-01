@@ -1,9 +1,9 @@
 package com.harun.paymentprocessingservice.model;
 
-import com.harun.entity.enums.PaymentStatus;
 import com.harun.paymentprocessingservice.enums.PaymentSagaStep;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
+@Component
 public class PaymentSagaState {
     private Long sourceAccountId;
     private Long targetAccountId;

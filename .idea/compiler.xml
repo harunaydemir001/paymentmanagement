@@ -24,8 +24,8 @@
         </processorPath>
         <module name="exception" />
         <module name="config-server" />
-        <module name="eureka-server" />
         <module name="dal-common" />
+        <module name="eureka-server" />
       </profile>
       <profile name="Annotation profile for common" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />

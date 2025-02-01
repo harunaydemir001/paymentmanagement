@@ -2,6 +2,8 @@ package com.harun.paymentprocessingservice.service;
 
 import com.harun.entity.models.Payment;
 import com.harun.paymentprocessingservice.dto.PaymentDTO;
+import com.harun.paymentprocessingservice.dto.PaymentRequest;
+import com.harun.paymentprocessingservice.model.PaymentSagaState;
 
 import java.math.BigDecimal;
 
@@ -15,5 +17,5 @@ public interface PaymentService {
 
     void deletePayment(Long id);
 
-    void validateTransferInputs(Long sourceAccountId, Long targetAccountId, BigDecimal amount);
+     PaymentSagaState processPayment(PaymentRequest paymentRequest);
 }
