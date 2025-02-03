@@ -10,9 +10,10 @@ import com.harun.entity.models.Account;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,12 +28,14 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
 
     @Override
+    @Cacheable(value = "account", key = "#id")
     public AccountDTO getAccountById(Long id) {
         Account account = accountById(id);
         return mapper.accountToAccountDTO(account);
     }
 
     @Override
+    @CachePut(value = "account", key = "#id")
     public AccountDTO updateAccount(Account account) {
         Account updatedAccount = accountRepository.save(account);
         return mapper.accountToAccountDTO(updatedAccount);
@@ -45,6 +48,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @CacheEvict(value = "account", key = "#id")
     public void deleteAccount(Long id) {
         try {
             accountById(id);

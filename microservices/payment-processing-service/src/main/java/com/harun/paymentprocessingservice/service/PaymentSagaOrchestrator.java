@@ -37,7 +37,7 @@ public class PaymentSagaOrchestrator {
 
 
     private static final Logger logger = LoggerFactory.getLogger(PaymentSagaOrchestrator.class);
-    private static String message = "Transfer is {}: Source Account ID: {} Target Account ID: {} Amount: {}";
+    private static final String message = "Transfer is {}: Source Account ID: {} Target Account ID: {} Amount: {}";
 
     public PaymentSagaState processPayment(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {
 
@@ -56,46 +56,78 @@ public class PaymentSagaOrchestrator {
 
             logger.info(message, "completed", sourceAccountId, targetAccountId, amount);
 
-
-
             return paymentSagaState;
 
         } catch (Exception e) {
             handleFailure(e);
-        }finally {
+        } finally {
             sendEmail();
             createReport();
         }
-        return null;
+        return paymentSagaState;
     }
 
     private void createReport() {
-        var reportDTO = createReportDTO();
+        String status = paymentSagaState.getCurrentStep().equals(PaymentSagaStep.COMPLETE_PAYMENT)
+                ? PaymentSagaStep.COMPLETE_PAYMENT.name()
+                : PaymentSagaStep.FAILURE_PAYMENT.name();
+
+        ReportDTO reportDTO = createReportDTO(status);
         kafkaProducer.sendKafkaMessage(reportDTO, KafkaTopicsProperties.getReportTopic());
     }
 
-    private ReportDTO createReportDTO() {
+    private ReportDTO createReportDTO(String status) {
         return ReportDTO.builder()
                 .withEventType(EventType.MONEY_TRANSFER)
-                .withMessage(StringBuilderUtil.buildMessage(message, "completed",
+                .withMessage(StringBuilderUtil.buildMessage(message, status,
                         paymentSagaState.getSourceAccountId(),
                         paymentSagaState.getTargetAccountId(),
                         paymentSagaState.getAmount()))
                 .build();
     }
 
+//    private void sendEmail() {
+//        EmailRequest sourceEmailRequest;
+//        EmailRequest targetEmailRequest;
+//        if (!paymentSagaState.getCurrentStep().equals(PaymentSagaStep.COMPLETE_PAYMENT)) {
+//            sourceEmailRequest = createEmailRequest(paymentSagaState.getSourceAccountId(),
+//                    "{} amount of money has been not transferred from target account.", paymentSagaState.getAmount());
+//
+//            targetEmailRequest = createEmailRequest(paymentSagaState.getTargetAccountId(),
+//                    "{} amount of money has not arrived in your account.", paymentSagaState.getAmount());
+//
+//        } else {
+//            sourceEmailRequest = createEmailRequest(paymentSagaState.getSourceAccountId(),
+//                    "{} amount of money has been transferred from target account.", paymentSagaState.getAmount());
+//
+//            targetEmailRequest = createEmailRequest(paymentSagaState.getTargetAccountId(),
+//                    "{} amount of money has arrived in your account.", paymentSagaState.getAmount());
+//
+//        }
+//        kafkaProducer.sendKafkaMessage(sourceEmailRequest, KafkaTopicsProperties.getEmailTopic());
+//        kafkaProducer.sendKafkaMessage(targetEmailRequest, KafkaTopicsProperties.getEmailTopic());
+//    }
+
     private void sendEmail() {
-        var sourceEmailRequest = createEmailRequest(paymentSagaState.getSourceAccountId(),
-                "{} amount of money has been transferred from target account.", paymentSagaState.getAmount());
+        boolean isPaymentComplete = paymentSagaState.getCurrentStep().equals(PaymentSagaStep.COMPLETE_PAYMENT);
+        String sourceMessage = isPaymentComplete
+                ? "{} amount of money has been transferred from target account."
+                : "{} amount of money has not been transferred from target account.";
+        String targetMessage = isPaymentComplete
+                ? "{} amount of money has arrived in your account."
+                : "{} amount of money has not arrived in your account.";
 
-        var targetEmailRequest = createEmailRequest(paymentSagaState.getTargetAccountId(),
-                "{} amount of money has arrived in your account.", paymentSagaState.getAmount());
-
-        kafkaProducer.sendKafkaMessage(sourceEmailRequest, KafkaTopicsProperties.getEmailTopic());
-        kafkaProducer.sendKafkaMessage(targetEmailRequest, KafkaTopicsProperties.getEmailTopic());
+        sendEmailNotification(paymentSagaState.getSourceAccountId(), sourceMessage);
+        sendEmailNotification(paymentSagaState.getTargetAccountId(), targetMessage);
     }
 
-    private EmailRequest createEmailRequest(Long sourceAccountId, String message, BigDecimal amount) {
+    private void sendEmailNotification(Long accountId, String message) {
+        EmailRequest emailRequest = createEmailRequest(accountId, message, paymentSagaState.getAmount());
+        kafkaProducer.sendKafkaMessage(emailRequest, KafkaTopicsProperties.getEmailTopic());
+    }
+
+    //mail adresini düzenle
+    private EmailRequest createEmailRequest(Long accoundId, String message, BigDecimal amount) {
         return EmailRequest.builder()
                 .withRecipient("harunaydemir001@gmail.com")
                 .withMsgBody(StringBuilderUtil.buildMessage(message, amount))
@@ -172,7 +204,6 @@ public class PaymentSagaOrchestrator {
         accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(targetAccountDTO));
         logger.info("Compensation: Target account debited.");
     }
-    //sonradan düzenle
 
     private Transaction createTransactionEntity() {
         return Transaction.builder()
