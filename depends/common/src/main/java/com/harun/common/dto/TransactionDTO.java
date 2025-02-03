@@ -10,7 +10,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 /**
  * DTO for {@link Transaction}
@@ -25,8 +24,6 @@ import java.time.LocalDateTime;
 public class TransactionDTO extends BaseDTO<Long> {
 
     BigDecimal amount;
-
-    LocalDateTime transactionDate;
 
     TransactionType transactionType;
 

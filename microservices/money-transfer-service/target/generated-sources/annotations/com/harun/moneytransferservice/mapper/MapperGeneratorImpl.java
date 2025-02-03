@@ -6,7 +6,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-03T10:50:53+0300",
+    date = "2025-02-04T00:34:28+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -24,7 +24,6 @@ public class MapperGeneratorImpl implements MapperGenerator {
         transactionDTO.setCreatedAt( transaction.getCreatedAt() );
         transactionDTO.setUpdatedAt( transaction.getUpdatedAt() );
         transactionDTO.setAmount( transaction.getAmount() );
-        transactionDTO.setTransactionDate( transaction.getTransactionDate() );
         transactionDTO.setTransactionType( transaction.getTransactionType() );
         transactionDTO.setFromAccount( transaction.getFromAccount() );
         transactionDTO.setToAccount( transaction.getToAccount() );

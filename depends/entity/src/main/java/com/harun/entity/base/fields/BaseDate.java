@@ -25,15 +25,4 @@ public abstract class BaseDate<T> extends BaseId<T> implements Serializable {
     @Column(nullable = false)
     @UpdateTimestamp
     Date updatedAt;
-
-//    @PrePersist
-//    private void onCreate() {
-//        setCreatedAt(new Date());
-//        setUpdatedAt(new Date());
-//    }
-//
-//    @PreUpdate
-//    private void onUpdate() {
-//        setUpdatedAt(new Date());
-//    }
 }

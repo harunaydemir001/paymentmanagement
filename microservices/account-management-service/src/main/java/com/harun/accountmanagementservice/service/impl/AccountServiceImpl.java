@@ -35,7 +35,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    @CachePut(value = "account", key = "#id")
+    @CachePut(value = "account", key = "#result.id")
     public AccountDTO updateAccount(Account account) {
         Account updatedAccount = accountRepository.save(account);
         return mapper.accountToAccountDTO(updatedAccount);

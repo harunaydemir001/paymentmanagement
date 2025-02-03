@@ -86,28 +86,6 @@ public class PaymentSagaOrchestrator {
                 .build();
     }
 
-//    private void sendEmail() {
-//        EmailRequest sourceEmailRequest;
-//        EmailRequest targetEmailRequest;
-//        if (!paymentSagaState.getCurrentStep().equals(PaymentSagaStep.COMPLETE_PAYMENT)) {
-//            sourceEmailRequest = createEmailRequest(paymentSagaState.getSourceAccountId(),
-//                    "{} amount of money has been not transferred from target account.", paymentSagaState.getAmount());
-//
-//            targetEmailRequest = createEmailRequest(paymentSagaState.getTargetAccountId(),
-//                    "{} amount of money has not arrived in your account.", paymentSagaState.getAmount());
-//
-//        } else {
-//            sourceEmailRequest = createEmailRequest(paymentSagaState.getSourceAccountId(),
-//                    "{} amount of money has been transferred from target account.", paymentSagaState.getAmount());
-//
-//            targetEmailRequest = createEmailRequest(paymentSagaState.getTargetAccountId(),
-//                    "{} amount of money has arrived in your account.", paymentSagaState.getAmount());
-//
-//        }
-//        kafkaProducer.sendKafkaMessage(sourceEmailRequest, KafkaTopicsProperties.getEmailTopic());
-//        kafkaProducer.sendKafkaMessage(targetEmailRequest, KafkaTopicsProperties.getEmailTopic());
-//    }
-
     private void sendEmail() {
         boolean isPaymentComplete = paymentSagaState.getCurrentStep().equals(PaymentSagaStep.COMPLETE_PAYMENT);
         String sourceMessage = isPaymentComplete

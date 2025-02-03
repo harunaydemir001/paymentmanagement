@@ -9,7 +9,6 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transactions")
@@ -24,9 +23,6 @@ public class Transaction extends BaseEntity<Long> implements Serializable {
     @Column(nullable = false)
     @Positive
     BigDecimal amount;
-
-    @Column(name = "transaction_date")
-    LocalDateTime transactionDate;
 
     @Enumerated(EnumType.STRING)
     TransactionType transactionType;
