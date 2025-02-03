@@ -5,6 +5,7 @@ import com.harun.common.dto.EmailRequest;
 import com.harun.common.dto.ReportDTO;
 import com.harun.common.enums.EventType;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
+import com.harun.common.feign.impl.BankUserServiceClientImpl;
 import com.harun.common.feign.impl.MoneyTransferServiceClientImpl;
 import com.harun.common.kafka.KafkaProducer;
 import com.harun.common.kafka.KafkaTopicsProperties;
@@ -30,8 +31,10 @@ public class PaymentSagaOrchestrator {
 
     private final AccountServiceClientImpl accountServiceClientImpl;
     private final MoneyTransferServiceClientImpl moneyTransferServiceClientImpl;
+    private final BankUserServiceClientImpl bankUserServiceClient;
     private final PaymentSagaState paymentSagaState;
     private final KafkaProducer kafkaProducer;
+
 
     private static final Logger logger = LoggerFactory.getLogger(PaymentSagaOrchestrator.class);
     private static String message = "Transfer is {}: Source Account ID: {} Target Account ID: {} Amount: {}";
@@ -53,13 +56,15 @@ public class PaymentSagaOrchestrator {
 
             logger.info(message, "completed", sourceAccountId, targetAccountId, amount);
 
-            sendEmail();
-            createReport();
+
 
             return paymentSagaState;
 
         } catch (Exception e) {
             handleFailure(e);
+        }finally {
+            sendEmail();
+            createReport();
         }
         return null;
     }
@@ -92,6 +97,7 @@ public class PaymentSagaOrchestrator {
 
     private EmailRequest createEmailRequest(Long sourceAccountId, String message, BigDecimal amount) {
         return EmailRequest.builder()
+                .withRecipient("harunaydemir001@gmail.com")
                 .withMsgBody(StringBuilderUtil.buildMessage(message, amount))
                 .withSubject("Money Transfer")
                 .withAttachment(null)
@@ -129,7 +135,6 @@ public class PaymentSagaOrchestrator {
     }
 
     private void handleFailure(Exception e) {
-        paymentSagaState.setCurrentStep(PaymentSagaStep.FAILURE_PAYMENT);
         paymentSagaState.setFailureReason(e.getMessage());
         logger.error("Payment failed: {}", e.getMessage());
         compensate();
@@ -148,6 +153,7 @@ public class PaymentSagaOrchestrator {
                 compensationSourceAccount();
                 break;
             default:
+                paymentSagaState.setCurrentStep(PaymentSagaStep.FAILURE_PAYMENT);
                 logger.info("No compensation needed for step: {}", paymentSagaState.getCurrentStep());
                 break;
         }
@@ -166,6 +172,7 @@ public class PaymentSagaOrchestrator {
         accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(targetAccountDTO));
         logger.info("Compensation: Target account debited.");
     }
+    //sonradan düzenle
 
     private Transaction createTransactionEntity() {
         return Transaction.builder()
@@ -173,6 +180,7 @@ public class PaymentSagaOrchestrator {
                 .withTransactionType(TransactionType.PAYMENT)
                 .withFromAccount(mapper.accountDTOToAccount(getAccountById(paymentSagaState.getSourceAccountId())))
                 .withToAccount(mapper.accountDTOToAccount(getAccountById(paymentSagaState.getTargetAccountId())))
+                .withBankUser(mapper.bankUserDTOToBankUser(bankUserServiceClient.getBankUserById(getAccountById(paymentSagaState.getSourceAccountId()).getUserId())))
                 .build();
     }
 

@@ -5,6 +5,8 @@ import com.harun.entity.enums.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -36,5 +38,6 @@ public class Account extends BaseEntity<Long> implements Serializable {
     @ElementCollection
     @CollectionTable(name = "account_transactions", joinColumns = @JoinColumn(name = "account_id"))
     @Column(name = "transaction_id")
+    @Fetch(FetchMode.JOIN)
     List<Long> transactionIds = new ArrayList<>();
 }

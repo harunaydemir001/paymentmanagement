@@ -1,7 +1,7 @@
 package com.harun.usermanagementservice.service;
 
 import com.harun.entity.models.BankUser;
-import com.harun.usermanagementservice.dto.BankUserDTO;
+import com.harun.common.dto.BankUserDTO;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;

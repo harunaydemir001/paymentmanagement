@@ -1,4 +1,4 @@
-package com.harun.usermanagementservice.dto;
+package com.harun.common.dto;
 
 import com.harun.common.base.BaseDTO;
 import com.harun.entity.enums.Gender;

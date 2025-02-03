@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -57,5 +59,6 @@ public class BankUser extends BaseEntity<Long> implements Serializable {
     @ElementCollection
     @CollectionTable(name = "user_accounts", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "account_id")
+    @Fetch(FetchMode.JOIN)
     private List<Long> accountIds = new ArrayList<>();
 }

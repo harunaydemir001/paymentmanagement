@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "user-service", url = "${services.user-management-service.bank-user-url}", configuration = FeignClientConfiguration.class)
-public interface UserServiceClient {
+public interface BankUserServiceClient {
 
     @PostMapping("/create")
     ResponseEntity<Response> createUser(@RequestBody BankUser bankUser);
