@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface AccountRepository extends JPABaseRepository<Account, Long> {
-    List<Account> findByBankUser_Id(Long userId);
 }

@@ -3,6 +3,7 @@ package com.harun.entity.models;
 import com.harun.entity.base.BaseEntity;
 import com.harun.entity.enums.TransactionType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 public class Transaction extends BaseEntity<Long> implements Serializable {
 
     @Column(nullable = false)
+    @Positive
     BigDecimal amount;
 
     @Column(name = "transaction_date")

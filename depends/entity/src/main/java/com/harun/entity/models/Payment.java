@@ -2,14 +2,16 @@ package com.harun.entity.models;
 
 
 import com.harun.entity.base.BaseEntity;
-import com.harun.entity.enums.PaymentStatus;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,17 +23,13 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Payment extends BaseEntity<Long> implements Serializable {
 
-    @Column(nullable = false)
+    @NotNull
+    @DecimalMin("1.00")
     BigDecimal amount;
 
-    @Enumerated(EnumType.STRING)
-    PaymentStatus paymentStatus;
+    @Column(name = "account_id", nullable = false)
+    Long accountId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "account_id", nullable = false)
-    Account account;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bank_user_id", nullable = false)
-    BankUser bankUser;
+    @Column(name = "transaction_id", unique = true)
+    Long transactionId;
 }

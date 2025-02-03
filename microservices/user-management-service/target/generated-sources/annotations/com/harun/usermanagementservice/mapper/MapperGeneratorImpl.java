@@ -1,6 +1,5 @@
 package com.harun.usermanagementservice.mapper;
 
-import com.harun.entity.models.Account;
 import com.harun.entity.models.BankUser;
 import com.harun.usermanagementservice.dto.BankUserDTO;
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-31T22:39:00+0300",
+    date = "2025-02-03T10:45:13+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -23,10 +22,19 @@ public class MapperGeneratorImpl implements MapperGenerator {
         BankUserDTO bankUserDTO = new BankUserDTO();
 
         bankUserDTO.setId( bankUser.getId() );
-        List<Account> list = bankUser.getAccounts();
-        if ( list != null ) {
-            bankUserDTO.setAccounts( new ArrayList<Account>( list ) );
-        }
+        bankUserDTO.setVersion( bankUser.getVersion() );
+        bankUserDTO.setCreatedAt( bankUser.getCreatedAt() );
+        bankUserDTO.setUpdatedAt( bankUser.getUpdatedAt() );
+        bankUserDTO.setEmail( bankUser.getEmail() );
+        bankUserDTO.setFirstName( bankUser.getFirstName() );
+        bankUserDTO.setLastName( bankUser.getLastName() );
+        bankUserDTO.setPhoneNumber( bankUser.getPhoneNumber() );
+        bankUserDTO.setGender( bankUser.getGender() );
+        bankUserDTO.setEmailVerified( bankUser.isEmailVerified() );
+        bankUserDTO.setPhoneVerified( bankUser.isPhoneVerified() );
+        bankUserDTO.setOccupation( bankUser.getOccupation() );
+        bankUserDTO.setMonthlyIncome( bankUser.getMonthlyIncome() );
+        bankUserDTO.setCreditScore( bankUser.getCreditScore() );
 
         return bankUserDTO;
     }

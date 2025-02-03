@@ -14,6 +14,4 @@ public interface AccountService {
     AccountDTO saveAccount(Account account);
 
     void deleteAccount(Long id);
-
-    List<AccountDTO> getAccountsByUserId(Long userId);
 }

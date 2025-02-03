@@ -5,8 +5,6 @@ import com.harun.accountmanagementservice.mapper.MapperGeneratorSingleton;
 import com.harun.accountmanagementservice.repository.AccountRepository;
 import com.harun.accountmanagementservice.service.AccountService;
 import com.harun.common.dto.AccountDTO;
-import com.harun.common.dto.EmailRequest;
-import com.harun.common.dto.ReportDTO;
 import com.harun.common.enums.ErrorMessage;
 import com.harun.entity.models.Account;
 import lombok.RequiredArgsConstructor;
@@ -57,12 +55,6 @@ public class AccountServiceImpl implements AccountService {
             message = ErrorMessage.DELETION_FAILED.getMessage(ACCOUNT, id);
             logger.info(message);
         }
-    }
-
-    @Override
-    public List<AccountDTO> getAccountsByUserId(Long userId) {
-        List<Account> accountList = accountRepository.findByBankUser_Id(userId);
-        return mapper.accountListToAccountDTOList(accountList);
     }
 
     private Account accountById(Long id) {

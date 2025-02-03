@@ -39,9 +39,4 @@ public class AccountController {
         accountService.deleteAccount(id);
         return ResponseFactory.createSuccessResponse();
     }
-
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<Response> getAccountsByUserId(@PathVariable("userId") Long userId) {
-        return ResponseFactory.createResponse(accountService.getAccountsByUserId(userId), HttpStatus.OK);
-    }
 }

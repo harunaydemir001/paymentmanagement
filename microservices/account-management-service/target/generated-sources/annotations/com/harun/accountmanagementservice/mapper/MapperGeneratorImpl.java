@@ -2,15 +2,13 @@ package com.harun.accountmanagementservice.mapper;
 
 import com.harun.common.dto.AccountDTO;
 import com.harun.entity.models.Account;
-import com.harun.entity.models.Payment;
-import com.harun.entity.models.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-31T23:18:16+0300",
+    date = "2025-02-03T18:53:02+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -24,21 +22,16 @@ public class MapperGeneratorImpl implements MapperGenerator {
         AccountDTO accountDTO = new AccountDTO();
 
         accountDTO.setId( account.getId() );
-        accountDTO.setAccountNumber( account.getAccountNumber() );
+        accountDTO.setVersion( account.getVersion() );
+        accountDTO.setCreatedAt( account.getCreatedAt() );
+        accountDTO.setUpdatedAt( account.getUpdatedAt() );
         accountDTO.setAccountType( account.getAccountType() );
         accountDTO.setBalance( account.getBalance() );
-        accountDTO.setBankUser( account.getBankUser() );
-        List<Transaction> list = account.getSentTransactions();
+        accountDTO.setIban( account.getIban() );
+        accountDTO.setUserId( account.getUserId() );
+        List<Long> list = account.getTransactionIds();
         if ( list != null ) {
-            accountDTO.setSentTransactions( new ArrayList<Transaction>( list ) );
-        }
-        List<Transaction> list1 = account.getReceivedTransactions();
-        if ( list1 != null ) {
-            accountDTO.setReceivedTransactions( new ArrayList<Transaction>( list1 ) );
-        }
-        List<Payment> list2 = account.getPayments();
-        if ( list2 != null ) {
-            accountDTO.setPayments( new ArrayList<Payment>( list2 ) );
+            accountDTO.setTransactionIds( new ArrayList<Long>( list ) );
         }
 
         return accountDTO;

@@ -1,5 +1,6 @@
 package com.harun.paymentprocessingservice.dto;
 
+import com.harun.common.base.BaseDTO;
 import com.harun.entity.enums.PaymentStatus;
 import com.harun.entity.models.Account;
 import com.harun.entity.models.BankUser;
@@ -14,9 +15,7 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentDTO {
-
-    Long id;
+public class PaymentDTO extends BaseDTO<Long> {
 
     BigDecimal amount;
 

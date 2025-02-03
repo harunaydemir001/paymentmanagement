@@ -6,7 +6,6 @@ import com.harun.usermanagementservice.mapper.MapperGenerator;
 import com.harun.usermanagementservice.mapper.MapperGeneratorSingleton;
 import com.harun.usermanagementservice.repository.BankUserRepositoryJPA;
 import com.harun.usermanagementservice.service.BankUserService;
-import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +29,6 @@ public class BankUserServiceImpl implements BankUserService {
     }
 
     @Override
-    @Transactional()
     public BankUserDTO getUserById(Long id) {
         BankUser bankUser = bankUserRepository.findByIdOrThrowError(id);
         return mapper.userToUserDTO(bankUser);

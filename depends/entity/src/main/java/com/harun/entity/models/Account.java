@@ -21,25 +21,20 @@ import java.util.List;
 @NoArgsConstructor
 public class Account extends BaseEntity<Long> implements Serializable {
 
-    @Column(nullable = false, unique = true)
-    String accountNumber;
-
     @Enumerated(EnumType.STRING)
     AccountType accountType;
 
     @Column(name = "balance", precision = 19, scale = 2)
     BigDecimal balance;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bank_user_id", nullable = false)
-    BankUser bankUser;
+    @Column(unique = true, nullable = false)
+    String iban;
 
-    @OneToMany(mappedBy = "fromAccount", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    List<Transaction> sentTransactions = new ArrayList<>();
+    @Column(name = "user_id", nullable = false)
+    Long userId;
 
-    @OneToMany(mappedBy = "toAccount", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    List<Transaction> receivedTransactions = new ArrayList<>();
-
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    List<Payment> payments = new ArrayList<>();
+    @ElementCollection
+    @CollectionTable(name = "account_transactions", joinColumns = @JoinColumn(name = "account_id"))
+    @Column(name = "transaction_id")
+    List<Long> transactionIds = new ArrayList<>();
 }

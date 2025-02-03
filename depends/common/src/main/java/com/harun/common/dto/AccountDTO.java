@@ -1,11 +1,8 @@
 package com.harun.common.dto;
 
+import com.harun.common.base.BaseDTO;
 import com.harun.entity.enums.AccountType;
 import com.harun.entity.models.Account;
-import com.harun.entity.models.BankUser;
-import com.harun.entity.models.Payment;
-import com.harun.entity.models.Transaction;
-import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -24,20 +21,15 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class AccountDTO {
-    Long id;
-
-    String accountNumber;
+public class AccountDTO extends BaseDTO<Long> {
 
     AccountType accountType;
 
     BigDecimal balance;
 
-    BankUser bankUser;
+    String iban;
 
-    List<Transaction> sentTransactions = new ArrayList<>();
+    Long userId;
 
-    List<Transaction> receivedTransactions = new ArrayList<>();
-
-    List<Payment> payments = new ArrayList<>();
+    List<Long> transactionIds = new ArrayList<>();
 }

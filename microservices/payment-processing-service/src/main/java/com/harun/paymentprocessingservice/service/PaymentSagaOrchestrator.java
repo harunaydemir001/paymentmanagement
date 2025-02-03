@@ -92,7 +92,6 @@ public class PaymentSagaOrchestrator {
 
     private EmailRequest createEmailRequest(Long sourceAccountId, String message, BigDecimal amount) {
         return EmailRequest.builder()
-                .withRecipient(getAccountById(sourceAccountId).getBankUser().getEmail())
                 .withMsgBody(StringBuilderUtil.buildMessage(message, amount))
                 .withSubject("Money Transfer")
                 .withAttachment(null)

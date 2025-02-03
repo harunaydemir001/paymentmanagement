@@ -2,12 +2,12 @@ package com.harun.entity.base.fields;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,19 +19,21 @@ import java.util.Date;
 public abstract class BaseDate<T> extends BaseId<T> implements Serializable {
 
     @Column(nullable = false, updatable = false)
+    @CreationTimestamp
     Date createdAt;
 
     @Column(nullable = false)
+    @UpdateTimestamp
     Date updatedAt;
 
-    @PrePersist
-    private void onCreate() {
-        setCreatedAt(new Date());
-        setUpdatedAt(new Date());
-    }
-
-    @PreUpdate
-    private void onUpdate() {
-        setUpdatedAt(new Date());
-    }
+//    @PrePersist
+//    private void onCreate() {
+//        setCreatedAt(new Date());
+//        setUpdatedAt(new Date());
+//    }
+//
+//    @PreUpdate
+//    private void onUpdate() {
+//        setUpdatedAt(new Date());
+//    }
 }

@@ -4,9 +4,7 @@ import com.harun.entity.base.BaseEntity;
 import com.harun.entity.enums.Gender;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
@@ -18,6 +16,9 @@ import java.util.List;
 @Table(name = "bank_users")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BankUser extends BaseEntity<Long> implements Serializable {
 
@@ -53,12 +54,8 @@ public class BankUser extends BaseEntity<Long> implements Serializable {
     @Column(name = "credit_score")
     Integer creditScore;
 
-    @OneToMany(mappedBy = "bankUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Account> accounts = new ArrayList<>();
-
-    @OneToMany(mappedBy = "bankUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Transaction> transactions = new ArrayList<>();
-
-    @OneToMany(mappedBy = "bankUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Payment> payments = new ArrayList<>();
+    @ElementCollection
+    @CollectionTable(name = "user_accounts", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "account_id")
+    private List<Long> accountIds = new ArrayList<>();
 }
