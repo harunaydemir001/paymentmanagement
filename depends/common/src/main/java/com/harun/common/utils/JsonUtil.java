@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
 import com.harun.common.response.model.Response;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,9 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
 public final class JsonUtil {
 
-    private JsonUtil(){}
+    private JsonUtil() {
+    }
 
     private static final Logger LOG = LoggerFactory.getLogger(JsonUtil.class);
 
@@ -103,7 +104,7 @@ public final class JsonUtil {
 
     public static <T> T getContent(ResponseEntity<Response> responseEntity, Class<T> clazz) {
         T obj;
-        Map<?,?> result = (Map<?,?>) Objects.requireNonNull(responseEntity.getBody()).getResult();
+        Map<?, ?> result = (Map<?, ?>) Objects.requireNonNull(responseEntity.getBody()).getResult();
         Object content = result.get("content");
         obj = JsonUtil.convertValue(content, clazz);
         return obj;

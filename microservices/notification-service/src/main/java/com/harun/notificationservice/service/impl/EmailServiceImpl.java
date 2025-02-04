@@ -38,7 +38,7 @@ public class EmailServiceImpl implements EmailService {
             mailMessage.setFrom(sender);
             mailMessage.setTo(emailRequest.getRecipient());
             mailMessage.setText(emailRequest.getMsgBody());
-            mailMessage.setSubject(emailRequest.getSubject());
+            mailMessage.setSubject(emailRequest.getSubject().toString());
 
             // Sending the mail
             javaMailSender.send(mailMessage);
@@ -67,7 +67,7 @@ public class EmailServiceImpl implements EmailService {
             mimeMessageHelper.setTo(details.getRecipient());
             mimeMessageHelper.setText(details.getMsgBody());
             mimeMessageHelper.setSubject(
-                    details.getSubject());
+                    details.getSubject().toString());
 
             // Adding the attachment
             FileSystemResource file

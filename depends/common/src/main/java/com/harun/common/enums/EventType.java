@@ -1,5 +1,6 @@
 package com.harun.common.enums;
 
 public enum EventType {
-    MONEY_TRANSFER
+    PAYMENT_PROCESS,
+    BILL_PAYMENT
 }

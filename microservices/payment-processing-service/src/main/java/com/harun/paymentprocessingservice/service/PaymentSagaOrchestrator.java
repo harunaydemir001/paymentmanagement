@@ -1,14 +1,12 @@
 package com.harun.paymentprocessingservice.service;
 
 import com.harun.common.dto.AccountDTO;
-import com.harun.common.dto.EmailRequest;
-import com.harun.common.dto.ReportDTO;
 import com.harun.common.enums.EventType;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
 import com.harun.common.feign.impl.BankUserServiceClientImpl;
 import com.harun.common.feign.impl.MoneyTransferServiceClientImpl;
-import com.harun.common.kafka.KafkaProducer;
-import com.harun.common.kafka.KafkaTopicsProperties;
+import com.harun.common.utils.EmailUtil;
+import com.harun.common.utils.ReportUtil;
 import com.harun.common.utils.StringBuilderUtil;
 import com.harun.entity.enums.TransactionType;
 import com.harun.entity.models.Transaction;
@@ -33,7 +31,6 @@ public class PaymentSagaOrchestrator {
     private final MoneyTransferServiceClientImpl moneyTransferServiceClientImpl;
     private final BankUserServiceClientImpl bankUserServiceClient;
     private final PaymentSagaState paymentSagaState;
-    private final KafkaProducer kafkaProducer;
 
 
     private static final Logger logger = LoggerFactory.getLogger(PaymentSagaOrchestrator.class);
@@ -71,20 +68,17 @@ public class PaymentSagaOrchestrator {
         String status = paymentSagaState.getCurrentStep().equals(PaymentSagaStep.COMPLETE_PAYMENT)
                 ? PaymentSagaStep.COMPLETE_PAYMENT.name()
                 : PaymentSagaStep.FAILURE_PAYMENT.name();
-
-        ReportDTO reportDTO = createReportDTO(status);
-        kafkaProducer.sendKafkaMessage(reportDTO, KafkaTopicsProperties.getReportTopic());
-    }
-
-    private ReportDTO createReportDTO(String status) {
-        return ReportDTO.builder()
-                .withEventType(EventType.MONEY_TRANSFER)
-                .withMessage(StringBuilderUtil.buildMessage(message, status,
+        ReportUtil.createReport(
+                null,
+                EventType.PAYMENT_PROCESS,
+                StringBuilderUtil.buildMessage(message,
+                        status,
                         paymentSagaState.getSourceAccountId(),
                         paymentSagaState.getTargetAccountId(),
-                        paymentSagaState.getAmount()))
-                .build();
+                        paymentSagaState.getAmount()),
+                null);
     }
+
 
     private void sendEmail() {
         boolean isPaymentComplete = paymentSagaState.getCurrentStep().equals(PaymentSagaStep.COMPLETE_PAYMENT);
@@ -95,24 +89,18 @@ public class PaymentSagaOrchestrator {
                 ? "{} amount of money has arrived in your account."
                 : "{} amount of money has not arrived in your account.";
 
-        sendEmailNotification(paymentSagaState.getSourceAccountId(), sourceMessage);
-        sendEmailNotification(paymentSagaState.getTargetAccountId(), targetMessage);
+        EmailUtil.sendEmail("harunaydemir001@gmail.com",
+                StringBuilderUtil.buildMessage(sourceMessage,
+                        paymentSagaState.getAmount()),
+                EventType.PAYMENT_PROCESS.name(),
+                null);
+        EmailUtil.sendEmail("harunaydemir001@gmail.com",
+                StringBuilderUtil.buildMessage(targetMessage,
+                        paymentSagaState.getAmount()),
+                EventType.PAYMENT_PROCESS.name(),
+                null);
     }
 
-    private void sendEmailNotification(Long accountId, String message) {
-        EmailRequest emailRequest = createEmailRequest(accountId, message, paymentSagaState.getAmount());
-        kafkaProducer.sendKafkaMessage(emailRequest, KafkaTopicsProperties.getEmailTopic());
-    }
-
-    //mail adresini düzenle
-    private EmailRequest createEmailRequest(Long accoundId, String message, BigDecimal amount) {
-        return EmailRequest.builder()
-                .withRecipient("harunaydemir001@gmail.com")
-                .withMsgBody(StringBuilderUtil.buildMessage(message, amount))
-                .withSubject("Money Transfer")
-                .withAttachment(null)
-                .build();
-    }
 
     private void initializePaymentSagaState(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {
         paymentSagaState.setCurrentStep(PaymentSagaStep.START_PAYMENT);
@@ -193,7 +181,6 @@ public class PaymentSagaOrchestrator {
                 .build();
     }
 
-    //cachle
     private AccountDTO getAccountById(Long sourceAccountId) {
         return accountServiceClientImpl.getAccountById(sourceAccountId);
     }

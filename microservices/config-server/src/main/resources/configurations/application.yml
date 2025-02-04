@@ -22,6 +22,7 @@ services:
     transaction-url: http://localhost:8093/transaction
 
 kafka:
+  bootstrap-servers: localhost:9092
   topic:
     email: email-topic
     report: report-topic

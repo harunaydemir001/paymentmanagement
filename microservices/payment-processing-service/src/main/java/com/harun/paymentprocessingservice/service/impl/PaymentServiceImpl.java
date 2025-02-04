@@ -29,7 +29,7 @@ public class PaymentServiceImpl implements PaymentService {
     private static final Logger logger = LoggerFactory.getLogger(PaymentServiceImpl.class);
 
     private static final String PAYMENT = "Payment";
-    private String message = "";
+    private static String message = "";
 
     private final PaymentRepository paymentRepository;
     private final AccountServiceClientImpl accountServiceClientImpl;

@@ -1,5 +1,6 @@
 package com.harun.common.dto;
 
+import com.harun.common.enums.EventType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
