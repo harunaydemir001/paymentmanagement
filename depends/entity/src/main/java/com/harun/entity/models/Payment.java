@@ -2,9 +2,7 @@ package com.harun.entity.models;
 
 
 import com.harun.entity.base.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -32,4 +30,11 @@ public class Payment extends BaseEntity<Long> implements Serializable {
 
     @Column(name = "transaction_id", unique = true)
     Long transactionId;
+
+    @SequenceGenerator(name = "payments_seq", sequenceName = "payments_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "payments_seq")
+    @Override
+    public Long getId() {
+        return super.getId();
+    }
 }

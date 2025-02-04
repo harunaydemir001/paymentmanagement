@@ -13,5 +13,5 @@ public interface InvoiceService {
 
     void deleteInvoice(Long id);
 
-    void payInvoice(InvoiceType invoiceType, Double amount);
+    String payInvoice(InvoiceType invoiceType, Double amount);
 }

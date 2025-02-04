@@ -2,8 +2,10 @@ package com.harun.invoiceservice.service.impl;
 
 import com.harun.common.dto.InvoiceDTO;
 import com.harun.common.enums.ErrorMessage;
+import com.harun.common.utils.StringBuilderUtil;
 import com.harun.entity.enums.InvoiceType;
 import com.harun.entity.models.Invoice;
+import com.harun.invoiceservice.constant.MessageTemplates;
 import com.harun.invoiceservice.mapper.MapperGenerator;
 import com.harun.invoiceservice.mapper.MapperGeneratorSingleton;
 import com.harun.invoiceservice.repository.InvoiceRepository;
@@ -56,7 +58,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public void payInvoice(InvoiceType invoiceType, Double amount) {
+    public String payInvoice(InvoiceType invoiceType, Double amount) {
         Map<InvoiceType, PayStrategy> strategyMap = Map.of(
                 InvoiceType.ELECTRICITY, new ElectricStrategy(),
                 InvoiceType.GAS, new GasStrategy(),
@@ -67,7 +69,8 @@ public class InvoiceServiceImpl implements InvoiceService {
         PayStrategy payStrategy = strategyMap.get(invoiceType);
 
         if (payStrategy != null) {
-            payStrategy.pay(amount);
+            return payStrategy.pay(amount);
         }
+        return StringBuilderUtil.buildMessage(MessageTemplates.FAILED_BILL_PAID, invoiceType, amount);
     }
 }

@@ -43,7 +43,6 @@ public class InvoiceController {
 
     @GetMapping("/pay-invoice")
     public ResponseEntity<Response> payInvoice(InvoiceType invoiceType, Double amount) {
-        invoiceService.payInvoice(invoiceType, amount);
-        return ResponseFactory.createSuccessResponse();
+        return ResponseFactory.createResponse(invoiceService.payInvoice(invoiceType, amount), HttpStatus.OK);
     }
 }

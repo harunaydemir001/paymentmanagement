@@ -14,10 +14,11 @@ public class ElectricStrategy implements PayStrategy {
 
 
     @Override
-    public void pay(Double amount) {
+    public String pay(Double amount) {
         String message = StringBuilderUtil.buildMessage(MessageTemplates.BILL_PAID, "electricity", amount, "CK Enerji");
         logger.info(message);
         EmailUtil.sendEmail("harunaydemir001@gmail.com", message, EventType.BILL_PAYMENT.name(), null);
         ReportUtil.createReport(null, EventType.BILL_PAYMENT, message, null);
+        return message;
     }
 }

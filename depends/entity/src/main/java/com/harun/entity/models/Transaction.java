@@ -38,4 +38,11 @@ public class Transaction extends BaseEntity<Long> implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bank_user_id", nullable = false)
     BankUser bankUser;
+
+    @SequenceGenerator(name = "transactions_seq", sequenceName = "transactions_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactions_seq")
+    @Override
+    public Long getId() {
+        return super.getId();
+    }
 }

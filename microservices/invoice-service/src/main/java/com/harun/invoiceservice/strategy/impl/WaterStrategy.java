@@ -13,10 +13,11 @@ public class WaterStrategy implements PayStrategy {
     private static final Logger logger = LoggerFactory.getLogger(WaterStrategy.class);
 
     @Override
-    public void pay(Double amount) {
+    public String pay(Double amount) {
         String message = StringBuilderUtil.buildMessage(MessageTemplates.BILL_PAID, "water", amount, "ISKI");
         logger.info(message);
         EmailUtil.sendEmail("harunaydemir001@gmail.com", message, EventType.BILL_PAYMENT.name(), null);
         ReportUtil.createReport(null, EventType.BILL_PAYMENT, message, null);
+        return message;
     }
 }
