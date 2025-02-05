@@ -27,8 +27,8 @@
         <module name="auth-service" />
         <module name="common" />
         <module name="api-gateway-service" />
-        <module name="user-management-service" />
         <module name="invoice-service" />
+        <module name="user-management-service" />
         <module name="reporting-service" />
         <module name="payment-processing-service" />
         <module name="dal-common" />

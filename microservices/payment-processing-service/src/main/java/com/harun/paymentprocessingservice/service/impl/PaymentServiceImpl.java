@@ -5,6 +5,7 @@ import com.harun.common.dto.PaymentDTO;
 import com.harun.common.dto.PaymentRequest;
 import com.harun.common.dto.PaymentSagaState;
 import com.harun.common.enums.ErrorMessage;
+import com.harun.common.factory.EntityFactory;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
 import com.harun.common.utils.StringBuilderUtil;
 import com.harun.entity.models.Payment;
@@ -65,8 +66,8 @@ public class PaymentServiceImpl implements PaymentService {
     public PaymentSagaState processPayment(PaymentRequest paymentRequest) {
         validateTransferInputs(paymentRequest.getSourceAccountId(), paymentRequest.getTargetAccountId(), paymentRequest.getAmount());
         PaymentSagaState paymentSagaState = paymentSagaOrchestrator.processPayment(paymentRequest.getSourceAccountId(), paymentRequest.getTargetAccountId(), paymentRequest.getAmount());
-        Payment sourcePayment = createPayment(paymentSagaState.getAmount(), paymentSagaState.getTransactionId(), paymentSagaState.getSourceAccountId());
-        Payment targetPayment = createPayment(paymentSagaState.getAmount(), paymentSagaState.getTransactionId(), paymentSagaState.getTargetAccountId());
+        Payment sourcePayment = EntityFactory.createPayment(paymentSagaState.getAmount(), paymentSagaState.getTransactionId(), paymentSagaState.getSourceAccountId());
+        Payment targetPayment = EntityFactory.createPayment(paymentSagaState.getAmount(), paymentSagaState.getTransactionId(), paymentSagaState.getTargetAccountId());
         savePayment(sourcePayment);
         savePayment(targetPayment);
         return paymentSagaState;
@@ -75,14 +76,6 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentDTO payInvoice(Double amount) {
         return null;
-    }
-
-    private Payment createPayment(BigDecimal amount, Long transactionId, Long accountId) {
-        return Payment.builder()
-                .withAmount(amount)
-                .withTransactionId(transactionId)
-                .withAccountId(accountId)
-                .build();
     }
 
     private void validateTransferInputs(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {

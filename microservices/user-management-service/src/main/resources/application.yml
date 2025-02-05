@@ -17,15 +17,3 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-        - prometheus
-        - health
-        - info
-  endpoint:
-    health:
-      show-details: always

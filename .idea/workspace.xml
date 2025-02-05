@@ -4,41 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4aaa23e5-ca7e-4ee8-b29e-06779f4550c0" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/feign/client/PaymentServiceClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/feign/impl/PaymentServiceClientImpl.java" afterDir="false" />
+    <list default="true" id="4aaa23e5-ca7e-4ee8-b29e-06779f4550c0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/factory/DTOFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/factory/EntityFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ac52f49d-48b1-4839-8c28-13a20a3ccaba.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ac52f49d-48b1-4839-8c28-13a20a3ccaba.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/enums/InvoiceType.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/enums/InvoiceType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/account-management-service/target/generated-sources/annotations/com/harun/accountmanagementservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/account-management-service/target/generated-sources/annotations/com/harun/accountmanagementservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/utils/EmailUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/utils/EmailUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/utils/ReportUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/utils/ReportUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microservices/config-server/src/main/resources/configurations/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/config-server/src/main/resources/configurations/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/config-server/target/classes/configurations/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/config-server/target/classes/configurations/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/service/impl/InvoiceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/service/impl/InvoiceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/ElectricStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/ElectricStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/GasStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/GasStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/InternetStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/InternetStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/WaterStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/WaterStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/money-transfer-service/target/generated-sources/annotations/com/harun/moneytransferservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/money-transfer-service/target/generated-sources/annotations/com/harun/moneytransferservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/notification-service/src/main/java/com/harun/notificationservice/service/impl/EmailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/notification-service/src/main/java/com/harun/notificationservice/service/impl/EmailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/notification-service/target/classes/com/harun/notificationservice/service/impl/EmailServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/notification-service/target/classes/com/harun/notificationservice/service/impl/EmailServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/controller/PaymentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/dto/PaymentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/dto/PaymentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/dto/PaymentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/dto/PaymentRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/enums/PaymentSagaStep.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/enums/PaymentSagaStep.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/mapper/MapperGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/mapper/MapperGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/model/PaymentSagaState.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/dto/PaymentSagaState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/PaymentSagaOrchestrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/PaymentSagaOrchestrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/PaymentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/impl/PaymentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/impl/PaymentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microservices/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/reporting-service/target/generated-sources/annotations/com/harun/reportingservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/reporting-service/target/generated-sources/annotations/com/harun/reportingservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microservices/user-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microservices/user-management-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/generated-sources/annotations/com/harun/usermanagementservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/target/generated-sources/annotations/com/harun/usermanagementservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -422,7 +400,7 @@
       <workItem from="1738668342503" duration="6799000" />
       <workItem from="1738688330214" duration="8877000" />
       <workItem from="1738732407734" duration="9053000" />
-      <workItem from="1738742605321" duration="822000" />
+      <workItem from="1738742605321" duration="4542000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -544,7 +522,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738676816287</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary=".">
+      <option name="closed" value="true" />
+      <created>1738743522743</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1738743522743</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -591,9 +577,14 @@
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/ElectricStrategy.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="64" />
+          <url>file://$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/WaterStrategy.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/user-management-service/src/main/java/com/harun/usermanagementservice/service/implementation/BankUserServiceImpl.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="69" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

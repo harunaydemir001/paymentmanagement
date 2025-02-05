@@ -3,6 +3,7 @@ package com.harun.paymentprocessingservice.service;
 import com.harun.common.dto.AccountDTO;
 import com.harun.common.dto.TransactionDTO;
 import com.harun.common.enums.EventType;
+import com.harun.common.factory.EntityFactory;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
 import com.harun.common.feign.impl.BankUserServiceClientImpl;
 import com.harun.common.feign.impl.MoneyTransferServiceClientImpl;
@@ -129,7 +130,13 @@ public class PaymentSagaOrchestrator {
 
     private void saveTransaction() {
         paymentSagaState.setCurrentStep(PaymentSagaStep.SAVE_TRANSACTION);
-        TransactionDTO transactionDTO = moneyTransferServiceClientImpl.saveTransaction(createTransactionEntity());
+        Transaction transaction = EntityFactory.createTransaction(paymentSagaState.getAmount(),
+                TransactionType.PAYMENT,
+                mapper.accountDTOToAccount(getAccountById(paymentSagaState.getSourceAccountId())),
+                mapper.accountDTOToAccount(getAccountById(paymentSagaState.getTargetAccountId())),
+                mapper.bankUserDTOToBankUser(bankUserServiceClient.getBankUserById(getAccountById(paymentSagaState.getSourceAccountId()).getUserId())));
+
+        TransactionDTO transactionDTO = moneyTransferServiceClientImpl.saveTransaction(transaction);
         paymentSagaState.setTransactionId(transactionDTO.getId());
         logger.info("Transaction saved.");
     }
@@ -171,16 +178,6 @@ public class PaymentSagaOrchestrator {
         targetAccountDTO.setBalance(targetAccountDTO.getBalance().subtract(paymentSagaState.getAmount()));
         accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(targetAccountDTO));
         logger.info("Compensation: Target account debited.");
-    }
-
-    private Transaction createTransactionEntity() {
-        return Transaction.builder()
-                .withAmount(paymentSagaState.getAmount())
-                .withTransactionType(TransactionType.PAYMENT)
-                .withFromAccount(mapper.accountDTOToAccount(getAccountById(paymentSagaState.getSourceAccountId())))
-                .withToAccount(mapper.accountDTOToAccount(getAccountById(paymentSagaState.getTargetAccountId())))
-                .withBankUser(mapper.bankUserDTOToBankUser(bankUserServiceClient.getBankUserById(getAccountById(paymentSagaState.getSourceAccountId()).getUserId())))
-                .build();
     }
 
     private AccountDTO getAccountById(Long sourceAccountId) {
