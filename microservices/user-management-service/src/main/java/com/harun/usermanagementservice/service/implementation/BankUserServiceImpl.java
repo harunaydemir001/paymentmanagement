@@ -1,7 +1,7 @@
 package com.harun.usermanagementservice.service.implementation;
 
-import com.harun.entity.models.BankUser;
 import com.harun.common.dto.BankUserDTO;
+import com.harun.entity.models.BankUser;
 import com.harun.usermanagementservice.mapper.MapperGenerator;
 import com.harun.usermanagementservice.mapper.MapperGeneratorSingleton;
 import com.harun.usermanagementservice.repository.BankUserRepositoryJPA;

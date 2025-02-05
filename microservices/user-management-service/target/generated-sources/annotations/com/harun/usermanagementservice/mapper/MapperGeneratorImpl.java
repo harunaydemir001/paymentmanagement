@@ -1,14 +1,17 @@
 package com.harun.usermanagementservice.mapper;
 
 import com.harun.common.dto.BankUserDTO;
+import com.harun.entity.models.Account;
 import com.harun.entity.models.BankUser;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-05T12:53:32+0300",
+    date = "2025-02-05T14:32:43+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -35,9 +38,9 @@ public class MapperGeneratorImpl implements MapperGenerator {
         bankUserDTO.setOccupation( bankUser.getOccupation() );
         bankUserDTO.setMonthlyIncome( bankUser.getMonthlyIncome() );
         bankUserDTO.setCreditScore( bankUser.getCreditScore() );
-        List<Long> list = bankUser.getAccountIds();
-        if ( list != null ) {
-            bankUserDTO.setAccountIds( new ArrayList<Long>( list ) );
+        Set<Account> set = bankUser.getAccounts();
+        if ( set != null ) {
+            bankUserDTO.setAccounts( new LinkedHashSet<Account>( set ) );
         }
 
         return bankUserDTO;

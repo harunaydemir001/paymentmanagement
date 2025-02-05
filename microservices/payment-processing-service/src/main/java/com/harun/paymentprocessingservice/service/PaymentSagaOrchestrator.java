@@ -134,7 +134,7 @@ public class PaymentSagaOrchestrator {
                 TransactionType.PAYMENT,
                 mapper.accountDTOToAccount(getAccountById(paymentSagaState.getSourceAccountId())),
                 mapper.accountDTOToAccount(getAccountById(paymentSagaState.getTargetAccountId())),
-                mapper.bankUserDTOToBankUser(bankUserServiceClient.getBankUserById(getAccountById(paymentSagaState.getSourceAccountId()).getUserId())));
+                mapper.bankUserDTOToBankUser(bankUserServiceClient.getBankUserById(getAccountById(paymentSagaState.getSourceAccountId()).getBankUser().getId())));
 
         TransactionDTO transactionDTO = moneyTransferServiceClientImpl.saveTransaction(transaction);
         paymentSagaState.setTransactionId(transactionDTO.getId());

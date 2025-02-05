@@ -2,12 +2,12 @@ package com.harun.common.dto;
 
 import com.harun.common.base.BaseDTO;
 import com.harun.entity.enums.Gender;
+import com.harun.entity.models.Account;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -38,5 +38,5 @@ public class BankUserDTO extends BaseDTO<Long> {
 
     Integer creditScore;
 
-    List<Long> accountIds = new ArrayList<>();
+    Set<Account> accounts;
 }

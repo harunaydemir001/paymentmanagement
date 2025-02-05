@@ -1,5 +1,6 @@
 package com.harun.entity.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.harun.entity.base.BaseEntity;
 import com.harun.entity.enums.AccountType;
 import jakarta.persistence.*;
@@ -32,8 +33,14 @@ public class Account extends BaseEntity<Long> implements Serializable {
     @Column(unique = true, nullable = false)
     String iban;
 
-    @Column(name = "user_id", nullable = false)
-    Long userId;
+//    @Column(name = "user_id", nullable = false)
+//    Long userId;
+
+    @ManyToOne()
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    BankUser bankUser;
 
     @ElementCollection
     @CollectionTable(name = "account_transactions", joinColumns = @JoinColumn(name = "account_id"))

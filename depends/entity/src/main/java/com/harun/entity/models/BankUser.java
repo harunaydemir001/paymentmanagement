@@ -1,5 +1,6 @@
 package com.harun.entity.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.harun.entity.base.BaseEntity;
 import com.harun.entity.enums.Gender;
 import jakarta.persistence.*;
@@ -11,8 +12,7 @@ import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "bank_users")
@@ -56,11 +56,15 @@ public class BankUser extends BaseEntity<Long> implements Serializable {
     @Column(name = "credit_score")
     Integer creditScore;
 
-    @ElementCollection
-    @CollectionTable(name = "user_accounts", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "account_id")
+    //    @ElementCollection
+//    @CollectionTable(name = "user_accounts", joinColumns = @JoinColumn(name = "user_id"))
+//    @Column(name = "account_id")
+//    @Fetch(FetchMode.JOIN)
+//    private List<Long> accountIds = new ArrayList<>();
+    @OneToMany(mappedBy = "bankUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     @Fetch(FetchMode.JOIN)
-    private List<Long> accountIds = new ArrayList<>();
+    Set<Account> accounts;
 
     @SequenceGenerator(name = "bank_users_seq", sequenceName = "bank_users_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bank_users_seq")
