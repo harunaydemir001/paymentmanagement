@@ -1,11 +1,9 @@
 package com.harun.paymentprocessingservice.service;
 
+import com.harun.common.dto.PaymentDTO;
+import com.harun.common.dto.PaymentRequest;
+import com.harun.common.dto.PaymentSagaState;
 import com.harun.entity.models.Payment;
-import com.harun.paymentprocessingservice.dto.PaymentDTO;
-import com.harun.paymentprocessingservice.dto.PaymentRequest;
-import com.harun.paymentprocessingservice.model.PaymentSagaState;
-
-import java.math.BigDecimal;
 
 public interface PaymentService {
 
@@ -17,5 +15,7 @@ public interface PaymentService {
 
     void deletePayment(Long id);
 
-     PaymentSagaState processPayment(PaymentRequest paymentRequest);
+    PaymentSagaState processPayment(PaymentRequest paymentRequest);
+
+    PaymentDTO payInvoice(Double amount);
 }

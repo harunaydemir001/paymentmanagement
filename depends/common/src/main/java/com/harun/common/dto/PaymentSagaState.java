@@ -1,6 +1,6 @@
-package com.harun.paymentprocessingservice.model;
+package com.harun.common.dto;
 
-import com.harun.paymentprocessingservice.enums.PaymentSagaStep;
+import com.harun.common.enums.PaymentSagaStep;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
@@ -15,9 +15,10 @@ import java.math.BigDecimal;
 @Setter
 @Component
 public class PaymentSagaState {
-    private Long sourceAccountId;
-    private Long targetAccountId;
-    private BigDecimal amount;
-    private PaymentSagaStep currentStep;
-    private String failureReason;
+    Long sourceAccountId;
+    Long targetAccountId;
+    BigDecimal amount;
+    PaymentSagaStep currentStep;
+    String failureReason;
+    Long transactionId;
 }

@@ -5,7 +5,7 @@ import com.harun.common.dto.BankUserDTO;
 import com.harun.entity.models.Account;
 import com.harun.entity.models.BankUser;
 import com.harun.entity.models.Payment;
-import com.harun.paymentprocessingservice.dto.PaymentDTO;
+import com.harun.common.dto.PaymentDTO;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 

@@ -1,4 +1,4 @@
-package com.harun.paymentprocessingservice.dto;
+package com.harun.common.dto;
 
 import com.harun.common.base.BaseDTO;
 import com.harun.entity.models.Account;

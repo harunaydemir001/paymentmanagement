@@ -851,7 +851,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="248" parent="1" name="payment">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-01-22.06:00:11</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-02-04.17:50:18</LastIntrospectionLocalTimestamp>
       <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="249" parent="1" name="performance_schema">
@@ -865,74 +865,422 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <user id="252" parent="1" name="root">
       <Host>localhost</Host>
     </user>
-    <table id="253" parent="248" name="users">
+    <table id="253" parent="248" name="account_transactions">
       <Engine>InnoDB</Engine>
       <CollationName>latin1_swedish_ci</CollationName>
     </table>
-    <table id="254" parent="248" name="users_seq">
+    <table id="254" parent="248" name="accounts">
       <Engine>InnoDB</Engine>
       <CollationName>latin1_swedish_ci</CollationName>
     </table>
-    <column id="255" parent="253" name="id">
+    <table id="255" parent="248" name="accounts_seq">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="256" parent="248" name="bank_users">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="257" parent="248" name="bank_users_seq">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="258" parent="248" name="invoices">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="259" parent="248" name="invoices_seq">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="260" parent="248" name="payments">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="261" parent="248" name="payments_seq">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="262" parent="248" name="transactions">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="263" parent="248" name="transactions_seq">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <table id="264" parent="248" name="user_accounts">
+      <Engine>InnoDB</Engine>
+      <CollationName>latin1_swedish_ci</CollationName>
+    </table>
+    <column id="265" parent="253" name="account_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint(20)|0s</StoredType>
     </column>
-    <column id="256" parent="253" name="created_at">
+    <column id="266" parent="253" name="transaction_id">
+      <Position>2</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <foreign-key id="267" parent="253" name="FK1n6ys6f08bm5km34nlb09fs2y">
+      <ColNames>account_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>accounts</RefTableName>
+    </foreign-key>
+    <index id="268" parent="253" name="FK1n6ys6f08bm5km34nlb09fs2y">
+      <ColNames>account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="269" parent="254" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="270" parent="254" name="created_at">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="257" parent="253" name="updated_at">
+    <column id="271" parent="254" name="updated_at">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="258" parent="253" name="email">
-      <NotNull>1</NotNull>
+    <column id="272" parent="254" name="version">
       <Position>4</Position>
-      <StoredType>varchar(255)|0s</StoredType>
+      <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="259" parent="253" name="first_name">
-      <NotNull>1</NotNull>
+    <column id="273" parent="254" name="account_type">
       <Position>5</Position>
-      <StoredType>varchar(255)|0s</StoredType>
+      <StoredType>enum(&apos;CHECKING&apos;, &apos;CREDIT&apos;, &apos;SAVINGS&apos;)|0e</StoredType>
     </column>
-    <column id="260" parent="253" name="last_name">
-      <NotNull>1</NotNull>
+    <column id="274" parent="254" name="balance">
       <Position>6</Position>
-      <StoredType>varchar(255)|0s</StoredType>
+      <StoredType>decimal(19,2 digit)|0s</StoredType>
     </column>
-    <column id="261" parent="253" name="password">
+    <column id="275" parent="254" name="iban">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="262" parent="253" name="user_role">
+    <column id="276" parent="254" name="user_id">
+      <NotNull>1</NotNull>
       <Position>8</Position>
-      <StoredType>enum(&apos;ADMIN&apos;, &apos;USER&apos;)|0e</StoredType>
+      <StoredType>bigint(20)|0s</StoredType>
     </column>
-    <index id="263" parent="253" name="PRIMARY">
+    <index id="277" parent="254" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="264" parent="253" name="UK6dotkott2kjsp8vw4d0m25fb7">
-      <ColNames>email</ColNames>
+    <index id="278" parent="254" name="UKnubpiuxhnr0f0tl3tx3y9i80u">
+      <ColNames>iban</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="265" parent="253" name="PRIMARY">
+    <key id="279" parent="254" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="266" parent="253" name="UK6dotkott2kjsp8vw4d0m25fb7">
-      <UnderlyingIndexName>UK6dotkott2kjsp8vw4d0m25fb7</UnderlyingIndexName>
+    <key id="280" parent="254" name="UKnubpiuxhnr0f0tl3tx3y9i80u">
+      <UnderlyingIndexName>UKnubpiuxhnr0f0tl3tx3y9i80u</UnderlyingIndexName>
     </key>
-    <column id="267" parent="254" name="next_val">
+    <column id="281" parent="255" name="next_val">
       <Position>1</Position>
       <StoredType>bigint(20)|0s</StoredType>
     </column>
+    <column id="282" parent="256" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="283" parent="256" name="created_at">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <column id="284" parent="256" name="updated_at">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <column id="285" parent="256" name="version">
+      <Position>4</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="286" parent="256" name="credit_score">
+      <Position>5</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="287" parent="256" name="email">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="288" parent="256" name="first_name">
+      <Position>7</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="289" parent="256" name="gender">
+      <Position>8</Position>
+      <StoredType>enum(&apos;FEMALE&apos;, &apos;MALE&apos;)|0e</StoredType>
+    </column>
+    <column id="290" parent="256" name="is_email_verified">
+      <Position>9</Position>
+      <StoredType>bit(1)|0s</StoredType>
+    </column>
+    <column id="291" parent="256" name="is_phone_verified">
+      <Position>10</Position>
+      <StoredType>bit(1)|0s</StoredType>
+    </column>
+    <column id="292" parent="256" name="last_name">
+      <Position>11</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="293" parent="256" name="monthly_income">
+      <Position>12</Position>
+      <StoredType>decimal(38,2 digit)|0s</StoredType>
+    </column>
+    <column id="294" parent="256" name="occupation">
+      <Position>13</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="295" parent="256" name="phone_number">
+      <Position>14</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <index id="296" parent="256" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="297" parent="256" name="UKdsm13vuuvgdla5jkcrmwn167j">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="298" parent="256" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="299" parent="256" name="UKdsm13vuuvgdla5jkcrmwn167j">
+      <UnderlyingIndexName>UKdsm13vuuvgdla5jkcrmwn167j</UnderlyingIndexName>
+    </key>
+    <column id="300" parent="257" name="next_val">
+      <Position>1</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="301" parent="258" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="302" parent="258" name="created_at">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <column id="303" parent="258" name="updated_at">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <column id="304" parent="258" name="version">
+      <Position>4</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="305" parent="258" name="amount">
+      <Position>5</Position>
+      <StoredType>decimal(38,2 digit)|0s</StoredType>
+    </column>
+    <column id="306" parent="258" name="invoice_type">
+      <Position>6</Position>
+      <StoredType>enum(&apos;ELECTRICITY&apos;, &apos;GAS&apos;, &apos;INTERNET&apos;, &apos;WATER&apos;)|0e</StoredType>
+    </column>
+    <column id="307" parent="258" name="is_paid">
+      <Position>7</Position>
+      <StoredType>bit(1)|0s</StoredType>
+    </column>
+    <column id="308" parent="258" name="bank_user_id">
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <foreign-key id="309" parent="258" name="FK4sedreitgpoecujo43lcxsg10">
+      <ColNames>bank_user_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>bank_users</RefTableName>
+    </foreign-key>
+    <index id="310" parent="258" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="311" parent="258" name="FK4sedreitgpoecujo43lcxsg10">
+      <ColNames>bank_user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="312" parent="258" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="313" parent="259" name="next_val">
+      <Position>1</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="314" parent="260" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="315" parent="260" name="created_at">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <column id="316" parent="260" name="updated_at">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <column id="317" parent="260" name="version">
+      <Position>4</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="318" parent="260" name="account_id">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="319" parent="260" name="amount">
+      <Position>6</Position>
+      <StoredType>decimal(38,2 digit)|0s</StoredType>
+    </column>
+    <column id="320" parent="260" name="transaction_id">
+      <Position>7</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <index id="321" parent="260" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="322" parent="260" name="UKlryndveuwa4k5qthti0pkmtlx">
+      <ColNames>transaction_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="323" parent="260" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="324" parent="260" name="UKlryndveuwa4k5qthti0pkmtlx">
+      <UnderlyingIndexName>UKlryndveuwa4k5qthti0pkmtlx</UnderlyingIndexName>
+    </key>
+    <column id="325" parent="261" name="next_val">
+      <Position>1</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="326" parent="262" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="327" parent="262" name="created_at">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <column id="328" parent="262" name="updated_at">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <column id="329" parent="262" name="version">
+      <Position>4</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="330" parent="262" name="amount">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>decimal(38,2 digit)|0s</StoredType>
+    </column>
+    <column id="331" parent="262" name="transaction_type">
+      <Position>6</Position>
+      <StoredType>enum(&apos;DEPOSIT&apos;, &apos;PAYMENT&apos;, &apos;REFUND&apos;, &apos;TRANSFER&apos;, &apos;WITHDRAWAL&apos;)|0e</StoredType>
+    </column>
+    <column id="332" parent="262" name="bank_user_id">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="333" parent="262" name="from_account_id">
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="334" parent="262" name="to_account_id">
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <foreign-key id="335" parent="262" name="FK7i7kboanveneetad7jyhbr0a7">
+      <ColNames>from_account_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>accounts</RefTableName>
+    </foreign-key>
+    <foreign-key id="336" parent="262" name="FKra0an432c5wjo76mojluk0v28">
+      <ColNames>to_account_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>accounts</RefTableName>
+    </foreign-key>
+    <index id="337" parent="262" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="338" parent="262" name="FKc3e7s6v2j82g58vjdpnilrls7">
+      <ColNames>bank_user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="339" parent="262" name="FK7i7kboanveneetad7jyhbr0a7">
+      <ColNames>from_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="340" parent="262" name="FKra0an432c5wjo76mojluk0v28">
+      <ColNames>to_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="341" parent="262" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="342" parent="263" name="next_val">
+      <Position>1</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="343" parent="264" name="user_id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <column id="344" parent="264" name="account_id">
+      <Position>2</Position>
+      <StoredType>bigint(20)|0s</StoredType>
+    </column>
+    <foreign-key id="345" parent="264" name="FKdqowa9075902tw275tsdixae2">
+      <ColNames>user_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>bank_users</RefTableName>
+    </foreign-key>
+    <index id="346" parent="264" name="FKdqowa9075902tw275tsdixae2">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
   </database-model>
 </dataSource>

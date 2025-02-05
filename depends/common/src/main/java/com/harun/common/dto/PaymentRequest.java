@@ -1,4 +1,4 @@
-package com.harun.paymentprocessingservice.dto;
+package com.harun.common.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

@@ -6,6 +6,8 @@ import com.harun.notificationservice.service.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
@@ -19,6 +21,7 @@ import java.util.concurrent.*;
 @Service
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
+    private static final Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
 
     private final JavaMailSender javaMailSender;
 
@@ -26,30 +29,6 @@ public class EmailServiceImpl implements EmailService {
     private String sender;
 
     public String sendSimpleMail(EmailRequest emailRequest) {
-
-        // Try block to check for exceptions
-//        try {
-
-//            // Creating a simple mail message
-//            SimpleMailMessage mailMessage
-//                    = new SimpleMailMessage();
-//
-//            // Setting up necessary emailRequest
-//            mailMessage.setFrom(sender);
-//            mailMessage.setTo(emailRequest.getRecipient());
-//            mailMessage.setText(emailRequest.getMsgBody());
-//            mailMessage.setSubject(emailRequest.getSubject());
-//
-//            // Sending the mail
-//            javaMailSender.send(mailMessage);
-//            return "Mail Sent Successfully...";
-//        }
-//
-//        // Catch block to handle the exceptions
-//        catch (Exception e) {
-//            return "Error while Sending Mail";
-//        }
-//    }
 
         try {
             // Creating a task that sends the email
@@ -78,7 +57,7 @@ public class EmailServiceImpl implements EmailService {
             return future.get(20, TimeUnit.SECONDS);
 
         } catch (TimeoutException e) {
-            System.out.println("Error while Sending Mail: Timeout after 20 seconds");
+            logger.info("Error while Sending Mail: Timeout after 20 seconds.");
             return "Error while Sending Mail: Timeout after 20 seconds.";
         } catch (Exception e) {
             return "Error while Sending Mail: " + e.getMessage();

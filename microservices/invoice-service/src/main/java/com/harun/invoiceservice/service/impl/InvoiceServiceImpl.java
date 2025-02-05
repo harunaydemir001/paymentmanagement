@@ -2,19 +2,13 @@ package com.harun.invoiceservice.service.impl;
 
 import com.harun.common.dto.InvoiceDTO;
 import com.harun.common.enums.ErrorMessage;
-import com.harun.common.utils.StringBuilderUtil;
 import com.harun.entity.enums.InvoiceType;
 import com.harun.entity.models.Invoice;
-import com.harun.invoiceservice.constant.MessageTemplates;
 import com.harun.invoiceservice.mapper.MapperGenerator;
 import com.harun.invoiceservice.mapper.MapperGeneratorSingleton;
 import com.harun.invoiceservice.repository.InvoiceRepository;
 import com.harun.invoiceservice.service.InvoiceService;
 import com.harun.invoiceservice.strategy.PayStrategy;
-import com.harun.invoiceservice.strategy.impl.ElectricStrategy;
-import com.harun.invoiceservice.strategy.impl.GasStrategy;
-import com.harun.invoiceservice.strategy.impl.InternetStrategy;
-import com.harun.invoiceservice.strategy.impl.WaterStrategy;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +24,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     private static String message = "";
 
     private final InvoiceRepository invoiceRepository;
+    private final Map<String, PayStrategy> strategies;
 
     @Override
     public InvoiceDTO getInvoiceById(Long id) {
@@ -59,18 +54,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public String payInvoice(InvoiceType invoiceType, Double amount) {
-        Map<InvoiceType, PayStrategy> strategyMap = Map.of(
-                InvoiceType.ELECTRICITY, new ElectricStrategy(),
-                InvoiceType.GAS, new GasStrategy(),
-                InvoiceType.INTERNET, new InternetStrategy(),
-                InvoiceType.WATER, new WaterStrategy()
-        );
-
-        PayStrategy payStrategy = strategyMap.get(invoiceType);
-
-        if (payStrategy != null) {
-            return payStrategy.pay(amount);
-        }
-        return StringBuilderUtil.buildMessage(MessageTemplates.FAILED_BILL_PAID, invoiceType, amount);
+        PayStrategy payStrategy = strategies.get(invoiceType.getDescription());
+        return payStrategy.pay(amount);
     }
 }

@@ -57,7 +57,12 @@
 			<version>${dal-common.version}</version>
 			<scope>compile</scope>
 		</dependency>
-    </dependencies>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>

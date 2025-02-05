@@ -1,15 +1,15 @@
 package com.harun.paymentprocessingservice.service.impl;
 
 import com.harun.common.dto.AccountDTO;
+import com.harun.common.dto.PaymentDTO;
+import com.harun.common.dto.PaymentRequest;
+import com.harun.common.dto.PaymentSagaState;
 import com.harun.common.enums.ErrorMessage;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
 import com.harun.common.utils.StringBuilderUtil;
 import com.harun.entity.models.Payment;
-import com.harun.paymentprocessingservice.dto.PaymentDTO;
-import com.harun.paymentprocessingservice.dto.PaymentRequest;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
-import com.harun.paymentprocessingservice.model.PaymentSagaState;
 import com.harun.paymentprocessingservice.repository.PaymentRepository;
 import com.harun.paymentprocessingservice.service.PaymentSagaOrchestrator;
 import com.harun.paymentprocessingservice.service.PaymentService;
@@ -64,7 +64,25 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentSagaState processPayment(PaymentRequest paymentRequest) {
         validateTransferInputs(paymentRequest.getSourceAccountId(), paymentRequest.getTargetAccountId(), paymentRequest.getAmount());
-        return paymentSagaOrchestrator.processPayment(paymentRequest.getSourceAccountId(), paymentRequest.getTargetAccountId(), paymentRequest.getAmount());
+        PaymentSagaState paymentSagaState = paymentSagaOrchestrator.processPayment(paymentRequest.getSourceAccountId(), paymentRequest.getTargetAccountId(), paymentRequest.getAmount());
+        Payment sourcePayment = createPayment(paymentSagaState.getAmount(), paymentSagaState.getTransactionId(), paymentSagaState.getSourceAccountId());
+        Payment targetPayment = createPayment(paymentSagaState.getAmount(), paymentSagaState.getTransactionId(), paymentSagaState.getTargetAccountId());
+        savePayment(sourcePayment);
+        savePayment(targetPayment);
+        return paymentSagaState;
+    }
+
+    @Override
+    public PaymentDTO payInvoice(Double amount) {
+        return null;
+    }
+
+    private Payment createPayment(BigDecimal amount, Long transactionId, Long accountId) {
+        return Payment.builder()
+                .withAmount(amount)
+                .withTransactionId(transactionId)
+                .withAccountId(accountId)
+                .build();
     }
 
     private void validateTransferInputs(Long sourceAccountId, Long targetAccountId, BigDecimal amount) {

@@ -1,6 +1,7 @@
 package com.harun.paymentprocessingservice.service;
 
 import com.harun.common.dto.AccountDTO;
+import com.harun.common.dto.TransactionDTO;
 import com.harun.common.enums.EventType;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
 import com.harun.common.feign.impl.BankUserServiceClientImpl;
@@ -10,10 +11,10 @@ import com.harun.common.utils.ReportUtil;
 import com.harun.common.utils.StringBuilderUtil;
 import com.harun.entity.enums.TransactionType;
 import com.harun.entity.models.Transaction;
-import com.harun.paymentprocessingservice.enums.PaymentSagaStep;
+import com.harun.common.enums.PaymentSagaStep;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
-import com.harun.paymentprocessingservice.model.PaymentSagaState;
+import com.harun.common.dto.PaymentSagaState;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -128,7 +129,8 @@ public class PaymentSagaOrchestrator {
 
     private void saveTransaction() {
         paymentSagaState.setCurrentStep(PaymentSagaStep.SAVE_TRANSACTION);
-        moneyTransferServiceClientImpl.saveTransaction(createTransactionEntity());
+        TransactionDTO transactionDTO = moneyTransferServiceClientImpl.saveTransaction(createTransactionEntity());
+        paymentSagaState.setTransactionId(transactionDTO.getId());
         logger.info("Transaction saved.");
     }
 

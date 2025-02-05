@@ -1,4 +1,4 @@
-package com.harun.paymentprocessingservice.enums;
+package com.harun.common.enums;
 
 public enum PaymentSagaStep {
     START_PAYMENT,

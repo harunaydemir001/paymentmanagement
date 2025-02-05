@@ -3,7 +3,7 @@ package com.harun.paymentprocessingservice.controller;
 import com.harun.common.response.factory.ResponseFactory;
 import com.harun.common.response.model.Response;
 import com.harun.entity.models.Payment;
-import com.harun.paymentprocessingservice.dto.PaymentRequest;
+import com.harun.common.dto.PaymentRequest;
 import com.harun.paymentprocessingservice.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,12 +26,10 @@ public class PaymentController {
         return ResponseFactory.createResponse(paymentService.savePayment(payment), HttpStatus.OK);
     }
 
-
     @PutMapping("/update")
     public ResponseEntity<Response> updatePayment(@RequestBody Payment payment) {
         return ResponseFactory.createResponse(paymentService.updatePayment(payment), HttpStatus.OK);
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Response> deletePayment(@PathVariable("id") Long id) {
@@ -42,5 +40,10 @@ public class PaymentController {
     @PostMapping("/process-payment")
     public ResponseEntity<Response> processPayment(@RequestBody PaymentRequest paymentRequest) {
         return ResponseFactory.createResponse(paymentService.processPayment(paymentRequest), HttpStatus.OK);
+    }
+
+    @PostMapping("/pay-invoice")
+    public ResponseEntity<Response> payInvoice(@RequestParam Double amount) {
+        return ResponseFactory.createResponse(paymentService.payInvoice(amount), HttpStatus.OK);
     }
 }

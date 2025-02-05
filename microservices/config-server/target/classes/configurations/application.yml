@@ -18,6 +18,8 @@ services:
     bank-user-url: http://localhost:8090/bank-user
   account-management-service:
     account-url: http://localhost:8091/account
+  payment-processing-service:
+    payment-url: http://localhost:8092/payment
   money-transfer-service:
     transaction-url: http://localhost:8093/transaction
 
