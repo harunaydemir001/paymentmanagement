@@ -25,7 +25,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public ReportDTO getReportById(String id) {
-        Report report = reportRepository.findById(id).get();
+        Report report = reportRepository.findById(id).orElseThrow();
         return mapper.reportToReportDTO(report);
     }
 

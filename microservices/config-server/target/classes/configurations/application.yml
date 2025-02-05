@@ -12,6 +12,17 @@ spring:
     config:
       override-system-properties: false
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - prometheus
+          - health
+          - info
+  endpoint:
+    health:
+      show-details: always
 
 services:
   user-management-service:
