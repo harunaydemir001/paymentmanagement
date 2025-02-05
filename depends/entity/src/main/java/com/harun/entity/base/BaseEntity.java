@@ -14,7 +14,4 @@ import java.io.Serializable;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @MappedSuperclass
-public abstract class BaseEntity<T> extends BaseDate<T> implements Serializable {
-//    @Version
-    private Integer version;
-}
+public abstract class BaseEntity<T> extends BaseDate<T> implements Serializable {}

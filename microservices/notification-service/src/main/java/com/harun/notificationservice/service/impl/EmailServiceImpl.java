@@ -31,34 +31,30 @@ public class EmailServiceImpl implements EmailService {
     public String sendSimpleMail(EmailRequest emailRequest) {
 
         try {
-            // Creating a task that sends the email
+
             Callable<String> emailTask = () -> {
-                // Creating a simple mail message
+
                 SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-                // Setting up necessary emailRequest
                 mailMessage.setFrom(sender);
                 mailMessage.setTo(emailRequest.getRecipient());
                 mailMessage.setText(emailRequest.getMsgBody());
                 mailMessage.setSubject(emailRequest.getSubject());
 
-                // Sending the mail
                 javaMailSender.send(mailMessage);
                 return "Mail Sent Successfully...";
             };
 
-            // Create an executor service with a single thread
             ExecutorService executor = Executors.newSingleThreadExecutor();
 
-            // Submit the task for execution with a timeout of 20 seconds
             Future<String> future = executor.submit(emailTask);
 
-            // Get the result with a timeout of 20 seconds
             return future.get(20, TimeUnit.SECONDS);
 
         } catch (TimeoutException e) {
-            logger.info("Error while Sending Mail: Timeout after 20 seconds.");
-            return "Error while Sending Mail: Timeout after 20 seconds.";
+            String message = "Error while Sending Mail: Timeout after 20 seconds.";
+            logger.info(message);
+            return message;
         } catch (Exception e) {
             return "Error while Sending Mail: " + e.getMessage();
         }
@@ -66,15 +62,13 @@ public class EmailServiceImpl implements EmailService {
 
 
     public String sendMailWithAttachment(EmailRequest details) {
-        // Creating a mime message
+
         MimeMessage mimeMessage
                 = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper;
 
         try {
 
-            // Setting multipart as true for attachments to
-            // be send
             mimeMessageHelper
                     = new MimeMessageHelper(mimeMessage, true);
             mimeMessageHelper.setFrom(sender);

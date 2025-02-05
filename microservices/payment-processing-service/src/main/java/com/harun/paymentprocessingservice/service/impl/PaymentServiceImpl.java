@@ -64,9 +64,18 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public PaymentSagaState processPayment(PaymentRequest paymentRequest) {
-        PaymentSagaState paymentSagaState = paymentSagaOrchestrator.processPayment(paymentRequest.getSourceAccountId(), paymentRequest.getTargetAccountId(), paymentRequest.getAmount());
-        Payment sourcePayment = EntityFactory.createPayment(paymentSagaState.getAmount(), paymentSagaState.getTransactionId(), paymentSagaState.getSourceAccountId());
-        Payment targetPayment = EntityFactory.createPayment(paymentSagaState.getAmount(), paymentSagaState.getTransactionId(), paymentSagaState.getTargetAccountId());
+        PaymentSagaState paymentSagaState = paymentSagaOrchestrator.processPayment(
+                paymentRequest.getSourceAccountId(),
+                paymentRequest.getTargetAccountId(),
+                paymentRequest.getAmount());
+        Payment sourcePayment = EntityFactory.createPayment(
+                paymentSagaState.getAmount(),
+                paymentSagaState.getTransactionId(),
+                paymentSagaState.getSourceAccountId());
+        Payment targetPayment = EntityFactory.createPayment(
+                paymentSagaState.getAmount(),
+                paymentSagaState.getTransactionId(),
+                paymentSagaState.getTargetAccountId());
         savePayment(sourcePayment);
         savePayment(targetPayment);
         return paymentSagaState;

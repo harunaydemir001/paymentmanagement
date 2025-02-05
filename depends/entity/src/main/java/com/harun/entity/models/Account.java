@@ -33,9 +33,6 @@ public class Account extends BaseEntity<Long> implements Serializable {
     @Column(unique = true, nullable = false)
     String iban;
 
-//    @Column(name = "user_id", nullable = false)
-//    Long userId;
-
     @ManyToOne()
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference

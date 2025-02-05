@@ -56,11 +56,6 @@ public class BankUser extends BaseEntity<Long> implements Serializable {
     @Column(name = "credit_score")
     Integer creditScore;
 
-    //    @ElementCollection
-//    @CollectionTable(name = "user_accounts", joinColumns = @JoinColumn(name = "user_id"))
-//    @Column(name = "account_id")
-//    @Fetch(FetchMode.JOIN)
-//    private List<Long> accountIds = new ArrayList<>();
     @OneToMany(mappedBy = "bankUser", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)
