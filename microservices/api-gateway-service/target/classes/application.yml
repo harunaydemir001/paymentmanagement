@@ -9,21 +9,15 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-#      globalcors:
-#        cors-configurations:
-#          '[/**]':
-#            allowedOrigins: "*"
-#            allowedMethods: "*"
-#            allowedHeaders: "*"
       routes:
-        - id: identity-service
-          uri: lb://IDENTITY-SERVICE
-          predicates:
-           - Path=/auth/**
 
         - id: user-management-service
           uri: lb://USER-MANAGEMENT-SERVICE
           predicates:
             - Path=/bank-user/**
-          filters:
-            - AuthenticationFilter
+
+security:
+  oauth2:
+    resourceserver:
+      jwt:
+        issuer-uri: http://localhost:8080/realms/payment-management-realm
