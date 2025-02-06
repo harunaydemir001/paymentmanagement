@@ -332,20 +332,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="HTTP Request.generated-requests | #2" />
       <item itemvalue="HTTP Request.generated-requests | #3" />
       <item itemvalue="HTTP Request.generated-requests | #4" />
+      <item itemvalue="HTTP Request.generated-requests | #2" />
       <item itemvalue="HTTP Request.generated-requests | #8" />
-      <item itemvalue="Spring Boot.AccountManagementServiceApplication" />
-      <item itemvalue="Spring Boot.ApiGatewayServiceApplication" />
-      <item itemvalue="Spring Boot.ConfigServerApplication" />
-      <item itemvalue="Spring Boot.EurekaServerApplication" />
-      <item itemvalue="Spring Boot.InvoiceServiceApplication" />
-      <item itemvalue="Spring Boot.MoneyTransferServiceApplication" />
-      <item itemvalue="Spring Boot.NotificationServiceApplication" />
-      <item itemvalue="Spring Boot.PaymentProcessingServiceApplication" />
       <item itemvalue="Spring Boot.ReportingServiceApplication" />
+      <item itemvalue="Spring Boot.NotificationServiceApplication" />
+      <item itemvalue="Spring Boot.ApiGatewayServiceApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.UserManagementServiceApplication" />
+      <item itemvalue="Spring Boot.InvoiceServiceApplication" />
+      <item itemvalue="Spring Boot.AccountManagementServiceApplication" />
+      <item itemvalue="Spring Boot.MoneyTransferServiceApplication" />
+      <item itemvalue="Spring Boot.PaymentProcessingServiceApplication" />
     </list>
     <recent_temporary>
       <list>
