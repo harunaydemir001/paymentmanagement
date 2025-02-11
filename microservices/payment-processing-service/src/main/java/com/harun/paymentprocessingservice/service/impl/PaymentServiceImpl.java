@@ -1,13 +1,11 @@
 package com.harun.paymentprocessingservice.service.impl;
 
-import com.harun.common.dto.AccountDTO;
 import com.harun.common.dto.PaymentDTO;
 import com.harun.common.dto.PaymentRequest;
 import com.harun.common.dto.PaymentSagaState;
 import com.harun.common.enums.ErrorMessage;
 import com.harun.common.factory.EntityFactory;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
-import com.harun.common.utils.StringBuilderUtil;
 import com.harun.entity.models.Payment;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
@@ -18,9 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor

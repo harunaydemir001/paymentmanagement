@@ -1,5 +1,5 @@
 INSERT INTO accounts (id, account_type, balance, created_at, updated_at, iban, user_id, version)
-VALUES (1, 'SAVINGS', 5000.00, NOW(), NOW(), 'TR0000000000000001', 1, 0),
+    VALUES (1, 'SAVINGS', 5000.00, NOW(), NOW(), 'TR0000000000000001', 1, 0),
        (2, 'CHECKING', 1500.50, NOW(), NOW(), 'TR0000000000000002', 2, 0),
        (3, 'SAVINGS', 8200.75, NOW(), NOW(), 'TR0000000000000003', 3, 0),
        (4, 'CHECKING', 3000.00, NOW(), NOW(), 'TR0000000000000004', 4, 0),

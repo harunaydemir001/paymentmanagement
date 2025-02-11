@@ -1,6 +1,6 @@
 INSERT INTO bank_users (id, email, created_at, updated_at, first_name, last_name, phone_number, gender,
                         is_email_verified, is_phone_verified, occupation, monthly_income, credit_score)
-VALUES (1, 'user1@example.com', NOW(), NOW(), 'John', 'Doe', '1234567890', 'MALE', false, false, 'Engineer', 5000.00,
+    VALUES (1, 'user1@example.com', NOW(), NOW(), 'John', 'Doe', '1234567890', 'MALE', false, false, 'Engineer', 5000.00,
         750),
        (2, 'user2@example.com', NOW(), NOW(), 'Jane', 'Doe', '1234567891', 'FEMALE', true, true, 'Doctor', 8000.00,
         780),

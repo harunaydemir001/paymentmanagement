@@ -40,7 +40,7 @@ public class Account extends BaseEntity<Long> implements Serializable {
     @Version
     Integer version;
 
-    @SequenceGenerator(name = "accounts_seq", sequenceName = "accounts_seq", allocationSize = 1)
+    @SequenceGenerator(name = "accounts_seq", sequenceName = "accounts_seq", allocationSize = 20)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accounts_seq")
     @Override
     public Long getId() {

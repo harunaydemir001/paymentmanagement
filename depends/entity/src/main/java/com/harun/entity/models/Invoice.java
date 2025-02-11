@@ -35,7 +35,7 @@ public class Invoice extends BaseEntity<Long> implements Serializable {
     @Column(name = "is_paid")
     boolean isPaid = false;
 
-    @SequenceGenerator(name = "invoices_seq", sequenceName = "invoices_seq", allocationSize = 1)
+    @SequenceGenerator(name = "invoices_seq", sequenceName = "invoices_seq", allocationSize = 20)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoices_seq")
     @Override
     public Long getId() {

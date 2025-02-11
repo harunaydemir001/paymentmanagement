@@ -62,7 +62,7 @@ public class BankUser extends BaseEntity<Long> implements Serializable {
     @Fetch(FetchMode.JOIN)
     Set<Account> accounts = new HashSet<>();
 
-    @SequenceGenerator(name = "bank_users_seq", sequenceName = "bank_users_seq", allocationSize = 1)
+    @SequenceGenerator(name = "bank_users_seq", sequenceName = "bank_users_seq", allocationSize = 20)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bank_users_seq")
     @Override
     public Long getId() {

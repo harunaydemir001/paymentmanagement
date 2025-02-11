@@ -1,6 +1,7 @@
 package com.harun.entity.models;
 
 import com.harun.entity.base.BaseEntity;
+import com.harun.entity.embeddables.AmountEmbed;
 import com.harun.entity.enums.TransactionType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
@@ -20,9 +21,8 @@ import java.math.BigDecimal;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Transaction extends BaseEntity<Long> implements Serializable {
 
-    @Column(nullable = false)
-    @Positive
-    BigDecimal amount;
+    @Embedded
+    AmountEmbed amount;
 
     @Enumerated(EnumType.STRING)
     TransactionType transactionType;
@@ -39,7 +39,7 @@ public class Transaction extends BaseEntity<Long> implements Serializable {
     @JoinColumn(name = "bank_user_id", nullable = false)
     BankUser bankUser;
 
-    @SequenceGenerator(name = "transactions_seq", sequenceName = "transactions_seq", allocationSize = 1)
+    @SequenceGenerator(name = "transactions_seq", sequenceName = "transactions_seq", allocationSize = 20)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactions_seq")
     @Override
     public Long getId() {

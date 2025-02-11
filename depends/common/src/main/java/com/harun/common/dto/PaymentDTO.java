@@ -1,12 +1,9 @@
 package com.harun.common.dto;
 
 import com.harun.common.base.BaseDTO;
-import com.harun.entity.models.Account;
-import com.harun.entity.models.BankUser;
+import com.harun.entity.embeddables.AmountEmbed;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -16,9 +13,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class PaymentDTO extends BaseDTO<Long> {
 
-    BigDecimal amount;
+    AmountEmbed amount;
 
-    Account account;
+    Long accountId;
 
-    BankUser bankUser;
+    Long transactionId;
 }

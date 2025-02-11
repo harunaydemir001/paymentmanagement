@@ -2,6 +2,7 @@ package com.harun.entity.models;
 
 
 import com.harun.entity.base.BaseEntity;
+import com.harun.entity.embeddables.AmountEmbed;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
@@ -21,9 +22,8 @@ import java.math.BigDecimal;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Payment extends BaseEntity<Long> implements Serializable {
 
-    @NotNull
-    @DecimalMin("1.00")
-    BigDecimal amount;
+    @Embedded
+    AmountEmbed amount;
 
     @Column(name = "account_id", nullable = false)
     Long accountId;
@@ -31,7 +31,7 @@ public class Payment extends BaseEntity<Long> implements Serializable {
     @Column(name = "transaction_id")
     Long transactionId;
 
-    @SequenceGenerator(name = "payments_seq", sequenceName = "payments_seq", allocationSize = 1)
+    @SequenceGenerator(name = "payments_seq", sequenceName = "payments_seq", allocationSize = 20)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "payments_seq")
     @Override
     public Long getId() {
