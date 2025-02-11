@@ -3,8 +3,6 @@ package com.harun.accountmanagementservice.service;
 import com.harun.common.dto.AccountDTO;
 import com.harun.entity.models.Account;
 
-import java.util.List;
-
 public interface AccountService {
 
     AccountDTO getAccountById(Long id);

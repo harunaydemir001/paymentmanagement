@@ -1,0 +1,66 @@
+{
+  "result": {
+    "email": "user1@example.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "phoneNumber": "1234567890",
+    "gender": "MALE",
+    "occupation": "Engineer",
+    "monthlyIncome": 5000.00,
+    "creditScore": 750,
+    "accounts": [
+      {
+        "id": 1,
+        "createdAt": "2025-02-02T17:10:14.000+00:00",
+        "updatedAt": "2025-02-02T17:10:14.000+00:00",
+        "version": null,
+        "accountType": "SAVINGS",
+        "balance": 1000.50,
+        "bankUser": {
+          "id": 1,
+          "createdAt": "2025-02-02T17:10:11.000+00:00",
+          "updatedAt": "2025-02-02T17:10:11.000+00:00",
+          "version": null,
+          "email": "user1@example.com",
+          "firstName": "John",
+          "lastName": "Doe",
+          "phoneNumber": "1234567890",
+          "gender": "MALE",
+          "occupation": "Engineer",
+          "monthlyIncome": 5000.00,
+          "creditScore": 750,
+          "emailVerified": true,
+          "phoneVerified": false
+        },
+        "iban": "TR0000000000001"
+      },
+      {
+        "id": 2,
+        "createdAt": "2025-02-02T17:10:14.000+00:00",
+        "updatedAt": "2025-02-02T17:10:14.000+00:00",
+        "version": null,
+        "accountType": "CHECKING",
+        "balance": 500.00,
+        "bankUser": {
+          "id": 1,
+          "createdAt": "2025-02-02T17:10:11.000+00:00",
+          "updatedAt": "2025-02-02T17:10:11.000+00:00",
+          "version": null,
+          "email": "user1@example.com",
+          "firstName": "John",
+          "lastName": "Doe",
+          "phoneNumber": "1234567890",
+          "gender": "MALE",
+          "occupation": "Engineer",
+          "monthlyIncome": 5000.00,
+          "creditScore": 750,
+          "emailVerified": true,
+          "phoneVerified": false
+        },
+        "iban": "TR0000000000002"
+      }
+    ],
+    "emailVerified": true,
+    "phoneVerified": false
+  }
+}

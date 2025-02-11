@@ -4,62 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4aaa23e5-ca7e-4ee8-b29e-06779f4550c0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/microservices/config-server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/microservices/eureka-server/Dockerfile" afterDir="false" />
+    <list default="true" id="4aaa23e5-ca7e-4ee8-b29e-06779f4550c0" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservices/invoice-service/src/main/resources/db/insert_initial_data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservices/notification-service/notification-service.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/annotation/password/PasswordValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/annotation/password/ValidPassword.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/configuration/FeignClientConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/AccountDTO$AccountDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/AccountDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/EmailRequest$EmailRequestBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/EmailRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/ReportDTO$ReportDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/ReportDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/TransactionDTO$TransactionDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/TransactionDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/enums/ErrorMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/feign/client/AccountServiceClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/feign/client/MoneyTransferServiceClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/feign/impl/AccountServiceClientImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/feign/impl/MoneyTransferServiceClientImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/response/factory/ResponseFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/response/model/Response.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/utils/JsonUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/utils/StringBuilderUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/dal-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/depends/dal-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/dal-common/target/classes/com/harun/dalcommon/repository/base/JPABaseRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/dal-common/target/classes/com/harun/dalcommon/repository/utils/StringBuilderUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/entity/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/enums/PaymentStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/enums/TransactionType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/Account.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/BankUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/Payment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/Transaction$TransactionBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/Transaction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/exception/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/depends/exception/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/exception/target/classes/com/harun/exception/GlobalExceptionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/exception/target/classes/com/harun/exception/exceptions/ResourceNotFoundException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/config-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/config-server/target/classes/configurations/auth-service.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/user_management_service/mapper/MapperGeneratorImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/UserManagementServiceApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/controller/BankUserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/mapper/MapperGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/mapper/MapperGeneratorImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/mapper/MapperGeneratorSingleton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/mapper/PageMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/repository/BankUserRepositoryJPA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/service/BankUserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/service/implementation/BankUserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/generated-sources/annotations/com/harun/usermanagementservice/mapper/MapperGeneratorImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/models/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/models/BankUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/models/BankUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/account-management-service/src/main/java/com/harun/accountmanagementservice/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/account-management-service/src/main/java/com/harun/accountmanagementservice/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/account-management-service/src/main/java/com/harun/accountmanagementservice/service/impl/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/account-management-service/src/main/java/com/harun/accountmanagementservice/service/impl/AccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/account-management-service/src/main/resources/db/insert_initial_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/account-management-service/src/main/resources/db/insert_initial_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/account-management-service/src/main/resources/db/insert_user_accounts_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/account-management-service/target/classes/com/harun/accountmanagementservice/mapper/MapperGeneratorImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/account-management-service/target/classes/com/harun/accountmanagementservice/mapper/MapperGeneratorImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/account-management-service/target/generated-sources/annotations/com/harun/accountmanagementservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/account-management-service/target/generated-sources/annotations/com/harun/accountmanagementservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/money-transfer-service/src/main/resources/db/insert_initial_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/money-transfer-service/src/main/resources/db/insert_initial_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/money-transfer-service/target/generated-sources/annotations/com/harun/moneytransferservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/money-transfer-service/target/generated-sources/annotations/com/harun/moneytransferservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/resources/db/insert_initial_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/resources/db/insert_initial_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/src/main/resources/db/insert_initial_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/src/main/resources/db/insert_initial_data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,83 +81,84 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;HTTP Request.generated-requests | #2.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #3.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #4.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #7.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #8.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.account-management-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.auth-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.common [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.common [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.common [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.config-server [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.config-server [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dal-common [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dal-common [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.entity [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.entity [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.entity [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.entity [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.eureka-server [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.eureka-server [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.exception [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.exception [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.microservices [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.paymentmanagement [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.paymentmanagement [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.paymentmanagement [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.security [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.security [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.security [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.user-management-service [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.user-management-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.user-management-service [install].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AccountManagementServiceApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;Spring Boot.ApiGatewayServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AuthServiceApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.IdentityServiceApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;Spring Boot.InvoiceServiceApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;Spring Boot.MoneyTransferServiceApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;Spring Boot.PaymentProcessingServiceApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;Spring Boot.ReportingServiceApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;Spring Boot.SecurityApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.SecurityServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UserManagementServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/haydemir/Pictures/paymentmanagement/microservices/eureka-server&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.21724138&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;spring&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "HTTP Request.generated-requests | #2.executor": "Run",
+    "HTTP Request.generated-requests | #3.executor": "Run",
+    "HTTP Request.generated-requests | #4.executor": "Run",
+    "HTTP Request.generated-requests | #7.executor": "Run",
+    "HTTP Request.generated-requests | #8.executor": "Run",
+    "Maven.account-management-service [clean].executor": "Run",
+    "Maven.auth-service [clean].executor": "Run",
+    "Maven.common [clean,install].executor": "Run",
+    "Maven.common [clean].executor": "Run",
+    "Maven.common [install].executor": "Run",
+    "Maven.config-server [clean].executor": "Run",
+    "Maven.config-server [install].executor": "Run",
+    "Maven.dal-common [clean,install].executor": "Run",
+    "Maven.dal-common [clean].executor": "Run",
+    "Maven.entity [clean,install].executor": "Run",
+    "Maven.entity [clean].executor": "Run",
+    "Maven.entity [install].executor": "Run",
+    "Maven.entity [package].executor": "Run",
+    "Maven.eureka-server [clean].executor": "Run",
+    "Maven.eureka-server [install].executor": "Run",
+    "Maven.exception [clean,install].executor": "Run",
+    "Maven.exception [clean].executor": "Run",
+    "Maven.microservices [clean].executor": "Run",
+    "Maven.paymentmanagement [clean,install].executor": "Run",
+    "Maven.paymentmanagement [clean].executor": "Run",
+    "Maven.paymentmanagement [install].executor": "Run",
+    "Maven.security [clean,install].executor": "Run",
+    "Maven.security [clean].executor": "Run",
+    "Maven.security [install].executor": "Run",
+    "Maven.user-management-service [clean,install].executor": "Run",
+    "Maven.user-management-service [clean].executor": "Run",
+    "Maven.user-management-service [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "Spring Boot.AccountManagementServiceApplication.executor": "Debug",
+    "Spring Boot.ApiGatewayServiceApplication.executor": "Run",
+    "Spring Boot.AuthServiceApplication.executor": "Debug",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.IdentityServiceApplication.executor": "Debug",
+    "Spring Boot.InvoiceServiceApplication.executor": "Debug",
+    "Spring Boot.MoneyTransferServiceApplication.executor": "Debug",
+    "Spring Boot.NotificationServiceApplication.executor": "Debug",
+    "Spring Boot.PaymentProcessingServiceApplication.executor": "Debug",
+    "Spring Boot.ReportingServiceApplication.executor": "Debug",
+    "Spring Boot.SecurityApplication.executor": "Run",
+    "Spring Boot.SecurityServiceApplication.executor": "Run",
+    "Spring Boot.UserManagementServiceApplication.executor": "Debug",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/haydemir/Pictures/paymentmanagement/microservices/eureka-server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.21724138",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "database.other",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;elasticsearch&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "elasticsearch"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -242,7 +206,12 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.generated-requests | #3">
+  <component name="RunManager" selected="Database Script.insert_initial_data.sql">
+    <configuration name="insert_initial_data.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/microservices/user-management-service/src/main/resources/db/insert_initial_data.sql" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
+    </configuration>
     <configuration name="generated-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#2" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -332,6 +301,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Database Script.insert_initial_data.sql" />
       <item itemvalue="HTTP Request.generated-requests | #3" />
       <item itemvalue="HTTP Request.generated-requests | #4" />
       <item itemvalue="HTTP Request.generated-requests | #2" />
@@ -349,6 +319,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Database Script.insert_initial_data.sql" />
         <item itemvalue="HTTP Request.generated-requests | #4" />
         <item itemvalue="HTTP Request.generated-requests | #3" />
         <item itemvalue="HTTP Request.generated-requests | #2" />
@@ -670,6 +641,21 @@
           <url>file://$PROJECT_DIR$/microservices/invoice-service/src/main/java/com/harun/invoiceservice/strategy/impl/WaterStrategy.java</url>
           <line>22</line>
           <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/PaymentSagaOrchestrator.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/account-management-service/src/main/java/com/harun/accountmanagementservice/controller/AccountController.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/microservices/account-management-service/src/main/java/com/harun/accountmanagementservice/service/impl/AccountServiceImpl.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="119" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

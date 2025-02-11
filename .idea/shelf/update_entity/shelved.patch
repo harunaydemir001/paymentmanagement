@@ -1,0 +1,218 @@
+Index: depends/entity/src/main/java/com/harun/entity/models/Account.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.harun.entity.models;\r\n\r\nimport com.fasterxml.jackson.annotation.JsonBackReference;\r\nimport com.harun.entity.base.BaseEntity;\r\nimport com.harun.entity.enums.AccountType;\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\nimport lombok.experimental.FieldDefaults;\r\nimport org.hibernate.annotations.Fetch;\r\nimport org.hibernate.annotations.FetchMode;\r\n\r\nimport java.io.Serializable;\r\nimport java.math.BigDecimal;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n@Entity\r\n@Table(name = \"accounts\")\r\n@Getter\r\n@Setter\r\n@FieldDefaults(level = AccessLevel.PRIVATE)\r\n@Builder\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\npublic class Account extends BaseEntity<Long> implements Serializable {\r\n\r\n    @Enumerated(EnumType.STRING)\r\n    AccountType accountType;\r\n\r\n    @Column(name = \"balance\", precision = 19, scale = 2)\r\n    BigDecimal balance;\r\n\r\n    @Column(unique = true, nullable = false)\r\n    String iban;\r\n\r\n    @ManyToOne()\r\n    @JoinColumn(name = \"user_id\", nullable = false)\r\n    @JsonBackReference\r\n    @Fetch(FetchMode.JOIN)\r\n    BankUser bankUser;\r\n\r\n    @ElementCollection\r\n    @CollectionTable(name = \"account_transactions\", joinColumns = @JoinColumn(name = \"account_id\"))\r\n    @Column(name = \"transaction_id\")\r\n    @Fetch(FetchMode.JOIN)\r\n    List<Long> transactionIds = new ArrayList<>();\r\n\r\n    @SequenceGenerator(name = \"accounts_seq\", sequenceName = \"accounts_seq\", allocationSize = 1)\r\n    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = \"accounts_seq\")\r\n    @Override\r\n    public Long getId() {\r\n        return super.getId();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/depends/entity/src/main/java/com/harun/entity/models/Account.java b/depends/entity/src/main/java/com/harun/entity/models/Account.java
+--- a/depends/entity/src/main/java/com/harun/entity/models/Account.java	(revision d15570c197cc44740bdbefb19f5613f65b1be044)
++++ b/depends/entity/src/main/java/com/harun/entity/models/Account.java	(date 1739209808926)
+@@ -1,18 +1,21 @@
+ package com.harun.entity.models;
+ 
+ import com.fasterxml.jackson.annotation.JsonBackReference;
++import com.fasterxml.jackson.annotation.JsonManagedReference;
+ import com.harun.entity.base.BaseEntity;
+ import com.harun.entity.enums.AccountType;
+ import jakarta.persistence.*;
++import jakarta.validation.constraints.DecimalMin;
+ import lombok.*;
+ import lombok.experimental.FieldDefaults;
+ import org.hibernate.annotations.Fetch;
+ import org.hibernate.annotations.FetchMode;
++import org.hibernate.annotations.Formula;
++import org.hibernate.annotations.NaturalId;
+ 
+ import java.io.Serializable;
+ import java.math.BigDecimal;
+-import java.util.ArrayList;
+-import java.util.List;
++import java.util.Set;
+ 
+ @Entity
+ @Table(name = "accounts")
+@@ -23,27 +26,44 @@
+ @AllArgsConstructor
+ @NoArgsConstructor
+ public class Account extends BaseEntity<Long> implements Serializable {
++    @NaturalId
++    @Column(name = "account_number", nullable = false, unique = true)
++    String accountNumber;
+ 
+     @Enumerated(EnumType.STRING)
++    @Column(name = "account_type", nullable = false)
+     AccountType accountType;
+ 
+-    @Column(name = "balance", precision = 19, scale = 2)
++    @Column(name = "balance", nullable = false, precision = 19, scale = 2)
++    @DecimalMin("0.00")
+     BigDecimal balance;
+ 
+-    @Column(unique = true, nullable = false)
+-    String iban;
+-
+     @ManyToOne()
+-    @JoinColumn(name = "user_id", nullable = false)
++    @JoinColumn(name = "bank_user_id", nullable = false)
+     @JsonBackReference
+     @Fetch(FetchMode.JOIN)
+     BankUser bankUser;
+ 
+-    @ElementCollection
+-    @CollectionTable(name = "account_transactions", joinColumns = @JoinColumn(name = "account_id"))
+-    @Column(name = "transaction_id")
++    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
++    @JsonManagedReference
+     @Fetch(FetchMode.JOIN)
+-    List<Long> transactionIds = new ArrayList<>();
++    Set<Transaction> transactions;
++
++    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
++    @JsonManagedReference
++    @Fetch(FetchMode.JOIN)
++    Set<Payment> payments;
++
++    @Version
++    @Column(name = "version")
++    Integer version;
++
++    @Formula("(SELECT COALESCE(SUM(t.amount), 0) FROM transactions t WHERE t.account_id = id AND t.transaction_type = 'DEPOSIT')")
++    private BigDecimal totalDeposits;
++
++    @Formula("(SELECT COALESCE(SUM(t.amount), 0) FROM transactions t WHERE t.account_id = id AND t.transaction_type = 'WITHDRAWAL')")
++    private BigDecimal totalWithdrawals;
++
+ 
+     @SequenceGenerator(name = "accounts_seq", sequenceName = "accounts_seq", allocationSize = 1)
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accounts_seq")
+Index: depends/entity/src/main/java/com/harun/entity/enums/PaymentType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/depends/entity/src/main/java/com/harun/entity/enums/PaymentType.java b/depends/entity/src/main/java/com/harun/entity/enums/PaymentType.java
+new file mode 100644
+--- /dev/null	(date 1739209725974)
++++ b/depends/entity/src/main/java/com/harun/entity/enums/PaymentType.java	(date 1739209725974)
+@@ -0,0 +1,5 @@
++package com.harun.entity.enums;
++
++public enum PaymentType {
++    BILL, LOAN, SUBSCRIPTION, TAX
++}
+Index: depends/entity/src/main/java/com/harun/entity/models/Payment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.harun.entity.models;\r\n\r\n\r\nimport com.harun.entity.base.BaseEntity;\r\nimport jakarta.persistence.*;\r\nimport jakarta.validation.constraints.DecimalMin;\r\nimport jakarta.validation.constraints.NotNull;\r\nimport lombok.*;\r\nimport lombok.experimental.FieldDefaults;\r\n\r\nimport java.io.Serializable;\r\nimport java.math.BigDecimal;\r\n\r\n@Entity\r\n@Getter\r\n@Setter\r\n@Table(name = \"payments\")\r\n@Builder(setterPrefix = \"with\")\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\n@FieldDefaults(level = AccessLevel.PRIVATE)\r\npublic class Payment extends BaseEntity<Long> implements Serializable {\r\n\r\n    @NotNull\r\n    @DecimalMin(\"1.00\")\r\n    BigDecimal amount;\r\n\r\n    @Column(name = \"account_id\", nullable = false)\r\n    Long accountId;\r\n\r\n    @Column(name = \"transaction_id\", unique = true)\r\n    Long transactionId;\r\n\r\n    @SequenceGenerator(name = \"payments_seq\", sequenceName = \"payments_seq\", allocationSize = 1)\r\n    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = \"payments_seq\")\r\n    @Override\r\n    public Long getId() {\r\n        return super.getId();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/depends/entity/src/main/java/com/harun/entity/models/Payment.java b/depends/entity/src/main/java/com/harun/entity/models/Payment.java
+--- a/depends/entity/src/main/java/com/harun/entity/models/Payment.java	(revision d15570c197cc44740bdbefb19f5613f65b1be044)
++++ b/depends/entity/src/main/java/com/harun/entity/models/Payment.java	(date 1739209725980)
+@@ -1,12 +1,14 @@
+ package com.harun.entity.models;
+ 
+ 
++import com.fasterxml.jackson.annotation.JsonBackReference;
+ import com.harun.entity.base.BaseEntity;
++import com.harun.entity.enums.PaymentType;
+ import jakarta.persistence.*;
+-import jakarta.validation.constraints.DecimalMin;
+-import jakarta.validation.constraints.NotNull;
+ import lombok.*;
+ import lombok.experimental.FieldDefaults;
++import org.hibernate.annotations.Fetch;
++import org.hibernate.annotations.FetchMode;
+ 
+ import java.io.Serializable;
+ import java.math.BigDecimal;
+@@ -21,15 +23,21 @@
+ @FieldDefaults(level = AccessLevel.PRIVATE)
+ public class Payment extends BaseEntity<Long> implements Serializable {
+ 
+-    @NotNull
+-    @DecimalMin("1.00")
++    @Column(name = "amount", nullable = false, precision = 19, scale = 2)
+     BigDecimal amount;
+ 
+-    @Column(name = "account_id", nullable = false)
+-    Long accountId;
++    @Enumerated(EnumType.STRING)
++    @Column(name = "payment_type", nullable = false)
++    PaymentType paymentType;
+ 
+-    @Column(name = "transaction_id", unique = true)
+-    Long transactionId;
++    @Column(name = "description", length = 500)
++    String description;
++
++    @ManyToOne()
++    @JoinColumn(name = "account_id", nullable = false)
++    @JsonBackReference
++    @Fetch(FetchMode.JOIN)
++    Account account;
+ 
+     @SequenceGenerator(name = "payments_seq", sequenceName = "payments_seq", allocationSize = 1)
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "payments_seq")
+Index: depends/entity/src/main/java/com/harun/entity/models/Transaction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.harun.entity.models;\r\n\r\nimport com.harun.entity.base.BaseEntity;\r\nimport com.harun.entity.enums.TransactionType;\r\nimport jakarta.persistence.*;\r\nimport jakarta.validation.constraints.Positive;\r\nimport lombok.*;\r\nimport lombok.experimental.FieldDefaults;\r\n\r\nimport java.io.Serializable;\r\nimport java.math.BigDecimal;\r\n\r\n@Entity\r\n@Table(name = \"transactions\")\r\n@Getter\r\n@Setter\r\n@Builder(setterPrefix = \"with\")\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\n@FieldDefaults(level = AccessLevel.PRIVATE)\r\npublic class Transaction extends BaseEntity<Long> implements Serializable {\r\n\r\n    @Column(nullable = false)\r\n    @Positive\r\n    BigDecimal amount;\r\n\r\n    @Enumerated(EnumType.STRING)\r\n    TransactionType transactionType;\r\n\r\n    @ManyToOne(fetch = FetchType.EAGER)\r\n    @JoinColumn(name = \"from_account_id\", nullable = false)\r\n    Account fromAccount;\r\n\r\n    @ManyToOne(fetch = FetchType.EAGER)\r\n    @JoinColumn(name = \"to_account_id\", nullable = false)\r\n    Account toAccount;\r\n\r\n    @ManyToOne(fetch = FetchType.EAGER)\r\n    @JoinColumn(name = \"bank_user_id\", nullable = false)\r\n    BankUser bankUser;\r\n\r\n    @SequenceGenerator(name = \"transactions_seq\", sequenceName = \"transactions_seq\", allocationSize = 1)\r\n    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = \"transactions_seq\")\r\n    @Override\r\n    public Long getId() {\r\n        return super.getId();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/depends/entity/src/main/java/com/harun/entity/models/Transaction.java b/depends/entity/src/main/java/com/harun/entity/models/Transaction.java
+--- a/depends/entity/src/main/java/com/harun/entity/models/Transaction.java	(revision d15570c197cc44740bdbefb19f5613f65b1be044)
++++ b/depends/entity/src/main/java/com/harun/entity/models/Transaction.java	(date 1739209648569)
+@@ -1,11 +1,13 @@
+ package com.harun.entity.models;
+ 
++import com.fasterxml.jackson.annotation.JsonBackReference;
+ import com.harun.entity.base.BaseEntity;
+ import com.harun.entity.enums.TransactionType;
+ import jakarta.persistence.*;
+-import jakarta.validation.constraints.Positive;
+ import lombok.*;
+ import lombok.experimental.FieldDefaults;
++import org.hibernate.annotations.Fetch;
++import org.hibernate.annotations.FetchMode;
+ 
+ import java.io.Serializable;
+ import java.math.BigDecimal;
+@@ -20,24 +22,22 @@
+ @FieldDefaults(level = AccessLevel.PRIVATE)
+ public class Transaction extends BaseEntity<Long> implements Serializable {
+ 
+-    @Column(nullable = false)
+-    @Positive
++
++    @Column(name = "amount", nullable = false, precision = 19, scale = 2)
+     BigDecimal amount;
+ 
+     @Enumerated(EnumType.STRING)
++    @Column(name = "transaction_type", nullable = false)
+     TransactionType transactionType;
+ 
+-    @ManyToOne(fetch = FetchType.EAGER)
+-    @JoinColumn(name = "from_account_id", nullable = false)
+-    Account fromAccount;
++    @Column(name = "description", length = 500)
++    String description;
+ 
+-    @ManyToOne(fetch = FetchType.EAGER)
+-    @JoinColumn(name = "to_account_id", nullable = false)
+-    Account toAccount;
+-
+-    @ManyToOne(fetch = FetchType.EAGER)
+-    @JoinColumn(name = "bank_user_id", nullable = false)
+-    BankUser bankUser;
++    @ManyToOne()
++    @JoinColumn(name = "account_id", nullable = false)
++    @JsonBackReference
++    @Fetch(FetchMode.JOIN)
++    Account account;
+ 
+     @SequenceGenerator(name = "transactions_seq", sequenceName = "transactions_seq", allocationSize = 1)
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactions_seq")

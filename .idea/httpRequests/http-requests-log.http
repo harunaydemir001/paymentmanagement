@@ -1,0 +1,66 @@
+GET http://localhost:8090/bank-user/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-02-03T000654.200.json
+
+###
+
+GET http://localhost:8090/bank-user/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-02-03T000356.200.json
+
+###
+
+GET http://localhost:8092/payment/1
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-01-31T222130.404.json
+
+###
+
+POST http://localhost:8092/payment/process-payment?sourceAccountId=1&targetAccountId=2&amount=100.50
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-01-31T221542.404.json
+
+###
+
+GET http://localhost:8090/bank-user/1
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.2
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 270
+
+{
+  "email": "",
+  "firstName": "",
+  "lastName": "",
+  "phoneNumber": "",
+  "gender": "MALE",
+  "occupation": "",
+  "monthlyIncome": {},
+  "creditScore": 0,
+  "accounts": [],
+  "transactions": [],
+  "payments": [],
+  "version": 0,
+  "createdAt": "",
+  "updatedAt": ""
+}
+
+<> 2025-01-31T214317.200.json
+
+###
+

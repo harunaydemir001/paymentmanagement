@@ -28,14 +28,14 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
 
     @Override
-    @Cacheable(value = "account", key = "#id")
+//    @Cacheable(value = "account", key = "#id")
     public AccountDTO getAccountById(Long id) {
         Account account = accountById(id);
         return mapper.accountToAccountDTO(account);
     }
 
     @Override
-    @CachePut(value = "account", key = "#result.id")
+//    @CachePut(value = "account", key = "#result.id")
     public AccountDTO updateAccount(Account account) {
         Account updatedAccount = accountRepository.save(account);
         return mapper.accountToAccountDTO(updatedAccount);
@@ -48,7 +48,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    @CacheEvict(value = "account", key = "#id")
+//    @CacheEvict(value = "account", key = "#id")
     public void deleteAccount(Long id) {
         try {
             accountById(id);

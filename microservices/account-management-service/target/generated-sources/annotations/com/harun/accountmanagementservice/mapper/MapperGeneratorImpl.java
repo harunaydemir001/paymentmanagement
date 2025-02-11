@@ -8,7 +8,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-05T21:14:12+0300",
+    date = "2025-02-11T23:20:55+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -28,10 +28,6 @@ public class MapperGeneratorImpl implements MapperGenerator {
         accountDTO.setBalance( account.getBalance() );
         accountDTO.setIban( account.getIban() );
         accountDTO.setBankUser( account.getBankUser() );
-        List<Long> list = account.getTransactionIds();
-        if ( list != null ) {
-            accountDTO.setTransactionIds( new ArrayList<Long>( list ) );
-        }
 
         return accountDTO;
     }
