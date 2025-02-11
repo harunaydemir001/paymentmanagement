@@ -1,8 +1,10 @@
 package com.harun.paymentprocessingservice.service;
 
 import com.harun.common.dto.AccountDTO;
+import com.harun.common.dto.PaymentSagaState;
 import com.harun.common.dto.TransactionDTO;
 import com.harun.common.enums.EventType;
+import com.harun.common.enums.PaymentSagaStep;
 import com.harun.common.factory.EntityFactory;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
 import com.harun.common.feign.impl.BankUserServiceClientImpl;
@@ -12,10 +14,8 @@ import com.harun.common.utils.ReportUtil;
 import com.harun.common.utils.StringBuilderUtil;
 import com.harun.entity.enums.TransactionType;
 import com.harun.entity.models.Transaction;
-import com.harun.common.enums.PaymentSagaStep;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
-import com.harun.common.dto.PaymentSagaState;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,6 +54,8 @@ public class PaymentSagaOrchestrator {
             paymentSagaState.setCurrentStep(PaymentSagaStep.COMPLETE_PAYMENT);
 
             logger.info(message, "completed", sourceAccountId, targetAccountId, amount);
+
+            paymentSagaState.setFailureReason("");
 
             return paymentSagaState;
 
@@ -116,7 +118,7 @@ public class PaymentSagaOrchestrator {
         paymentSagaState.setCurrentStep(PaymentSagaStep.DEBIT_SOURCE_ACCOUNT);
         AccountDTO sourceAccountDTO = getAccountById(paymentSagaState.getSourceAccountId());
         sourceAccountDTO.setBalance(sourceAccountDTO.getBalance().subtract(paymentSagaState.getAmount()));
-        accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(sourceAccountDTO));
+        accountServiceClientImpl.updateAccount(sourceAccountDTO);
         logger.info("Source account debited.");
     }
 
@@ -124,7 +126,7 @@ public class PaymentSagaOrchestrator {
         paymentSagaState.setCurrentStep(PaymentSagaStep.CREDIT_TARGET_ACCOUNT);
         AccountDTO targetAccountDTO = getAccountById(paymentSagaState.getTargetAccountId());
         targetAccountDTO.setBalance(targetAccountDTO.getBalance().add(paymentSagaState.getAmount()));
-        accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(targetAccountDTO));
+        accountServiceClientImpl.updateAccount(targetAccountDTO);
         logger.info("Target account credited.");
     }
 
@@ -134,7 +136,7 @@ public class PaymentSagaOrchestrator {
                 TransactionType.PAYMENT,
                 mapper.accountDTOToAccount(getAccountById(paymentSagaState.getSourceAccountId())),
                 mapper.accountDTOToAccount(getAccountById(paymentSagaState.getTargetAccountId())),
-                mapper.bankUserDTOToBankUser(bankUserServiceClient.getBankUserById(getAccountById(paymentSagaState.getSourceAccountId()).getBankUser().getId())));
+                mapper.bankUserDTOToBankUser(bankUserServiceClient.getBankUserById(getAccountById(paymentSagaState.getSourceAccountId()).getBankUserId())));
 
         TransactionDTO transactionDTO = moneyTransferServiceClientImpl.saveTransaction(transaction);
         paymentSagaState.setTransactionId(transactionDTO.getId());
@@ -169,14 +171,14 @@ public class PaymentSagaOrchestrator {
     private void compensationSourceAccount() {
         AccountDTO sourceAccountDTO = getAccountById(paymentSagaState.getSourceAccountId());
         sourceAccountDTO.setBalance(sourceAccountDTO.getBalance().add(paymentSagaState.getAmount()));
-        accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(sourceAccountDTO));
+        accountServiceClientImpl.updateAccount(sourceAccountDTO);
         logger.info("Compensation: Source account credited.");
     }
 
     private void compensationTargetAccount() {
         AccountDTO targetAccountDTO = getAccountById(paymentSagaState.getTargetAccountId());
         targetAccountDTO.setBalance(targetAccountDTO.getBalance().subtract(paymentSagaState.getAmount()));
-        accountServiceClientImpl.updateAccount(mapper.accountDTOToAccount(targetAccountDTO));
+        accountServiceClientImpl.updateAccount(targetAccountDTO);
         logger.info("Compensation: Target account debited.");
     }
 

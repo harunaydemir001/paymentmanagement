@@ -1,6 +1,6 @@
 INSERT INTO transactions (id, amount, transaction_type, from_account_id, to_account_id, bank_user_id, created_at,
                           updated_at)
-VALUES (1, 500.00, 'DEPOSIT', 1, 2, 1, NOW(), NOW()),
+    VALUES (1, 500.00, 'DEPOSIT', 1, 2, 1, NOW(), NOW()),
        (2, 200.50, 'WITHDRAWAL', 2, 3, 2, NOW(), NOW()),
        (3, 750.75, 'TRANSFER', 3, 4, 3, NOW(), NOW()),
        (4, 300.00, 'DEPOSIT', 4, 5, 4, NOW(), NOW()),

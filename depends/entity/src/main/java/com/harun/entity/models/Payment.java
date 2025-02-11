@@ -28,7 +28,7 @@ public class Payment extends BaseEntity<Long> implements Serializable {
     @Column(name = "account_id", nullable = false)
     Long accountId;
 
-    @Column(name = "transaction_id", unique = true)
+    @Column(name = "transaction_id")
     Long transactionId;
 
     @SequenceGenerator(name = "payments_seq", sequenceName = "payments_seq", allocationSize = 1)

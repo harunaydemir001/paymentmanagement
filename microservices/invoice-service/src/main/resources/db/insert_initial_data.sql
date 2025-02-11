@@ -1,5 +1,5 @@
 INSERT INTO invoices (id, invoice_type, amount, bank_user_id, is_paid, created_at, updated_at)
-VALUES (1, 'GAS', 120.50, 1, false, NOW(), NOW()),
+    VALUES (1, 'GAS', 120.50, 1, false, NOW(), NOW()),
        (2, 'GAS', 850.00, 2, false, NOW(), NOW()),
        (3, 'INTERNET', 60.75, 3, true, NOW(), NOW()),
        (4, 'GAS', 95.30, 4, false, NOW(), NOW()),

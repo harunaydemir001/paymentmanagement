@@ -17,13 +17,13 @@ public class AccountServiceClientImpl {
 
     private final AccountServiceClient accountServiceClient;
 
-    public AccountDTO saveAccount(Account account) {
-        ResponseEntity<Response> response = accountServiceClient.saveAccount(account);
+    public AccountDTO saveAccount(AccountDTO accountDTO) {
+        ResponseEntity<Response> response = accountServiceClient.saveAccount(accountDTO);
         return JsonUtil.convertValue(Objects.requireNonNull(response.getBody()).getResult(), AccountDTO.class);
     }
 
-    public AccountDTO updateAccount(Account account) {
-        ResponseEntity<Response> response = accountServiceClient.updateAccount(account);
+    public AccountDTO updateAccount(AccountDTO accountDTO) {
+        ResponseEntity<Response> response = accountServiceClient.updateAccount(accountDTO);
         return JsonUtil.convertValue(Objects.requireNonNull(response.getBody()).getResult(), AccountDTO.class);
     }
 

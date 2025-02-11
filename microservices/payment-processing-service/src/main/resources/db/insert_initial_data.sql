@@ -1,5 +1,5 @@
 INSERT INTO payments (id, amount, account_id, transaction_id, created_at, updated_at)
-VALUES (1, 150.00, 1, 1, NOW(), NOW()),
+    VALUES (1, 150.00, 1, 1, NOW(), NOW()),
        (2, 200.50, 2, 2, NOW(), NOW()),
        (3, 75.75, 3, 3, NOW(), NOW()),
        (4, 300.00, 4, 4, NOW(), NOW()),

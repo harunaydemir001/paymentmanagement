@@ -72,11 +72,11 @@ public class PaymentServiceImpl implements PaymentService {
                 paymentSagaState.getAmount(),
                 paymentSagaState.getTransactionId(),
                 paymentSagaState.getSourceAccountId());
+        savePayment(sourcePayment);
         Payment targetPayment = EntityFactory.createPayment(
                 paymentSagaState.getAmount(),
                 paymentSagaState.getTransactionId(),
                 paymentSagaState.getTargetAccountId());
-        savePayment(sourcePayment);
         savePayment(targetPayment);
         return paymentSagaState;
     }

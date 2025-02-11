@@ -5,14 +5,14 @@ import com.harun.accountmanagementservice.mapper.MapperGeneratorSingleton;
 import com.harun.accountmanagementservice.repository.AccountRepository;
 import com.harun.accountmanagementservice.service.AccountService;
 import com.harun.common.dto.AccountDTO;
+import com.harun.common.dto.BankUserDTO;
 import com.harun.common.enums.ErrorMessage;
+import com.harun.common.feign.impl.BankUserServiceClientImpl;
 import com.harun.entity.models.Account;
+import com.harun.entity.models.BankUser;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +26,7 @@ public class AccountServiceImpl implements AccountService {
     private String message = "";
 
     private final AccountRepository accountRepository;
+    private final BankUserServiceClientImpl bankUserServiceClient;
 
     @Override
 //    @Cacheable(value = "account", key = "#id")
@@ -36,15 +37,23 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
 //    @CachePut(value = "account", key = "#result.id")
-    public AccountDTO updateAccount(Account account) {
+    public AccountDTO updateAccount(AccountDTO accountDTO) {
+        BankUserDTO bankUserDTO = bankUserServiceClient.getBankUserById(accountDTO.getId());
+        BankUser bankUser = mapper.bankUserDTOToBankUser(bankUserDTO);
+        Account account = mapper.accountDTOToAccount(accountDTO);
+        account.setBankUser(bankUser);
         Account updatedAccount = accountRepository.save(account);
         return mapper.accountToAccountDTO(updatedAccount);
     }
 
     @Override
-    public AccountDTO saveAccount(Account account) {
-        accountRepository.save(account);
-        return mapper.accountToAccountDTO(account);
+    public AccountDTO saveAccount(AccountDTO accountDTO) {
+        BankUserDTO bankUserDTO = bankUserServiceClient.getBankUserById(accountDTO.getId());
+        BankUser bankUser = mapper.bankUserDTOToBankUser(bankUserDTO);
+        Account account = mapper.accountDTOToAccount(accountDTO);
+        account.setBankUser(bankUser);
+        Account savedAccount = accountRepository.save(account);
+        return mapper.accountToAccountDTO(savedAccount);
     }
 
     @Override

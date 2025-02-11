@@ -11,8 +11,6 @@ import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "accounts")
@@ -38,6 +36,9 @@ public class Account extends BaseEntity<Long> implements Serializable {
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
     BankUser bankUser;
+
+    @Version
+    Integer version;
 
     @SequenceGenerator(name = "accounts_seq", sequenceName = "accounts_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accounts_seq")

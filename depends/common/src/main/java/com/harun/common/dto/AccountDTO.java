@@ -3,7 +3,6 @@ package com.harun.common.dto;
 import com.harun.common.base.BaseDTO;
 import com.harun.entity.enums.AccountType;
 import com.harun.entity.models.Account;
-import com.harun.entity.models.BankUser;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -30,7 +29,9 @@ public class AccountDTO extends BaseDTO<Long> {
 
     String iban;
 
-    BankUser bankUser;
+    Long bankUserId;
+
+    Integer version;
 
     List<Long> transactionIds = new ArrayList<>();
 }

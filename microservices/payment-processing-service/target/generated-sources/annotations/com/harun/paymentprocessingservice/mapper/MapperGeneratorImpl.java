@@ -12,7 +12,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-11T23:20:54+0300",
+    date = "2025-02-12T00:33:10+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -47,7 +47,7 @@ public class MapperGeneratorImpl implements MapperGenerator {
         account.setAccountType( accountDTO.getAccountType() );
         account.setBalance( accountDTO.getBalance() );
         account.setIban( accountDTO.getIban() );
-        account.setBankUser( accountDTO.getBankUser() );
+        account.setVersion( accountDTO.getVersion() );
 
         return account;
     }

@@ -1,6 +1,7 @@
 package com.harun.common.feign.client;
 
 import com.harun.common.configuration.FeignClientConfiguration;
+import com.harun.common.dto.AccountDTO;
 import com.harun.common.response.model.Response;
 import com.harun.entity.models.Account;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -14,10 +15,10 @@ public interface AccountServiceClient {
     ResponseEntity<Response> getAccountById(@PathVariable("id") Long id);
 
     @PostMapping("/create")
-    ResponseEntity<Response> saveAccount(@RequestBody Account account);
+    ResponseEntity<Response> saveAccount(@RequestBody AccountDTO accountDTO);
 
     @PutMapping("/update")
-    ResponseEntity<Response> updateAccount(@RequestBody Account account);
+    ResponseEntity<Response> updateAccount(@RequestBody AccountDTO accountDTO);
 
     @DeleteMapping("/{id}")
     ResponseEntity<Response> deleteAccount(@PathVariable("id") Long id);

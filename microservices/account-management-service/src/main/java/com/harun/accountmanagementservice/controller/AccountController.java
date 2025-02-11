@@ -1,6 +1,7 @@
 package com.harun.accountmanagementservice.controller;
 
 import com.harun.accountmanagementservice.service.AccountService;
+import com.harun.common.dto.AccountDTO;
 import com.harun.common.response.factory.ResponseFactory;
 import com.harun.common.response.model.Response;
 import com.harun.entity.models.Account;
@@ -23,14 +24,14 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Response> saveAccount(@RequestBody Account account) {
-        return ResponseFactory.createResponse(accountService.saveAccount(account), HttpStatus.OK);
+    public ResponseEntity<Response> saveAccount(@RequestBody AccountDTO accountDTO) {
+        return ResponseFactory.createResponse(accountService.saveAccount(accountDTO), HttpStatus.OK);
     }
 
 
     @PutMapping("/update")
-    public ResponseEntity<Response> updateAccount(@RequestBody Account account) {
-        return ResponseFactory.createResponse(accountService.updateAccount(account), HttpStatus.OK);
+    public ResponseEntity<Response> updateAccount(@RequestBody AccountDTO accountDTO) {
+        return ResponseFactory.createResponse(accountService.updateAccount(accountDTO), HttpStatus.OK);
     }
 
 
