@@ -5,6 +5,8 @@ import com.harun.common.response.model.Response;
 import com.harun.entity.models.BankUser;
 import com.harun.usermanagementservice.service.BankUserService;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -41,7 +43,7 @@ public class BankUserController {
     }
 
     @GetMapping("/getAllUsers")
-    public ResponseEntity<Response> getAllUsers() {
-        return ResponseFactory.createResponse(bankUserService.getAllUsers(), HttpStatus.OK);
+    public ResponseEntity<Response> getAllUsers(@ParameterObject Pageable pageable) {
+        return ResponseFactory.createResponse(bankUserService.getAllUsers(pageable), HttpStatus.OK);
     }
 }

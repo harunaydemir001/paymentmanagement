@@ -13,5 +13,5 @@ import java.util.List;
 public interface MapperGenerator {
     BankUserDTO userToUserDTO(BankUser bankUser);
 
-    List<BankUserDTO> UserListToUserDTOList(List<BankUser> allBankUsers);
+    List<BankUserDTO> userListToUserDTOList(List<BankUser> allBankUsers);
 }

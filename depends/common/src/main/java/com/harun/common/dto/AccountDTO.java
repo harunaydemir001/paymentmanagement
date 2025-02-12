@@ -7,8 +7,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * DTO for {@link Account}
@@ -32,6 +30,4 @@ public class AccountDTO extends BaseDTO<Long> {
     Long bankUserId;
 
     Integer version;
-
-    List<Long> transactionIds = new ArrayList<>();
 }

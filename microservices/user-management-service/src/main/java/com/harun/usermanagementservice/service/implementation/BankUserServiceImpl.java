@@ -6,6 +6,9 @@ import com.harun.usermanagementservice.mapper.MapperGenerator;
 import com.harun.usermanagementservice.mapper.MapperGeneratorSingleton;
 import com.harun.usermanagementservice.repository.BankUserRepositoryJPA;
 import com.harun.usermanagementservice.service.BankUserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -35,9 +38,10 @@ public class BankUserServiceImpl implements BankUserService {
     }
 
     @Override
-    public List<BankUserDTO> getAllUsers() {
-        final List<BankUser> allBankUsers = bankUserRepository.findAll();
-        return mapper.UserListToUserDTOList(allBankUsers);
+    public Page<BankUserDTO> getAllUsers(Pageable pageable) {
+        Page<BankUser> userPage = bankUserRepository.findAll(pageable);
+        List<BankUserDTO> bankUserDTOS = mapper.userListToUserDTOList(userPage.getContent());
+        return new PageImpl<>(bankUserDTOS, pageable, userPage.getTotalElements());
     }
 
     @Override

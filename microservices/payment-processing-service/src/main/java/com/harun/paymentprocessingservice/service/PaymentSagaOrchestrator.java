@@ -73,7 +73,16 @@ public class PaymentSagaOrchestrator {
                 ? PaymentSagaStep.COMPLETE_PAYMENT.name()
                 : PaymentSagaStep.FAILURE_PAYMENT.name();
         ReportUtil.createReport(
-                null,
+                paymentSagaState.getSourceUserId(),
+                EventType.PAYMENT_PROCESS,
+                StringBuilderUtil.buildMessage(message,
+                        status,
+                        paymentSagaState.getSourceAccountId(),
+                        paymentSagaState.getTargetAccountId(),
+                        paymentSagaState.getAmount()),
+                null);
+        ReportUtil.createReport(
+                paymentSagaState.getTargetUserId(),
                 EventType.PAYMENT_PROCESS,
                 StringBuilderUtil.buildMessage(message,
                         status,
@@ -111,6 +120,8 @@ public class PaymentSagaOrchestrator {
         paymentSagaState.setAmount(amount);
         paymentSagaState.setSourceAccountId(sourceAccountId);
         paymentSagaState.setTargetAccountId(targetAccountId);
+        paymentSagaState.setSourceUserId(getAccountById(paymentSagaState.getSourceAccountId()).getBankUserId());
+        paymentSagaState.setTargetUserId(getAccountById(paymentSagaState.getTargetAccountId()).getBankUserId());
     }
 
 

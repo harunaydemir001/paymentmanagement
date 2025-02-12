@@ -12,6 +12,7 @@ import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
 import com.harun.paymentprocessingservice.repository.PaymentRepository;
 import com.harun.paymentprocessingservice.service.PaymentSagaOrchestrator;
 import com.harun.paymentprocessingservice.service.PaymentService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +59,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    @CircuitBreaker(name = "backendB", fallbackMethod = "processPaymentFallBack")
     public PaymentSagaState processPayment(PaymentRequest paymentRequest) {
         PaymentSagaState paymentSagaState = paymentSagaOrchestrator.processPayment(
                 paymentRequest.getSourceAccountId(),
@@ -77,7 +79,13 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    @CircuitBreaker(name = "backendB", fallbackMethod = "payInvoiceFallBack")
     public PaymentDTO payInvoice(Double amount) {
         return null;
+    }
+
+    private PaymentDTO payInvoiceFallBack(PaymentRequest paymentRequest, Exception e) {
+        logger.info("FallBack work for pay invoice due to: " + e.getMessage());
+        return new PaymentDTO();
     }
 }

@@ -28,6 +28,7 @@
         <module>notification-service</module>
         <module>reporting-service</module>
         <module>invoice-service</module>
+        <module>campaign-service</module>
     </modules>
 
     <dependencies>

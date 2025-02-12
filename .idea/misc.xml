@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/depends/entity/pom.xml" />
         <option value="$PROJECT_DIR$/depends/feign/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/invoice-service/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/campaign-service/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

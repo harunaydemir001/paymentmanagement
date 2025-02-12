@@ -29,10 +29,10 @@ public class BankUser extends BaseEntity<Long> implements Serializable {
     @Email
     String email;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     String lastName;
 
     @Column(name = "phone_number")

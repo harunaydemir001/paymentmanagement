@@ -3,11 +3,13 @@ package com.harun.common.dto;
 import com.harun.common.base.BaseDTO;
 import com.harun.entity.enums.Gender;
 import com.harun.entity.models.Account;
-import  com.harun.entity.models.BankUser;
+import com.harun.entity.models.BankUser;
+import com.harun.entity.models.Campaign;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -41,5 +43,7 @@ public class BankUserDTO extends BaseDTO<Long> {
 
     Integer creditScore;
 
-    Set<Account> accounts;
+    Set<Account> accounts = new HashSet<>();
+
+    Set<Campaign> campaigns = new HashSet<>();
 }

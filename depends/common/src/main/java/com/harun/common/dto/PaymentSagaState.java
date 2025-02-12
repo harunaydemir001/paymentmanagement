@@ -21,4 +21,6 @@ public class PaymentSagaState {
     PaymentSagaStep currentStep;
     String failureReason;
     Long transactionId;
+    Long sourceUserId;
+    Long targetUserId;
 }
