@@ -4,8 +4,9 @@ import com.harun.accountmanagementservice.service.AccountService;
 import com.harun.common.dto.AccountDTO;
 import com.harun.common.response.factory.ResponseFactory;
 import com.harun.common.response.model.Response;
-import com.harun.entity.models.Account;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -39,5 +40,11 @@ public class AccountController {
     public ResponseEntity<Response> deleteAccount(@PathVariable("id") Long id) {
         accountService.deleteAccount(id);
         return ResponseFactory.createSuccessResponse();
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<Response> filter(@ParameterObject Pageable pageable,
+                                           @RequestBody() AccountDTO accountDTO) {
+        return ResponseFactory.createResponse(accountService.filter(pageable, accountDTO), HttpStatus.OK);
     }
 }

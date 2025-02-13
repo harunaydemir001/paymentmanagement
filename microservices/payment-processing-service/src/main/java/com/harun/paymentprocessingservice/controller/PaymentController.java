@@ -1,11 +1,14 @@
 package com.harun.paymentprocessingservice.controller;
 
+import com.harun.common.dto.PaymentDTO;
+import com.harun.common.dto.PaymentRequest;
 import com.harun.common.response.factory.ResponseFactory;
 import com.harun.common.response.model.Response;
 import com.harun.entity.models.Payment;
-import com.harun.common.dto.PaymentRequest;
 import com.harun.paymentprocessingservice.service.PaymentService;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +48,11 @@ public class PaymentController {
     @PostMapping("/pay-invoice")
     public ResponseEntity<Response> payInvoice(@RequestParam Double amount) {
         return ResponseFactory.createResponse(paymentService.payInvoice(amount), HttpStatus.OK);
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<Response> filter(@ParameterObject Pageable pageable,
+                                           @RequestBody() PaymentDTO paymentDTO) {
+        return ResponseFactory.createResponse(paymentService.filter(pageable, paymentDTO), HttpStatus.OK);
     }
 }

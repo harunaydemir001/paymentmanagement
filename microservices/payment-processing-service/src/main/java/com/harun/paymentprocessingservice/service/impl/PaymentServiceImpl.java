@@ -1,14 +1,17 @@
 package com.harun.paymentprocessingservice.service.impl;
 
+import com.harun.common.dto.AccountDTO;
 import com.harun.common.dto.PaymentDTO;
 import com.harun.common.dto.PaymentRequest;
 import com.harun.common.dto.PaymentSagaState;
 import com.harun.common.enums.ErrorMessage;
 import com.harun.common.factory.EntityFactory;
 import com.harun.common.feign.impl.AccountServiceClientImpl;
+import com.harun.entity.models.Account;
 import com.harun.entity.models.Payment;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
+import com.harun.paymentprocessingservice.mapper.PageMapper;
 import com.harun.paymentprocessingservice.repository.PaymentRepository;
 import com.harun.paymentprocessingservice.service.PaymentSagaOrchestrator;
 import com.harun.paymentprocessingservice.service.PaymentService;
@@ -20,7 +23,11 @@ import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -80,6 +87,13 @@ public class PaymentServiceImpl implements PaymentService {
                 paymentSagaState.getTargetAccountId());
         savePayment(targetPayment);
         return paymentSagaState;
+    }
+
+    @Override
+    public Page<PaymentDTO> filter(Pageable pageable, PaymentDTO directorDTO) {
+        Page<Payment> page = paymentRepository.findByFilter(pageable, directorDTO);
+        List<PaymentDTO> directorDTOList = mapper.paymentToPaymentDTO(page.getContent());
+        return PageMapper.toPage(page, directorDTOList);
     }
 
     @Override

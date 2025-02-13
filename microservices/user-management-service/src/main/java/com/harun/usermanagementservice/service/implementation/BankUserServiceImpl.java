@@ -4,7 +4,8 @@ import com.harun.common.dto.BankUserDTO;
 import com.harun.entity.models.BankUser;
 import com.harun.usermanagementservice.mapper.MapperGenerator;
 import com.harun.usermanagementservice.mapper.MapperGeneratorSingleton;
-import com.harun.usermanagementservice.repository.BankUserRepositoryJPA;
+import com.harun.usermanagementservice.mapper.PageMapper;
+import com.harun.usermanagementservice.repository.BankUserRepository;
 import com.harun.usermanagementservice.service.BankUserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -19,9 +20,9 @@ public class BankUserServiceImpl implements BankUserService {
 
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
 
-    private final BankUserRepositoryJPA bankUserRepository;
+    private final BankUserRepository bankUserRepository;
 
-    public BankUserServiceImpl(BankUserRepositoryJPA bankUserRepository) {
+    public BankUserServiceImpl(BankUserRepository bankUserRepository) {
         this.bankUserRepository = bankUserRepository;
     }
 
@@ -54,5 +55,12 @@ public class BankUserServiceImpl implements BankUserService {
     public HttpStatus deleteUser(Long id) {
         bankUserRepository.deleteById(id);
         return HttpStatus.OK;
+    }
+
+    @Override
+    public Page<BankUserDTO> filter(Pageable pageable, BankUserDTO bankUserDTO) {
+        Page<BankUser> page = bankUserRepository.findByFilter(pageable, bankUserDTO);
+        List<BankUserDTO> directorDTOList = mapper.userToUserDTO(page.getContent());
+        return PageMapper.toPage(page, directorDTOList);
     }
 }

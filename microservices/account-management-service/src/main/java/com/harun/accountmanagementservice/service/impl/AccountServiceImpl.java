@@ -2,6 +2,7 @@ package com.harun.accountmanagementservice.service.impl;
 
 import com.harun.accountmanagementservice.mapper.MapperGenerator;
 import com.harun.accountmanagementservice.mapper.MapperGeneratorSingleton;
+import com.harun.accountmanagementservice.mapper.PageMapper;
 import com.harun.accountmanagementservice.repository.AccountRepository;
 import com.harun.accountmanagementservice.service.AccountService;
 import com.harun.common.dto.AccountDTO;
@@ -16,7 +17,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -71,6 +76,12 @@ public class AccountServiceImpl implements AccountService {
             message = ErrorMessage.DELETION_FAILED.getMessage(ACCOUNT, id);
             logger.info(message);
         }
+    }
+
+    public Page<AccountDTO> filter(Pageable pageable, AccountDTO directorDTO) {
+        Page<Account> page = accountRepository.findByFilter(pageable, directorDTO);
+        List<AccountDTO> directorDTOList = mapper.accountToAccountDTO(page.getContent());
+        return PageMapper.toPage(page, directorDTOList);
     }
 
     private Account accountById(Long id) {

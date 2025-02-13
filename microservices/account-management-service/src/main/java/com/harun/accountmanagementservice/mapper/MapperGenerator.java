@@ -18,7 +18,7 @@ public interface MapperGenerator {
     @Mapping(target = "bankUserId", source = "bankUser.id")
     AccountDTO accountToAccountDTO(Account account);
 
-    List<AccountDTO> accountListToAccountDTOList(List<Account> accounts);
+    List<AccountDTO> accountToAccountDTO(List<Account> accounts);
 
     BankUser bankUserDTOToBankUser(BankUserDTO bankUserDTO);
 

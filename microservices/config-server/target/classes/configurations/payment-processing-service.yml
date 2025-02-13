@@ -2,76 +2,86 @@ server:
   port: 8092
 
 
-resilience4j.circuitbreaker:
-  instances:
-    backendA:
-      registerHealthIndicator: true
-      slidingWindowSize: 100
-    backendB:
-      registerHealthIndicator: true
-      slidingWindowSize: 10
-      permittedNumberOfCallsInHalfOpenState: 3
-      slidingWindowType: TIME_BASED
-      minimumNumberOfCalls: 20
-      waitDurationInOpenState: 50s
-      failureRateThreshold: 50
-      eventConsumerBufferSize: 10
+#resilience4j:
+#  circuitbreaker:
+#    instances:
+#      backendA:
+#        registerHealthIndicator: true
+#        slidingWindowSize: 100
+#      backendB:
+#        registerHealthIndicator: true
+#        slidingWindowSize: 10
+#        permittedNumberOfCallsInHalfOpenState: 3
+#        slidingWindowType: TIME_BASED
+#        minimumNumberOfCalls: 20
+#        waitDurationInOpenState: 50s
+#        failureRateThreshold: 50
+#        eventConsumerBufferSize: 10
+#  retry:
+#    instances:
+#      default:
+#        maxRetryAttempts: 3
+#        waitDuration: 500
+#        retryExceptions:
+#          - org.springframework.web.client.HttpServerErrorException
+#          - java.io.IOException
+#        ignoreExceptions:
+#          - org.springframework.web.client.HttpClientErrorException
+#  bulkhead:
+#    instances:
+#      default:
+#        maxConcurrentCalls: 10
+#        maxWaitDuration: 10ms
+#  timelimiter:
+#    instances:
+#      default:
+#        timeout-duration: 10s
+#        cancel-running-future: true
+#  ratelimiter:
+#    instances:
+#      myService:
+#        limit-refresh-period: 1s
+#        limit-for-period: 5
+#        timeout-duration: 500ms
 
-#resilience4j.retry:
-#  instances:
-#    backendA:
-#      maxAttempts: 3
-#      waitDuration: 10s
-#      enableExponentialBackoff: true
-#      exponentialBackoffMultiplier: 2
-#      retryExceptions:
-#        - org.springframework.web.client.HttpServerErrorException
-#        - java.io.IOException
-#      ignoreExceptions:
-#        - io.github.robwin.exception.BusinessException
-#    backendB:
-#      maxAttempts: 3
-#      waitDuration: 10s
-#      retryExceptions:
-#        - org.springframework.web.client.HttpServerErrorException
-#        - java.io.IOException
-#      ignoreExceptions:
-#        - io.github.robwin.exception.BusinessException
-#
-#resilience4j.bulkhead:
-#  instances:
-#    backendA:
-#      maxConcurrentCalls: 10
-#    backendB:
-#      maxWaitDuration: 10ms
-#      maxConcurrentCalls: 20
-#
-#resilience4j.thread-pool-bulkhead:
-#  instances:
-#    backendC:
-#      maxThreadPoolSize: 1
-#      coreThreadPoolSize: 1
-#      queueCapacity: 1
-#      writableStackTraceEnabled: true
-#
-#resilience4j.ratelimiter:
-#  instances:
-#    backendA:
-#      limitForPeriod: 10
-#      limitRefreshPeriod: 1s
-#      timeoutDuration: 0
-#      registerHealthIndicator: true
-#      eventConsumerBufferSize: 100
-#    backendB:
-#      limitForPeriod: 6
-#      limitRefreshPeriod: 500ms
-#      timeoutDuration: 3s
-#
-#resilience4j.timelimiter:
-#  instances:
-#    backendA:
-#      timeoutDuration: 2s
-#      cancelRunningFuture: true
-#    backendB:
-#      timeoutDuration: 1s
-#      cancelRunningFuture: false
+resilience4j:
+  circuitbreaker:
+    instances:
+      backendA:
+        registerHealthIndicator: true
+        slidingWindowSize: 100
+      backendB:
+        registerHealthIndicator: true
+        slidingWindowSize: 20
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowType: TIME_BASED
+        minimumNumberOfCalls: 10
+        waitDurationInOpenState: 30s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+  retry:
+    instances:
+      default:
+        maxRetryAttempts: 3
+        waitDuration: 500ms
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException
+        ignoreExceptions:
+          - org.springframework.web.client.HttpClientErrorException
+  bulkhead:
+    instances:
+      default:
+        maxConcurrentCalls: 10
+        maxWaitDuration: 50ms
+  timelimiter:
+    instances:
+      default:
+        timeout-duration: 10s
+        cancel-running-future: true
+  ratelimiter:
+    instances:
+      myService:
+        limit-refresh-period: 1s
+        limit-for-period: 10
+        timeout-duration: 500ms

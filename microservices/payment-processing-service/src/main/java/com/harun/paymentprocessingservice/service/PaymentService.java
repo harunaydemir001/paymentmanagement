@@ -4,6 +4,8 @@ import com.harun.common.dto.PaymentDTO;
 import com.harun.common.dto.PaymentRequest;
 import com.harun.common.dto.PaymentSagaState;
 import com.harun.entity.models.Payment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface PaymentService {
 
@@ -18,4 +20,6 @@ public interface PaymentService {
     PaymentSagaState processPayment(PaymentRequest paymentRequest);
 
     PaymentDTO payInvoice(Double amount);
+
+    Page<PaymentDTO> filter(Pageable pageable, PaymentDTO directorDTO);
 }

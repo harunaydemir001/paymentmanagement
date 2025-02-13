@@ -9,11 +9,15 @@ import com.harun.entity.models.Payment;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 
 @Mapper(builder = @Builder(disableBuilder = true))
 public interface MapperGenerator {
 
     PaymentDTO paymentToPaymentDTO(Payment payment);
+
+    List<PaymentDTO> paymentToPaymentDTO(List<Payment> payment);
 
     Account accountDTOToAccount(AccountDTO accountDTO);
 

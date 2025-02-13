@@ -6,13 +6,15 @@ import com.harun.common.dto.PaymentDTO;
 import com.harun.entity.models.Account;
 import com.harun.entity.models.BankUser;
 import com.harun.entity.models.Payment;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-12T22:31:43+0300",
+    date = "2025-02-13T11:17:56+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -33,6 +35,20 @@ public class MapperGeneratorImpl implements MapperGenerator {
         paymentDTO.setTransactionId( payment.getTransactionId() );
 
         return paymentDTO;
+    }
+
+    @Override
+    public List<PaymentDTO> paymentToPaymentDTO(List<Payment> payment) {
+        if ( payment == null ) {
+            return null;
+        }
+
+        List<PaymentDTO> list = new ArrayList<PaymentDTO>( payment.size() );
+        for ( Payment payment1 : payment ) {
+            list.add( paymentToPaymentDTO( payment1 ) );
+        }
+
+        return list;
     }
 
     @Override

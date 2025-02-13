@@ -16,4 +16,6 @@ public interface BankUserService {
     BankUserDTO updateUser(BankUser bankUser);
 
     HttpStatus deleteUser(Long id);
+
+    Page<BankUserDTO> filter(Pageable pageable, BankUserDTO bankUserDTO);
 }

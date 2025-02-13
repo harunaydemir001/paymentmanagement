@@ -1,5 +1,6 @@
 package com.harun.usermanagementservice.controller;
 
+import com.harun.common.dto.BankUserDTO;
 import com.harun.common.response.factory.ResponseFactory;
 import com.harun.common.response.model.Response;
 import com.harun.entity.models.BankUser;
@@ -45,5 +46,11 @@ public class BankUserController {
     @GetMapping("/getAllUsers")
     public ResponseEntity<Response> getAllUsers(@ParameterObject Pageable pageable) {
         return ResponseFactory.createResponse(bankUserService.getAllUsers(pageable), HttpStatus.OK);
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<Response> filter(@ParameterObject Pageable pageable,
+                                           @RequestBody() BankUserDTO bankUserDTO) {
+        return ResponseFactory.createResponse(bankUserService.filter(pageable, bankUserDTO), HttpStatus.OK);
     }
 }
