@@ -78,6 +78,7 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
+    @Override
     public Page<AccountDTO> filter(Pageable pageable, AccountDTO directorDTO) {
         Page<Account> page = accountRepository.findByFilter(pageable, directorDTO);
         List<AccountDTO> directorDTOList = mapper.accountToAccountDTO(page.getContent());
