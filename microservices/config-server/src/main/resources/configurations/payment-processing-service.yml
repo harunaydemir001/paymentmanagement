@@ -1,18 +1,44 @@
 server:
   port: 8092
 
-
-resilience4j.circuitbreaker:
-  instances:
-    backendA:
-      registerHealthIndicator: true
-      slidingWindowSize: 100
-    backendB:
-      registerHealthIndicator: true
-      slidingWindowSize: 10
-      permittedNumberOfCallsInHalfOpenState: 3
-      slidingWindowType: TIME_BASED
-      minimumNumberOfCalls: 20
-      waitDurationInOpenState: 50s
-      failureRateThreshold: 50
-      eventConsumerBufferSize: 10
+resilience4j:
+  circuitbreaker:
+    instances:
+      backendA:
+        registerHealthIndicator: true
+        slidingWindowSize: 100
+      backendB:
+        registerHealthIndicator: true
+        slidingWindowSize: 20
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowType: TIME_BASED
+        minimumNumberOfCalls: 10
+        waitDurationInOpenState: 30s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+  retry:
+    instances:
+      default:
+        maxRetryAttempts: 3
+        waitDuration: 500ms
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException
+        ignoreExceptions:
+          - org.springframework.web.client.HttpClientErrorException
+  bulkhead:
+    instances:
+      default:
+        maxConcurrentCalls: 10
+        maxWaitDuration: 50ms
+  timelimiter:
+    instances:
+      default:
+        timeout-duration: 10s
+        cancel-running-future: true
+  ratelimiter:
+    instances:
+      myService:
+        limit-refresh-period: 1s
+        limit-for-period: 10
+        timeout-duration: 500ms

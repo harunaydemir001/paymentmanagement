@@ -12,7 +12,11 @@ import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
 import com.harun.paymentprocessingservice.repository.PaymentRepository;
 import com.harun.paymentprocessingservice.service.PaymentSagaOrchestrator;
 import com.harun.paymentprocessingservice.service.PaymentService;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,6 +84,19 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     @CircuitBreaker(name = "backendB", fallbackMethod = "payInvoiceFallBack")
+    //Eğer çok fazla hata alırsa, belirli bir süre için çağrıları engeller ve payInvoiceFallBack metoduna yönlendirir.
+    @Retry(name = "default")
+    //Belirli hatalar alındığında isteği tekrar denemeyi sağlar.(HttpServerErrorException veya IOException)
+    // (maxRetryAttempts: 3, waitDuration: 500ms).
+    @Bulkhead(name = "default")
+    //Aynı anda çalıştırılabilecek maksimum işlem sayısını sınırlar.
+    //maxConcurrentCalls: 10 değeriyle, aynı anda en fazla 10 isteğin çalışmasına izin verir.
+    @TimeLimiter(name = "default")
+    //İsteklerin belirli bir sürede tamamlanmasını zorunlu kılar.
+    //timeout-duration: 10s ayarına göre, 10 saniye içinde tamamlanmayan işlemler iptal edilir.
+    @RateLimiter(name = "default")
+    //Belli bir zaman aralığında yapılan istek sayısını sınırlar (Rate Limiting).
+    //limit-for-period: 10, yani her saniyede en fazla 10 isteğe izin verir.
     public PaymentDTO payInvoice(Double amount) {
         return null;
     }
