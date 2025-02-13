@@ -41,7 +41,7 @@ public class BankUserServiceImpl implements BankUserService {
     @Override
     public Page<BankUserDTO> getAllUsers(Pageable pageable) {
         Page<BankUser> userPage = bankUserRepository.findAll(pageable);
-        List<BankUserDTO> bankUserDTOS = mapper.userListToUserDTOList(userPage.getContent());
+        List<BankUserDTO> bankUserDTOS = mapper.userToUserDTO(userPage.getContent());
         return new PageImpl<>(bankUserDTOS, pageable, userPage.getTotalElements());
     }
 

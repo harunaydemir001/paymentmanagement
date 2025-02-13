@@ -47,6 +47,16 @@ public interface BankUserRepository extends JPABaseRepository<BankUser, Long>, J
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
+            if (!ObjectUtils.isEmpty(bankUserDTO.isEmailVerified())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("isEmailVerified"), bankUserDTO.isEmailVerified());
+                mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
+            }
+
+            if (!ObjectUtils.isEmpty(bankUserDTO.isPhoneVerified())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("isPhoneVerified"), bankUserDTO.isPhoneVerified());
+                mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
+            }
+
             if (!ObjectUtils.isEmpty(bankUserDTO.getPhoneNumber())) {
                 Predicate predicate = criteriaBuilder.equal(root.get("phoneNumber"), bankUserDTO.getPhoneNumber());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
