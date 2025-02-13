@@ -70,7 +70,9 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    @CircuitBreaker(name = "backendB", fallbackMethod = "processPaymentFallBack")
+    @Bulkhead(name = "default")
+    @TimeLimiter(name = "default")
+    @RateLimiter(name = "default")
     public PaymentSagaState processPayment(PaymentRequest paymentRequest) {
         PaymentSagaState paymentSagaState = paymentSagaOrchestrator.processPayment(
                 paymentRequest.getSourceAccountId(),

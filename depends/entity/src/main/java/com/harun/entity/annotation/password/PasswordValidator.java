@@ -1,4 +1,4 @@
-package com.harun.common.annotation.password;
+package com.harun.entity.annotation.password;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

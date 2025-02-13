@@ -5,15 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4aaa23e5-ca7e-4ee8-b29e-06779f4550c0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/dto/CardDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/annotation/card/CardNumberValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/annotation/card/ValidCardNumber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/models/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/annotation/password/PasswordValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/annotation/password/PasswordValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/annotation/password/ValidPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/annotation/password/ValidPassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/dto/CampaignDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/dto/CampaignDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/dto/InvoiceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/dto/InvoiceDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/annotation/password/PasswordValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/annotation/password/ValidPassword.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/CampaignDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/CampaignDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/InvoiceDTO$InvoiceDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/InvoiceDTO$InvoiceDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/InvoiceDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/dto/InvoiceDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/models/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/models/BankUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/src/main/java/com/harun/entity/models/BankUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/Account$AccountBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/Account$AccountBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/BankUser$BankUserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/BankUser$BankUserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/BankUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/depends/entity/target/classes/com/harun/entity/models/BankUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/account-management-service/src/main/resources/db/insert_initial_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DataBase/MySQL/insert_account_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/account-management-service/target/generated-sources/annotations/com/harun/accountmanagementservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/account-management-service/target/generated-sources/annotations/com/harun/accountmanagementservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/campaign-service/src/main/resources/db/insert_campaign_bank_users.data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DataBase/MySQL/insert_campaign_bank_users.data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/campaign-service/src/main/resources/db/insert_initial_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DataBase/MySQL/insert_campaign_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/campaign-service/target/classes/com/harun/campaignservice/mapper/MapperGeneratorImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/campaign-service/target/classes/com/harun/campaignservice/mapper/MapperGeneratorImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/campaign-service/target/generated-sources/annotations/com/harun/campaignservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/campaign-service/target/generated-sources/annotations/com/harun/campaignservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/invoice-service/src/main/resources/db/insert_initial_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DataBase/MySQL/insert_invoice_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/invoice-service/target/classes/com/harun/invoiceservice/mapper/MapperGeneratorImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/invoice-service/target/classes/com/harun/invoiceservice/mapper/MapperGeneratorImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/invoice-service/target/generated-sources/annotations/com/harun/invoiceservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/invoice-service/target/generated-sources/annotations/com/harun/invoiceservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/money-transfer-service/src/main/resources/db/insert_initial_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DataBase/MySQL/insert_transaction_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/money-transfer-service/target/generated-sources/annotations/com/harun/moneytransferservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/money-transfer-service/target/generated-sources/annotations/com/harun/moneytransferservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/impl/PaymentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/impl/PaymentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/resources/db/insert_initial_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DataBase/MySQL/insert_payment_data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/target/classes/com/harun/paymentprocessingservice/service/impl/PaymentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/target/classes/com/harun/paymentprocessingservice/service/impl/PaymentServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/src/main/java/com/harun/usermanagementservice/repository/BankUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/src/main/java/com/harun/usermanagementservice/repository/BankUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/src/main/java/com/harun/usermanagementservice/service/implementation/BankUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/src/main/java/com/harun/usermanagementservice/service/implementation/BankUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/controller/BankUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/controller/BankUserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/mapper/MapperGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/mapper/MapperGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/mapper/MapperGeneratorImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/mapper/MapperGeneratorImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/repository/BankUserRepositoryJPA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/service/BankUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/service/BankUserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/service/implementation/BankUserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/target/classes/com/harun/usermanagementservice/service/implementation/BankUserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/target/generated-sources/annotations/com/harun/paymentprocessingservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/target/generated-sources/annotations/com/harun/paymentprocessingservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/src/main/resources/db/insert_initial_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DataBase/MySQL/insert_user_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microservices/user-management-service/target/generated-sources/annotations/com/harun/usermanagementservice/mapper/MapperGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/user-management-service/target/generated-sources/annotations/com/harun/usermanagementservice/mapper/MapperGeneratorImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +88,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Security Analysis" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -167,6 +195,8 @@
       <recent name="C:\Users\haydemir\Pictures\paymentmanagement\microservices\invoice-service\src\main\java\com\harun\invoiceservice" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\haydemir\Pictures\paymentmanagement\resources\DataBase\MySQL" />
+      <recent name="C:\Users\haydemir\Pictures\paymentmanagement\resources\DataBase" />
       <recent name="C:\Users\haydemir\Pictures\paymentmanagement\microservices\campaign-service\src\main\resources\db" />
       <recent name="C:\Users\haydemir\Pictures\paymentmanagement\resources" />
       <recent name="C:\Users\haydemir\Pictures\paymentmanagement\microservices\reporting-service\src\main\java\com\harun\reportingservice\deleted" />
@@ -200,9 +230,14 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Database Script.insert_initial_data.sql">
+  <component name="RunManager" selected="Database Script.insert_user_data.sql">
     <configuration name="insert_initial_data.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/microservices/user-management-service/src/main/resources/db/insert_initial_data.sql" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
+    </configuration>
+    <configuration name="insert_user_data.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/resources/DataBase/MySQL/insert_user_data.sql" />
       <script-mode>FILE</script-mode>
       <method v="2" />
     </configuration>
@@ -213,9 +248,6 @@
       <method v="2" />
     </configuration>
     <configuration name="generated-requests | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#4" index="4" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | #8" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#8" index="8" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="AccountManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -303,11 +335,11 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Database Script.insert_user_data.sql" />
       <item itemvalue="Database Script.insert_initial_data.sql" />
       <item itemvalue="HTTP Request.generated-requests | #3" />
       <item itemvalue="HTTP Request.generated-requests | #4" />
       <item itemvalue="HTTP Request.generated-requests | #2" />
-      <item itemvalue="HTTP Request.generated-requests | #8" />
       <item itemvalue="Spring Boot.ReportingServiceApplication" />
       <item itemvalue="Spring Boot.NotificationServiceApplication" />
       <item itemvalue="Spring Boot.ApiGatewayServiceApplication" />
@@ -322,11 +354,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Database Script.insert_user_data.sql" />
         <item itemvalue="Database Script.insert_initial_data.sql" />
         <item itemvalue="HTTP Request.generated-requests | #4" />
         <item itemvalue="HTTP Request.generated-requests | #3" />
         <item itemvalue="HTTP Request.generated-requests | #2" />
-        <item itemvalue="HTTP Request.generated-requests | #8" />
       </list>
     </recent_temporary>
   </component>
@@ -427,7 +459,7 @@
       <workItem from="1738777552047" duration="19079000" />
       <workItem from="1739339805873" duration="20144000" />
       <workItem from="1739384148487" duration="4494000" />
-      <workItem from="1739424032270" duration="10627000" />
+      <workItem from="1739424032270" duration="14199000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -637,7 +669,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739435108671</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary=".">
+      <option name="closed" value="true" />
+      <created>1739435744296</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1739435744296</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -690,6 +730,11 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="    @" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,6 +1,8 @@
 package com.harun.entity.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.harun.entity.base.BaseEntity;
 import com.harun.entity.enums.AccountType;
 import jakarta.persistence.*;
@@ -11,6 +13,8 @@ import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "accounts")
@@ -39,6 +43,12 @@ public class Account extends BaseEntity<Long> implements Serializable {
 
     @Version
     Integer version;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    @Fetch(FetchMode.JOIN)
+    @JsonIgnore
+    Set<Card> cards = new HashSet<>();
 
     @SequenceGenerator(name = "accounts_seq", sequenceName = "accounts_seq", allocationSize = 20)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accounts_seq")

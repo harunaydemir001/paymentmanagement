@@ -1,14 +1,12 @@
 package com.harun.common.dto;
 
 import com.harun.common.base.BaseDTO;
+import com.harun.entity.models.Account;
 import com.harun.entity.models.BankUser;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,16 +14,15 @@ import java.util.Set;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CampaignDTO extends BaseDTO<Long> {
+public class CardDTO extends BaseDTO<Long> {
 
-    String name;
+    String cardNumber;
 
-    BigDecimal discountPercentage;
+    LocalDate expiryDate;
 
-    Set<BankUser> bankUsers = new HashSet<>();
+    String cvv;
 
-    LocalDate startDate;
+    Account account;
 
-    LocalDate endDate;
-
+    BankUser bankUser;
 }

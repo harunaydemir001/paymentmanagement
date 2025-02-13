@@ -1,5 +1,6 @@
 package com.harun.entity.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.harun.entity.base.BaseEntity;
 import com.harun.entity.enums.Gender;
@@ -61,6 +62,12 @@ public class BankUser extends BaseEntity<Long> implements Serializable {
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)
     Set<Account> accounts = new HashSet<>();
+
+    @OneToMany(mappedBy = "bankUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    @Fetch(FetchMode.JOIN)
+    @JsonIgnore
+    Set<Card> cards = new HashSet<>();
 
     @SequenceGenerator(name = "bank_users_seq", sequenceName = "bank_users_seq", allocationSize = 20)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bank_users_seq")
