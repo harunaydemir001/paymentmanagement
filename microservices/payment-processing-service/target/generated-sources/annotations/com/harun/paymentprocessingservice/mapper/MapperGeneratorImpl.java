@@ -2,9 +2,11 @@ package com.harun.paymentprocessingservice.mapper;
 
 import com.harun.common.dto.AccountDTO;
 import com.harun.common.dto.BankUserDTO;
+import com.harun.common.dto.CardDTO;
 import com.harun.common.dto.PaymentDTO;
 import com.harun.entity.models.Account;
 import com.harun.entity.models.BankUser;
+import com.harun.entity.models.Card;
 import com.harun.entity.models.Payment;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -14,7 +16,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-13T12:25:42+0300",
+    date = "2025-02-13T13:51:57+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {
@@ -97,5 +99,39 @@ public class MapperGeneratorImpl implements MapperGenerator {
         }
 
         return bankUser;
+    }
+
+    @Override
+    public CardDTO cardToCardDTO(Card card) {
+        if ( card == null ) {
+            return null;
+        }
+
+        CardDTO cardDTO = new CardDTO();
+
+        cardDTO.setId( card.getId() );
+        cardDTO.setCreatedAt( card.getCreatedAt() );
+        cardDTO.setUpdatedAt( card.getUpdatedAt() );
+        cardDTO.setCardNumber( card.getCardNumber() );
+        cardDTO.setExpiryDate( card.getExpiryDate() );
+        cardDTO.setCvv( card.getCvv() );
+        cardDTO.setAccount( card.getAccount() );
+        cardDTO.setBankUser( card.getBankUser() );
+
+        return cardDTO;
+    }
+
+    @Override
+    public List<CardDTO> cardToCardDTO(List<Card> cards) {
+        if ( cards == null ) {
+            return null;
+        }
+
+        List<CardDTO> list = new ArrayList<CardDTO>( cards.size() );
+        for ( Card card : cards ) {
+            list.add( cardToCardDTO( card ) );
+        }
+
+        return list;
     }
 }

@@ -39,3 +39,4 @@ kafka:
   topic:
     email: email-topic
     report: report-topic
+    payment: payment-topic

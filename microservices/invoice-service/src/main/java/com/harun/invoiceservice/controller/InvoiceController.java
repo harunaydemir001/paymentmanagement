@@ -42,7 +42,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/pay-invoice")
-    public ResponseEntity<Response> payInvoice(InvoiceType invoiceType, Double amount) {
+    public ResponseEntity<Response> payInvoice(@RequestParam InvoiceType invoiceType, @RequestParam Double amount) {
         return ResponseFactory.createResponse(invoiceService.payInvoice(invoiceType, amount), HttpStatus.OK);
     }
 }

@@ -13,11 +13,14 @@
         <option value="$PROJECT_DIR$/depends/feign/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/invoice-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/campaign-service/pom.xml" />
+        <option value="$PROJECT_DIR$/jobs/pom.xml" />
+        <option value="$PROJECT_DIR$/jobs/payment-scheduler/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/depends/feign/pom.xml" />
+        <option value="$PROJECT_DIR$/jobs/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/auth-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/identity-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/security-service/pom.xml" />

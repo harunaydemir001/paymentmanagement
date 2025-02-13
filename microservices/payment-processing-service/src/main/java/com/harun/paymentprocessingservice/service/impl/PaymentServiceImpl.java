@@ -1,20 +1,19 @@
 package com.harun.paymentprocessingservice.service.impl;
 
-import com.harun.common.dto.AccountDTO;
 import com.harun.common.dto.PaymentDTO;
 import com.harun.common.dto.PaymentRequest;
 import com.harun.common.dto.PaymentSagaState;
 import com.harun.common.enums.ErrorMessage;
 import com.harun.common.factory.EntityFactory;
-import com.harun.common.feign.impl.AccountServiceClientImpl;
-import com.harun.entity.models.Account;
 import com.harun.entity.models.Payment;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
 import com.harun.paymentprocessingservice.mapper.PageMapper;
+import com.harun.paymentprocessingservice.model.PayRequest;
 import com.harun.paymentprocessingservice.repository.PaymentRepository;
-import com.harun.paymentprocessingservice.service.PaymentSagaOrchestrator;
+import com.harun.paymentprocessingservice.saga.PaymentSagaOrchestrator;
 import com.harun.paymentprocessingservice.service.PaymentService;
+import com.harun.paymentprocessingservice.strategy.PayStrategy;
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
@@ -28,6 +27,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -40,8 +40,8 @@ public class PaymentServiceImpl implements PaymentService {
     private static String message = "";
 
     private final PaymentRepository paymentRepository;
-    private final AccountServiceClientImpl accountServiceClientImpl;
     private final PaymentSagaOrchestrator paymentSagaOrchestrator;
+    private final Map<String, PayStrategy> strategies;
 
     @Override
     public PaymentDTO getPaymentById(Long id) {
@@ -89,6 +89,21 @@ public class PaymentServiceImpl implements PaymentService {
                 paymentSagaState.getTargetAccountId());
         savePayment(targetPayment);
         return paymentSagaState;
+    }
+
+    //Diğer ödeme seçenekleri eklenebilir.
+    public void pay(PayRequest payRequest) {
+        PayStrategy payStrategy = strategies.get(payRequest.getPayType().getDescription());
+        switch (payRequest.getPayType()) {
+            case CARD:
+                payStrategy.pay(payRequest.getAmount(), payRequest.getSourceCard(), payRequest.getTargetAccountId());
+                break;
+            case EFT:
+                payStrategy.pay(payRequest.getAmount());
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

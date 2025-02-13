@@ -12,7 +12,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-13T12:25:42+0300",
+    date = "2025-02-13T22:27:18+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Oracle Corporation)"
 )
 public class MapperGeneratorImpl implements MapperGenerator {

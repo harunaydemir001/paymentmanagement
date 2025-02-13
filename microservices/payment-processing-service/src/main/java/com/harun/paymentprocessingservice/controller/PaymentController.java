@@ -5,17 +5,20 @@ import com.harun.common.dto.PaymentRequest;
 import com.harun.common.response.factory.ResponseFactory;
 import com.harun.common.response.model.Response;
 import com.harun.entity.models.Payment;
+import com.harun.paymentprocessingservice.model.PayRequest;
 import com.harun.paymentprocessingservice.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/payment")
+@Validated
 public class PaymentController {
     private final PaymentService paymentService;
 
@@ -54,5 +57,11 @@ public class PaymentController {
     public ResponseEntity<Response> filter(@ParameterObject Pageable pageable,
                                            @RequestBody() PaymentDTO paymentDTO) {
         return ResponseFactory.createResponse(paymentService.filter(pageable, paymentDTO), HttpStatus.OK);
+    }
+
+    @PostMapping("/pay")
+    public ResponseEntity<Response> pay(@RequestBody PayRequest payRequest) {
+        paymentService.pay(payRequest);
+        return ResponseFactory.createSuccessResponse();
     }
 }

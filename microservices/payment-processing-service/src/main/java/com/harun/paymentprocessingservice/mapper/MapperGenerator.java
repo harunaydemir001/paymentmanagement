@@ -2,9 +2,11 @@ package com.harun.paymentprocessingservice.mapper;
 
 import com.harun.common.dto.AccountDTO;
 import com.harun.common.dto.BankUserDTO;
+import com.harun.common.dto.CardDTO;
 import com.harun.common.dto.PaymentDTO;
 import com.harun.entity.models.Account;
 import com.harun.entity.models.BankUser;
+import com.harun.entity.models.Card;
 import com.harun.entity.models.Payment;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
@@ -22,4 +24,8 @@ public interface MapperGenerator {
     Account accountDTOToAccount(AccountDTO accountDTO);
 
     BankUser bankUserDTOToBankUser(BankUserDTO bankUserDTO);
+
+    CardDTO cardToCardDTO(Card card);
+
+    List<CardDTO> cardToCardDTO(List<Card> cards);
 }
