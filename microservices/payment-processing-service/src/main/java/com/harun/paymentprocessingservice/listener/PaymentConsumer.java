@@ -4,12 +4,12 @@ import com.harun.entity.models.Payment;
 import com.harun.paymentprocessingservice.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class PaymentConsumer {
     private final PaymentService paymentService;
@@ -19,15 +19,26 @@ public class PaymentConsumer {
 
     @KafkaListener(topics = "payment-topic", groupId = "payment-group")
     public void consume(Payment payment) {
-        paymentBatch.add(payment);
+        synchronized (paymentBatch) {
+            paymentBatch.add(payment);
 
-        if (paymentBatch.size() >= BATCH_SIZE) {
-            paymentService.processBatch(paymentBatch);
+            if (paymentBatch.size() >= BATCH_SIZE) {
+                processAndClear();
+            }
         }
     }
 
-    public void insertData(){
-        paymentService.processBatch(paymentBatch);
+    public void insertData() {
+        synchronized (paymentBatch) {
+            processAndClear();
+        }
+    }
+
+    private void processAndClear() {
+        if (!paymentBatch.isEmpty()) {
+            paymentService.processBatch(new ArrayList<>(paymentBatch));
+            paymentBatch.clear();
+        }
     }
 
 }

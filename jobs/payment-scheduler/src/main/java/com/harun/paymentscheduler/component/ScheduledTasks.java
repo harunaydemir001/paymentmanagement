@@ -11,7 +11,7 @@ public class ScheduledTasks {
 
     private final PaymentInsertData paymentInsertData;
 
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "0 0 * * * ?")
     public void execute() {
         paymentInsertData.insertData();
     }

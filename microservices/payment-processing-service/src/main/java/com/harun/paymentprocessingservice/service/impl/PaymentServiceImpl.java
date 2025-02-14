@@ -47,6 +47,7 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
     private final PaymentSagaOrchestrator paymentSagaOrchestrator;
     private final Map<String, PayStrategy> strategies;
+    private final PaymentRepository.PaymentBatchRepository paymentBatchRepository;
 
     @Override
     public PaymentDTO getPaymentById(Long id) {
@@ -122,8 +123,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Transactional
     public void processBatch(List<Payment> payments) {
-        paymentRepository.saveAll(payments);
-        payments.clear();
+        paymentBatchRepository.batchInsert(payments);
     }
 
     @Override
