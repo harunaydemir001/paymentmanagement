@@ -16,6 +16,8 @@ public class KafkaTopicsProperties {
     private static String emailTopic;
     @Getter
     private static String reportTopic;
+    @Getter
+    private static String paymentTopic;
 
     @Value("${kafka.topic.email}")
     private String emailInstance;
@@ -23,9 +25,13 @@ public class KafkaTopicsProperties {
     @Value("${kafka.topic.report}")
     private String reportInstance;
 
+    @Value("${kafka.topic.payment}")
+    private String paymentInstance;
+
     @PostConstruct
     private void init() {
         emailTopic = emailInstance;
         reportTopic = reportInstance;
+        paymentTopic = paymentInstance;
     }
 }

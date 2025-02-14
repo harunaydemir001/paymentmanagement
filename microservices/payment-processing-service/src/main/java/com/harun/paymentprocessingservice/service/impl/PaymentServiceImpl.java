@@ -4,7 +4,10 @@ import com.harun.common.dto.PaymentDTO;
 import com.harun.common.dto.PaymentRequest;
 import com.harun.common.dto.PaymentSagaState;
 import com.harun.common.enums.ErrorMessage;
+import com.harun.common.enums.PaymentSagaStep;
 import com.harun.common.factory.EntityFactory;
+import com.harun.common.kafka.KafkaProducer;
+import com.harun.common.kafka.KafkaTopicsProperties;
 import com.harun.entity.models.Payment;
 import com.harun.paymentprocessingservice.mapper.MapperGenerator;
 import com.harun.paymentprocessingservice.mapper.MapperGeneratorSingleton;
@@ -25,9 +28,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -70,25 +75,27 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    @Bulkhead(name = "default")
-    @TimeLimiter(name = "default")
-    @RateLimiter(name = "default")
+//    @Bulkhead(name = "default")
+//    @TimeLimiter(name = "default")
+//    @RateLimiter(name = "default")
     public PaymentSagaState processPayment(PaymentRequest paymentRequest) {
         PaymentSagaState paymentSagaState = paymentSagaOrchestrator.processPayment(
                 paymentRequest.getSourceAccountId(),
                 paymentRequest.getTargetAccountId(),
                 paymentRequest.getAmount());
-        Payment sourcePayment = EntityFactory.createPayment(
-                paymentSagaState.getAmount(),
-                paymentSagaState.getTransactionId(),
-                paymentSagaState.getSourceAccountId());
-        savePayment(sourcePayment);
-        Payment targetPayment = EntityFactory.createPayment(
-                paymentSagaState.getAmount(),
-                paymentSagaState.getTransactionId(),
-                paymentSagaState.getTargetAccountId());
-        savePayment(targetPayment);
+        if (Objects.equals(paymentSagaState.getCurrentStep(), PaymentSagaStep.COMPLETE_PAYMENT)) {
+            createPaymentAndSendKafka(paymentSagaState, paymentSagaState.getSourceAccountId());
+            createPaymentAndSendKafka(paymentSagaState, paymentSagaState.getSourceAccountId());
+        }
         return paymentSagaState;
+    }
+
+    private void createPaymentAndSendKafka(PaymentSagaState paymentSagaState, Long accountId) {
+        Payment payment = EntityFactory.createPayment(
+                paymentSagaState.getAmount(),
+                paymentSagaState.getTransactionId(),
+                accountId);
+        KafkaProducer.sendKafkaMessage(payment, KafkaTopicsProperties.getPaymentTopic());
     }
 
     //Diğer ödeme seçenekleri eklenebilir.
@@ -111,6 +118,12 @@ public class PaymentServiceImpl implements PaymentService {
         Page<Payment> page = paymentRepository.findByFilter(pageable, directorDTO);
         List<PaymentDTO> directorDTOList = mapper.paymentToPaymentDTO(page.getContent());
         return PageMapper.toPage(page, directorDTOList);
+    }
+
+    @Transactional
+    public void processBatch(List<Payment> payments) {
+        paymentRepository.saveAll(payments);
+        payments.clear();
     }
 
     @Override
