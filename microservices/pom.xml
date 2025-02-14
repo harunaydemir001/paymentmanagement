@@ -52,10 +52,4 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
-
-
-    <dependencyManagement>
-    </dependencyManagement>
-
-
 </project>

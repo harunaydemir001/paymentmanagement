@@ -46,6 +46,7 @@
     <modules>
         <module>microservices</module>
         <module>depends</module>
+        <module>jobs</module>
     </modules>
 
     <dependencies>

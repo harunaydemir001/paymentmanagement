@@ -26,4 +26,8 @@ public class PaymentConsumer {
         }
     }
 
+    public void insertData(){
+        paymentService.processBatch(paymentBatch);
+    }
+
 }

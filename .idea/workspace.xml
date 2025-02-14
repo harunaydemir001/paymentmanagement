@@ -5,19 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4aaa23e5-ca7e-4ee8-b29e-06779f4550c0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/config/KafkaConsumerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/listener/PaymentConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/payment-scheduler/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/payment-scheduler/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/payment-scheduler/src/main/java/com/harun/paymentscheduler/PaymentSchedulerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/payment-scheduler/src/main/java/com/harun/paymentscheduler/component/ScheduledTasks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/payment-scheduler/src/main/java/com/harun/paymentscheduler/service/PaymentInsertData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/payment-scheduler/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/payment-scheduler/src/test/java/com/harun/paymentscheduler/PaymentSchedulerApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jobs/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservices/config-server/src/main/resources/configurations/payment-scheduler.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/kafka/KafkaTopicsProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/src/main/java/com/harun/common/kafka/KafkaTopicsProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/kafka/KafkaTopicsProperties.class" beforeDir="false" afterPath="$PROJECT_DIR$/depends/common/target/classes/com/harun/common/kafka/KafkaTopicsProperties.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/config-server/src/main/resources/configurations/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/config-server/src/main/resources/configurations/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/PaymentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/impl/PaymentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/service/impl/PaymentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/target/classes/com/harun/paymentprocessingservice/service/PaymentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/target/classes/com/harun/paymentprocessingservice/service/PaymentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/target/classes/com/harun/paymentprocessingservice/service/impl/PaymentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/target/classes/com/harun/paymentprocessingservice/service/impl/PaymentServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/reporting-service/target/classes/com/harun/reportingservice/ReportingServiceApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/reporting-service/target/classes/com/harun/reportingservice/ReportingServiceApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/listener/PaymentConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/payment-processing-service/src/main/java/com/harun/paymentprocessingservice/listener/PaymentConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,6 +309,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PaymentSchedulerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="SCHEDULED_DEBUGGER" value="true" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="payment-scheduler" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.harun.paymentscheduler.PaymentSchedulerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ReportingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="reporting-service" />
@@ -328,6 +339,7 @@
       <item itemvalue="HTTP Request.generated-requests | #3" />
       <item itemvalue="HTTP Request.generated-requests | #4" />
       <item itemvalue="JUnit.All in config-server" />
+      <item itemvalue="Spring Boot.PaymentSchedulerApplication" />
       <item itemvalue="Spring Boot.ApiGatewayServiceApplication" />
       <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.EurekaServerApplication" />
@@ -453,7 +465,7 @@
       <workItem from="1739451674004" duration="2205000" />
       <workItem from="1739474470931" duration="7959000" />
       <workItem from="1739482467145" duration="1759000" />
-      <workItem from="1739514477941" duration="1766000" />
+      <workItem from="1739514477941" duration="6892000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -695,7 +707,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739482406753</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary=".">
+      <option name="closed" value="true" />
+      <created>1739516347414</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1739516347414</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
