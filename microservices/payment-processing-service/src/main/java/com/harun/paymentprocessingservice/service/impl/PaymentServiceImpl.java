@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -121,7 +122,7 @@ public class PaymentServiceImpl implements PaymentService {
         return PageMapper.toPage(page, directorDTOList);
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void processBatch(List<Payment> payments) {
         paymentBatchRepository.batchInsert(payments);
     }
