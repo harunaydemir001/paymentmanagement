@@ -64,5 +64,5 @@ Key Features
 	•	Yetkilendirme: Kullanıcılar Keycloak ile kimlik doğrulama yapar.
 	•	Ölçeklenebilirlik: Kafka ve Redis ile performans artırılmıştır.
 	•	Raporlama: Elasticsearch üzerinden detaylı raporlamalar sunulmaktadır.
-	•	Batch İşlemleri: Büyük veri setleri üzerinde batch işlemleri yapılabilmektedir.
+	•	Batch İşlemleri: Büyük veri setleri üzerinde batch işlemleri yapılabilmektedir. Buna uygun job bulunmaktadır.
 	•	Scheduled Jobs: Arka planda belirli periyotlarla çalışan görevler bulunmaktadır.
