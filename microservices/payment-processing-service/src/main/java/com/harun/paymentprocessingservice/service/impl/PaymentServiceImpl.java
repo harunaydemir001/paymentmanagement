@@ -25,11 +25,10 @@ import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -37,6 +36,7 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
+@Scope("prototype")
 public class PaymentServiceImpl implements PaymentService {
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
 
@@ -87,7 +87,7 @@ public class PaymentServiceImpl implements PaymentService {
                 paymentRequest.getAmount());
         if (Objects.equals(paymentSagaState.getCurrentStep(), PaymentSagaStep.COMPLETE_PAYMENT)) {
             createPaymentAndSendKafka(paymentSagaState, paymentSagaState.getSourceAccountId());
-            createPaymentAndSendKafka(paymentSagaState, paymentSagaState.getSourceAccountId());
+            createPaymentAndSendKafka(paymentSagaState, paymentSagaState.getTargetAccountId());
         }
         return paymentSagaState;
     }
@@ -122,7 +122,7 @@ public class PaymentServiceImpl implements PaymentService {
         return PageMapper.toPage(page, directorDTOList);
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+
     public void processBatch(List<Payment> payments) {
         paymentBatchRepository.batchInsert(payments);
     }
