@@ -28,7 +28,9 @@
     </scm>
     <properties>
     </properties>
-    <modules></modules>
+    <modules>
+        <module>payment-scheduler</module>
+    </modules>
 
     <dependencies>
 
