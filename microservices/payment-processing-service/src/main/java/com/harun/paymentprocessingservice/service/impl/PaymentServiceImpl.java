@@ -25,7 +25,6 @@ import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,6 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-@Scope("prototype")
 public class PaymentServiceImpl implements PaymentService {
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
 
